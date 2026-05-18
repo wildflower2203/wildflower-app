@@ -58,6 +58,10 @@
       <h2>Plante</h2>
       <div id="plante-content"></div>
     </div>
+    <div class="card" id="vizite-card" style="display:none">
+      <h2>Ultimele vizite</h2>
+      <div id="vizite-content"></div>
+    </div>
   </div>
 
   <script>
@@ -99,11 +103,14 @@
     }
 
     function showDetail(loc) {
+      const numeLocatie = loc["Nume client final"];
+
       document.getElementById("dashboard-view").style.display = "none";
       document.getElementById("detail-view").style.display = "block";
       document.getElementById("back-btn").style.display = "inline";
-      document.getElementById("header-title").textContent = loc["Nume client final"] || "Locație";
+      document.getElementById("header-title").textContent = numeLocatie || "Locație";
       document.getElementById("plante-card").style.display = "none";
+      document.getElementById("vizite-card").style.display = "none";
 
       const fields = [
         ["Tehnician", "ID_Tehnician"],
@@ -124,11 +131,10 @@
       });
       document.getElementById("detail-content").innerHTML = html;
 
-      const numeLocatie = loc["Nume client final"];
       fetch(PLANTE_URL)
         .then(r => r.text())
         .then(text => {
-          const plante = parseCSV(text).filter(p => p["ID_Locatie"] === numeLocatie);
+          const plante = parseCSV(text).filter(p => p["ID_Locatie"]?.toLowerCase() === numeLocatie?.toLowerCase());
           if (plante.length > 0) {
             document.getElementById("plante-card").style.display = "block";
             let planteHtml = "";
@@ -141,31 +147,28 @@
             document.getElementById("plante-content").innerHTML = planteHtml;
           }
         });
-    }fetch(VIZITE_URL)
+
+      fetch(VIZITE_URL)
         .then(r => r.text())
         .then(text => {
           const toateVizitele = parseCSV(text);
           const vizite = toateVizitele.filter(v => v["Locatie"]?.toLowerCase() === numeLocatie?.toLowerCase());
-          console.log("Nume locatie:", numeLocatie);
-console.log("Total vizite:", toateVizitele.length);
-console.log("Vizite filtrate:", vizite.length);
-console.log("Prima vizita locatie:", toateVizitele[0]?.["Locatie"]);
           if (vizite.length > 0) {
+            document.getElementById("vizite-card").style.display = "block";
             const ultimeVizite = vizite.slice(-5).reverse();
-            let viziteHtml = `<div class="card">
-              <h2>Ultimele vizite (${vizite.length} total)</h2>`;
+            let viziteHtml = `<div style="font-size:12px;color:#aaa;margin-bottom:8px">${vizite.length} vizite total</div>`;
             ultimeVizite.forEach(v => {
               const dataRaw = parseFloat(v["Data vizita"]);
               const data = dataRaw ? new Date((dataRaw - 25569) * 86400 * 1000).toLocaleDateString("ro-RO") : "—";
               viziteHtml += `<div class="detail-row">
                 <div class="detail-label">${data} — ${v["Nume"] || "—"}</div>
-                <div class="detail-value" style="font-size:13px">${v["Observatie/recomandari"] || ""}</div>
+                <div class="detail-value" style="font-size:13px">${v["Observation/recomandari"] || ""}</div>
               </div>`;
             });
-            viziteHtml += `</div>`;
-            document.getElementById("detail-view").innerHTML += viziteHtml;
+            document.getElementById("vizite-content").innerHTML = viziteHtml;
           }
         });
+    }
 
     fetch(SHEET_URL)
       .then(r => r.text())
