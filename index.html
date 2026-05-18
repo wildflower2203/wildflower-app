@@ -65,7 +65,7 @@
       .then(r => r.text())
       .then(text => {
         const rows = parseCSV(text);
-        const active = rows.filter(r => r["Status"] === "activ");
+       const active = rows.filter(r => r["Status"] === "activ" || r["Status"] === "");
         document.getElementById("nr-locatii").textContent = active.length;
         const lista = document.getElementById("lista-locatii");
         lista.innerHTML = "";
