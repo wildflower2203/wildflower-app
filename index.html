@@ -95,6 +95,17 @@
       });
     }
 
+    function parseData(val) {
+      if (!val) return "—";
+      const nr = parseFloat(val);
+      if (!isNaN(nr) && nr > 40000) {
+        return new Date((nr - 25569) * 86400 * 1000).toLocaleDateString("ro-RO");
+      }
+      const d = new Date(val);
+      if (!isNaN(d)) return d.toLocaleDateString("ro-RO");
+      return val;
+    }
+
     function showDashboard() {
       document.getElementById("detail-view").style.display = "none";
       document.getElementById("dashboard-view").style.display = "block";
@@ -158,10 +169,8 @@
             const ultimeVizite = vizite.slice(-5).reverse();
             let viziteHtml = `<div style="font-size:12px;color:#aaa;margin-bottom:8px">${vizite.length} vizite total</div>`;
             ultimeVizite.forEach(v => {
-              const dataRaw = parseFloat(v["Data vizita"]);
-              const data = dataRaw ? new Date((dataRaw - 25569) * 86400 * 1000).toLocaleDateString("ro-RO") : "—";
               viziteHtml += `<div class="detail-row">
-                <div class="detail-label">${data} — ${v["Nume"] || "—"}</div>
+                <div class="detail-label">${parseData(v["Data vizita"])} — ${v["Nume"] || "—"}</div>
                 <div class="detail-value" style="font-size:13px">${v["Observation/recomandari"] || ""}</div>
               </div>`;
             });
