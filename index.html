@@ -145,7 +145,7 @@
         .then(r => r.text())
         .then(text => {
           const toateVizitele = parseCSV(text);
-          const vizite = toateVizitele.filter(v => v["Locatie"] === numeLocatie);
+          const vizite = toateVizitele.filter(v => v["Locatie"]?.toLowerCase() === numeLocatie?.toLowerCase());
           if (vizite.length > 0) {
             const ultimeVizite = vizite.slice(-5).reverse();
             let viziteHtml = `<div class="card">
