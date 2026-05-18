@@ -5,30 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wildflower App</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    h1 { color: #2d5a27; margin-bottom: 8px; }
-    p { color: #888; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f5f5f0; min-height: 100vh; }
+    header { background: white; padding: 16px 20px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+    header h1 { font-size: 18px; color: #2d5a27; }
+    .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .card h2 { font-size: 13px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .card .number { font-size: 36px; font-weight: 700; color: #2d5a27; }
+    .card .subtitle { font-size: 13px; color: #aaa; margin-top: 4px; }
+    .locatii-list { list-style: none; }
+    .locatii-list li { padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+    .locatii-list li:last-child { border-bottom: none; }
+    .badge { background: #e8f5e9; color: #2d5a27; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+    .loading { color: #aaa; font-size: 14px; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🌸 Wildflower App</h1>
-    <p>Plant management by Wildflower.ro</p>
+  <header>
+    <span>🌸</span>
+    <h1>Wildflower App</h1>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h2>Locații active</h2>
+      <div class="number" id="nr-locatii">...</div>
+      <div class="subtitle">locații în gestiune</div>
+    </div>
+    <div class="card">
+      <h2>Vizite luna aceasta</h2>
+      <div class="number" id="nr-vizite">...</div>
+      <div class="subtitle" id="luna-curenta">se încarcă...</div>
+    </div>
+    <div class="card">
+      <h2>Locații</h2>
+      <ul class="locatii-list" id="lista-locatii">
+        <li class="loading">Se încarcă...</li>
+      </ul>
+    </div>
   </div>
+
+  <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&sheet=Locatii";
+    const VIZITE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&sheet=Raport vizita";
+
+    function parseCSV(text) {
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
+      return lines.slice(1).map(line => {
+        const vals = line.split(",").map(v => v.trim().replace(/"/g, ""));
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = vals[i] || "");
+        return obj;
+      });
+    }
+
+    // Locatii
+    fetch(SHEET_URL)
+      .then(r => r.text())
+      .then(text => {
+        const rows = parseCSV(text);
+        const active = rows.filter(r => r["Status"] === "activ");
+        document.getElementById("nr-locatii").textContent = active.length;
+        const lista = document.getElementById("lista-locatii");
+        lista.innerHTML = "";
+        active.forEach(loc => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${loc["Nume client final"] || "—"}</span><span class="badge">${loc["ID_Tehnician"] || "—"}</span>`;
+          lista.appendChild(li);
+        });
+      })
+      .catch(() => {
+        document.getElementById("nr-locatii").textContent = "—";
+      });
+
+    // Vizite luna aceasta
+    const acum = new Date();
+    const luna = acum.getMonth() + 1;
+    const an = acum.getFullYear();
+    document.getElementById("luna-curenta").textContent = `luna ${luna}/${an}`;
+
+    fetch(VIZITE_URL)
+      .then(r => r.text())
+      .then(text => {
+        const rows = parseCSV(text);
+        const viziteLuna = rows.filter(r => {
+          const dataVal = parseFloat(r["Data vizita"]);
+          if (!dataVal) return false;
+          const data = new Date((dataVal - 25569) * 86400 * 1000);
+          return data.getMonth() + 1 === luna && data.getFullYear() === an;
+        });
+        document.getElementById("nr-vizite").textContent = viziteLuna.length;
+      })
+      .catch(() => {
+        document.getElementById("nr-vizite").textContent = "—";
+      });
+  </script>
 </body>
 </html>
