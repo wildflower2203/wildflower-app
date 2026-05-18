@@ -93,11 +93,52 @@
       document.getElementById("header-title").textContent = "Wildflower App";
     }
 
-    function showDetail(loc) {
-      document.getElementById("dashboard-view").style.display = "none";
-      document.getElementById("detail-view").style.display = "block";
-      document.getElementById("back-btn").style.display = "inline";
-      document.getElementById("header-title").textContent = loc["Nume client final"] || "Locație";
+   function showDetail(loc) {
+  document.getElementById("dashboard-view").style.display = "none";
+  document.getElementById("detail-view").style.display = "block";
+  document.getElementById("back-btn").style.display = "inline";
+  document.getElementById("header-title").textContent = loc["Nume client final"] || "Locație";
+
+  const fields = [
+    ["Tehnician", "ID_Tehnician"],
+    ["Firma Facility", "Firma Facility Management"],
+    ["Adresă", "Adresa"],
+    ["Email", "email"],
+    ["Status", "Status"]
+  ];
+
+  let html = "";
+  fields.forEach(([label, key]) => {
+    if (loc[key]) {
+      html += `<div class="detail-row">
+        <div class="detail-label">${label}</div>
+        <div class="detail-value">${loc[key]}</div>
+      </div>`;
+    }
+  });
+
+  document.getElementById("detail-content").innerHTML = html;
+
+  // Incarca plantele pentru aceasta locatie
+  const numeLocatie = loc["Nume client final"];
+  fetch(PLANTE_URL)
+    .then(r => r.text())
+    .then(text => {
+      const plante = parseCSV(text).filter(p => p["ID_Locatie"] === numeLocatie);
+      if (plante.length > 0) {
+        let planteHtml = `<div class="detail-row">
+          <div class="detail-label">PLANTE (${plante.length} specii)</div>`;
+        plante.forEach(p => {
+          planteHtml += `<div class="detail-value" style="padding:4px 0">
+            🌿 ${p["Specie planta"]} × ${p["Numar bucati"]}
+            ${p["Observatii"] ? `<div style="font-size:12px;color:#aaa">${p["Observatii"]}</div>` : ""}
+          </div>`;
+        });
+        planteHtml += `</div>`;
+        document.getElementById("detail-content").innerHTML += planteHtml;
+      }
+    });
+}
 
       const fields = [
         ["Tehnician", "ID_Tehnician"],
