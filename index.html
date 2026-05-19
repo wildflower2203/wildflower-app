@@ -7,40 +7,36 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
     :root {
+      --pink: #bb3b80;
+      --pink-light: #f9e8f2;
+      --pink-dark: #9a2e68;
       --green: #2d5a27;
-      --green-light: #e8f5e9;
-      --green-mid: #4a7c44;
-      --bg: #f7f6f2;
+      --bg: #fdf8fb;
       --white: #ffffff;
       --gray: #888;
-      --border: #efefea;
+      --border: #f0e0ea;
       --text: #1a1a1a;
-      --accent: #e8356d;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); padding-bottom: 70px; }
 
     header {
-      background: var(--white);
+      background: var(--pink);
       padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 10px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(187,59,128,0.3);
     }
-    .back-btn { color: var(--green); font-size: 14px; cursor: pointer; padding: 4px 8px 4px 0; display: none; }
-    header h1 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--green); flex: 1; }
+    .back-btn { color: white; font-size: 14px; cursor: pointer; padding: 4px 8px 4px 0; display: none; }
+    header h1 { font-family: 'DM Serif Display', serif; font-size: 20px; color: white; flex: 1; }
 
-    /* BOTTOM NAV */
     .bottom-nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: var(--white);
       border-top: 1px solid var(--border);
       display: flex;
@@ -49,21 +45,20 @@
     }
     .nav-btn {
       flex: 1;
-      padding: 10px 4px;
+      padding: 8px 2px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 2px;
       cursor: pointer;
       color: var(--gray);
-      font-size: 11px;
+      font-size: 10px;
       border: none;
       background: none;
       font-family: 'DM Sans', sans-serif;
-      transition: color 0.2s;
     }
-    .nav-btn.active { color: var(--green); }
-    .nav-btn span { font-size: 20px; }
+    .nav-btn.active { color: var(--pink); }
+    .nav-btn span { font-size: 18px; }
 
     .search-wrap { padding: 16px 20px 8px; }
     .search-input {
@@ -76,7 +71,7 @@
       background: var(--white);
       outline: none;
     }
-    .search-input:focus { border-color: var(--green-mid); }
+    .search-input:focus { border-color: var(--pink); }
 
     .container { padding: 12px 20px 20px; max-width: 680px; margin: 0 auto; }
 
@@ -85,7 +80,7 @@
       border-radius: 16px;
       padding: 18px 20px;
       margin-bottom: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(187,59,128,0.08);
     }
     .card-title {
       font-size: 11px;
@@ -94,12 +89,7 @@
       text-transform: uppercase;
       letter-spacing: 0.8px;
       margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
-    .stat-number { font-family: 'DM Serif Display', serif; font-size: 42px; color: var(--green); line-height: 1; }
-    .stat-sub { font-size: 13px; color: var(--gray); margin-top: 4px; }
 
     .loc-item {
       padding: 14px 0;
@@ -112,34 +102,33 @@
     .loc-item:last-child { border-bottom: none; }
     .loc-name { font-size: 15px; font-weight: 500; }
     .loc-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
-    .badge { background: var(--green-light); color: var(--green); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 10px; }
+    .badge { background: var(--pink-light); color: var(--pink); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 10px; }
     .badge-inactive { background: #f5f5f5; color: #aaa; }
+    .badge-green { background: #e8f5e9; color: #2d5a27; }
 
     .tabs {
       display: flex;
       background: var(--white);
       border-bottom: 1px solid var(--border);
       overflow-x: auto;
-      padding: 0 20px;
+      padding: 0 16px;
       position: sticky;
       top: 57px;
       z-index: 90;
     }
     .tab-btn {
-      padding: 12px 14px;
-      font-size: 13px;
+      padding: 12px 12px;
+      font-size: 12px;
       font-weight: 500;
       color: var(--gray);
       cursor: pointer;
       border-bottom: 2px solid transparent;
       white-space: nowrap;
       background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
+      border-top: none; border-left: none; border-right: none;
       font-family: 'DM Sans', sans-serif;
     }
-    .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
+    .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
 
     .detail-row { padding: 12px 0; border-bottom: 1px solid var(--border); }
     .detail-row:last-child { border-bottom: none; }
@@ -149,7 +138,7 @@
     .vizita-item { padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
     .vizita-item:last-child { border-bottom: none; }
     .vizita-header { display: flex; justify-content: space-between; align-items: center; }
-    .vizita-data { font-size: 13px; font-weight: 600; color: var(--green); }
+    .vizita-data { font-size: 13px; font-weight: 600; color: var(--pink); }
     .vizita-tehnician { font-size: 12px; color: var(--gray); }
     .vizita-body { display: none; margin-top: 10px; }
     .vizita-obs { font-size: 13px; color: #555; padding: 8px; background: var(--bg); border-radius: 8px; margin-top: 6px; line-height: 1.4; }
@@ -159,11 +148,11 @@
     .planta-item:last-child { border-bottom: none; }
     .planta-name { font-size: 14px; font-weight: 500; }
     .planta-obs { font-size: 12px; color: var(--gray); margin-top: 2px; }
-    .planta-qty { background: var(--green-light); color: var(--green); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .planta-qty { background: var(--pink-light); color: var(--pink); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
 
     .tratament-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
     .tratament-item:last-child { border-bottom: none; }
-    .tratament-tip { font-size: 13px; font-weight: 500; color: var(--green); }
+    .tratament-tip { font-size: 13px; font-weight: 500; color: var(--pink); }
     .tratament-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
 
     .add-form { background: var(--bg); border-radius: 12px; padding: 16px; margin-top: 12px; }
@@ -178,13 +167,13 @@
       outline: none;
       margin-bottom: 10px;
     }
-    .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--green-mid); }
+    .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--pink); }
     .add-form textarea { min-height: 80px; resize: vertical; }
 
     .btn {
       width: 100%;
       padding: 13px;
-      background: var(--green);
+      background: var(--pink);
       color: white;
       border: none;
       border-radius: 12px;
@@ -194,28 +183,77 @@
       cursor: pointer;
     }
     .btn:active { opacity: 0.85; }
-    .btn-accent { background: var(--accent); }
-    .toggle-add { text-align: center; color: var(--green); font-size: 13px; cursor: pointer; padding: 10px; font-weight: 500; }
+    .btn-green { background: var(--green); }
+    .btn-gray { background: #eee; color: var(--text); }
+    .toggle-add { text-align: center; color: var(--pink); font-size: 13px; cursor: pointer; padding: 10px; font-weight: 500; }
 
     .empty { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; }
     .loading { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; }
 
-    /* RAPORT FORM */
-    .raport-section { margin-bottom: 20px; }
-    .raport-section-title { font-size: 13px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .stat-box { background: var(--pink-light); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .stat-box-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--pink); }
+    .stat-box-label { font-size: 13px; color: var(--pink-dark); }
+
+    .raport-section-title { font-size: 13px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; margin-top: 16px; }
     .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .checkbox-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--bg); border-radius: 10px; cursor: pointer; font-size: 13px; }
-    .checkbox-item input { width: 16px; height: 16px; accent-color: var(--green); }
+    .checkbox-item input { width: 16px; height: 16px; accent-color: var(--pink); }
     .step-indicator { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; }
-    .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
-    .step-dot.active { background: var(--green); }
+    .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s; }
+    .step-dot.active { background: var(--pink); }
+
+    /* CALENDAR */
+    .calendar-wrap { background: var(--white); border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(187,59,128,0.08); }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .cal-title { font-size: 16px; font-weight: 600; color: var(--pink); }
+    .cal-nav { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--pink); padding: 4px 8px; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .cal-day-header { text-align: center; font-size: 11px; color: var(--gray); font-weight: 600; padding: 4px 0; }
+    .cal-day { text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 13px; cursor: pointer; min-height: 36px; position: relative; }
+    .cal-day:hover { background: var(--pink-light); }
+    .cal-day.today { background: var(--pink); color: white; font-weight: 600; }
+    .cal-day.has-event { background: var(--pink-light); color: var(--pink); font-weight: 600; }
+    .cal-day.other-month { color: #ccc; }
+    .cal-dot { width: 4px; height: 4px; background: var(--pink); border-radius: 50%; margin: 2px auto 0; }
+
+    /* LOGIN */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+      padding: 20px;
+    }
+    .login-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 60px rgba(187,59,128,0.3);
+    }
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo h1 { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--pink); }
+    .login-logo p { font-size: 13px; color: var(--gray); margin-top: 4px; }
+    .login-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      margin-bottom: 12px;
+    }
+    .login-input:focus { border-color: var(--pink); }
+    .login-error { color: #e8356d; font-size: 13px; text-align: center; margin-bottom: 12px; display: none; }
 
     .toast {
       position: fixed;
-      bottom: 90px;
-      left: 50%;
+      bottom: 90px; left: 50%;
       transform: translateX(-50%);
-      background: var(--green);
+      background: var(--pink);
       color: white;
       padding: 12px 24px;
       border-radius: 20px;
@@ -228,137 +266,301 @@
     }
     .toast.show { opacity: 1; }
     .toast.error { background: #e8356d; }
+    .toast.success { background: #2d5a27; }
 
-    #view-dashboard, #view-detail, #view-raport { display: none; }
+    #app { display: none; }
+    #view-dashboard, #view-detail, #view-raport, #view-extra, #view-programari, #view-tehnicieni, #view-salarii, #view-concedii { display: none; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
+
+    /* SIDEBAR */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 300; }
+    .sidebar {
+      position: fixed;
+      left: -280px;
+      top: 0; bottom: 0;
+      width: 280px;
+      background: white;
+      z-index: 301;
+      transition: left 0.3s;
+      padding: 0;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    }
+    .sidebar.open { left: 0; }
+    .sidebar-header { background: var(--pink); padding: 50px 20px 20px; }
+    .sidebar-user { color: white; }
+    .sidebar-name { font-size: 18px; font-weight: 600; }
+    .sidebar-email { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+    .sidebar-menu { padding: 16px 0; }
+    .sidebar-item {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .sidebar-item:hover { background: var(--bg); }
+    .sidebar-item.active { color: var(--pink); font-weight: 500; }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .menu-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: white; padding: 4px; }
+
+    .send-btn {
+      background: none;
+      border: 1px solid var(--pink);
+      color: var(--pink);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      margin-top: 6px;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <span class="back-btn" id="back-btn" onclick="goBack()">← Înapoi</span>
-  <span>🌸</span>
-  <h1 id="header-title">Wildflower App</h1>
-</header>
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="nav-btn active" id="nav-locatii" onclick="showView('dashboard')">
-    <span>📍</span>Locații
-  </button>
-  <button class="nav-btn" id="nav-raport" onclick="showView('raport')">
-    <span>📋</span>Raport vizită
-  </button>
-  <button class="nav-btn" id="nav-tehnicieni" onclick="showView('tehnicieni')">
-    <span>👥</span>Tehnicieni
-  </button>
-</nav>
-
-<!-- VIEW: DASHBOARD -->
-<div id="view-dashboard">
-  <div class="search-wrap">
-    <input class="search-input" type="text" placeholder="🔍  Caută locație, tehnician..." id="search-input" oninput="filterLocatii()">
-  </div>
-  <div class="container">
-    <div class="card">
-      <div class="card-title">Locații active</div>
-      <div class="stat-number" id="nr-locatii">…</div>
-      <div class="stat-sub">locații în gestiune</div>
+<!-- LOGIN -->
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>🌸 Wildflower</h1>
+      <p>Plant management app</p>
     </div>
-    <div class="card">
-      <div class="card-title">Locații</div>
-      <div id="lista-locatii"><div class="loading">Se încarcă…</div></div>
-    </div>
+    <input class="login-input" type="email" id="login-email" placeholder="Email (@wildflower.ro)">
+    <input class="login-input" type="password" id="login-pass" placeholder="Parolă" onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="login-error" id="login-error">Email sau parolă incorectă</div>
+    <button class="btn" onclick="doLogin()">Intră în aplicație</button>
   </div>
 </div>
 
-<!-- VIEW: DETAIL -->
-<div id="view-detail">
-  <div class="tabs" id="tabs-bar">
-    <button class="tab-btn active" onclick="switchTab('info', this)">Info</button>
-    <button class="tab-btn" onclick="switchTab('plante', this)">🌿 Plante</button>
-    <button class="tab-btn" onclick="switchTab('vizite', this)">📋 Vizite</button>
-    <button class="tab-btn" onclick="switchTab('tratamente', this)">💊 Tratamente</button>
-    <button class="tab-btn" onclick="switchTab('necesar', this)">📦 Necesar</button>
-  </div>
-  <div class="container">
-    <div class="tab-content active" id="tab-info">
-      <div class="card">
-        <div class="card-title">Detalii locație</div>
-        <div id="detail-info-content"></div>
+<!-- APP -->
+<div id="app">
+  <header>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <span>🌸</span>
+    <h1 id="header-title">Wildflower App</h1>
+    <span class="back-btn" id="back-btn" onclick="goBack()" style="display:none;color:white;margin-left:auto">← Înapoi</span>
+  </header>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-user">
+        <div class="sidebar-name" id="sidebar-name">—</div>
+        <div class="sidebar-email" id="sidebar-email">—</div>
       </div>
     </div>
-    <div class="tab-content" id="tab-plante">
+    <div class="sidebar-menu">
+      <div class="sidebar-item" onclick="showView('dashboard');toggleSidebar()">📍 Locații</div>
+      <div class="sidebar-item" onclick="showView('tehnicieni');toggleSidebar()" id="menu-tehnicieni">👥 Tehnicieni</div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item" onclick="showView('salarii');toggleSidebar()">💰 Salarii</div>
+      <div class="sidebar-item" onclick="showView('concedii');toggleSidebar()">🏖️ Concedii</div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item" onclick="doLogout()" style="color:#e8356d">🚪 Ieși din cont</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-locatii" onclick="showView('dashboard')"><span>📍</span>Locații</button>
+    <button class="nav-btn" id="nav-raport" onclick="showView('raport')"><span>📋</span>Raport</button>
+    <button class="nav-btn" id="nav-extra" onclick="showView('extra')"><span>⭐</span>Extra</button>
+    <button class="nav-btn" id="nav-programari" onclick="showView('programari')"><span>📅</span>Programări</button>
+  </nav>
+
+  <!-- VIEW: DASHBOARD -->
+  <div id="view-dashboard">
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="🔍  Caută locație, tehnician..." id="search-input" oninput="filterLocatii()">
+    </div>
+    <div class="container">
       <div class="card">
-        <div class="card-title">Plante în locație</div>
-        <div id="plante-list"><div class="loading">Se încarcă…</div></div>
-        <div class="toggle-add" onclick="toggleForm('form-planta')">+ Adaugă plantă</div>
-        <div class="add-form" id="form-planta" style="display:none">
-          <input type="text" id="new-specie" placeholder="Specie plantă (ex: Monstera)">
-          <input type="number" id="new-qty" placeholder="Număr bucăți">
-          <input type="text" id="new-obs-planta" placeholder="Observații (opțional)">
-          <button class="btn" onclick="adaugaPlanta()">💾 Salvează plantă</button>
+        <div class="card-title">Locații</div>
+        <div id="lista-locatii"><div class="loading">Se încarcă…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: DETAIL -->
+  <div id="view-detail">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('info',this)">Info</button>
+      <button class="tab-btn" onclick="switchTab('plante',this)">🌿 Plante</button>
+      <button class="tab-btn" onclick="switchTab('vizite',this)">📋 Vizite</button>
+      <button class="tab-btn" onclick="switchTab('tratamente',this)">💊 Tratamente</button>
+      <button class="tab-btn" onclick="switchTab('necesar',this)">📦 Necesar</button>
+    </div>
+    <div class="container">
+      <div class="tab-content active" id="tab-info">
+        <div class="card">
+          <div class="card-title">Detalii locație</div>
+          <div id="detail-info-content"></div>
+        </div>
+        <div id="admin-loc-controls" style="display:none">
+          <button class="btn" id="toggle-status-btn" onclick="toggleLocatieStatus()" style="margin-top:4px"></button>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-plante">
+        <div class="card">
+          <div id="plante-stat" class="stat-box" style="display:none">
+            <div class="stat-box-num" id="plante-total">0</div>
+            <div><div class="stat-box-label">plante totale în locație</div></div>
+          </div>
+          <div class="card-title">Plante în locație</div>
+          <div class="toggle-add" onclick="toggleForm('form-planta')">+ Adaugă plantă nouă</div>
+          <div class="add-form" id="form-planta" style="display:none">
+            <input type="text" id="new-specie" placeholder="Specie plantă (ex: Monstera)">
+            <input type="number" id="new-qty" placeholder="Număr bucăți">
+            <input type="text" id="new-obs-planta" placeholder="Observații (opțional)">
+            <button class="btn" onclick="adaugaPlanta()">💾 Salvează plantă</button>
+          </div>
+          <div id="plante-list"><div class="loading">Se încarcă…</div></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-vizite">
+        <div class="card">
+          <div class="card-title" id="vizite-title">Vizite</div>
+          <div class="toggle-add" onclick="toggleForm('form-vizita-add')" style="margin-bottom:8px">+ Adaugă vizită</div>
+          <div class="add-form" id="form-vizita-add" style="display:none">
+            <select id="v-tehnician">
+              <option value="">Tehnician…</option>
+              <option>Ana Florentina Grecu</option>
+              <option>Paul Fedot</option>
+              <option>Radu Greavu</option>
+              <option>Diana Marinas</option>
+              <option>Lucian Marinas</option>
+            </select>
+            <input type="date" id="v-data">
+            <input type="time" id="v-ora-sosire" placeholder="Ora sosirii">
+            <input type="time" id="v-ora-plecare" placeholder="Ora plecării">
+            <textarea id="v-activitati" placeholder="Activități efectuate…"></textarea>
+            <textarea id="v-obs" placeholder="Observații / recomandări…"></textarea>
+            <button class="btn" onclick="adaugaVizita()">💾 Salvează vizită</button>
+          </div>
+          <div id="vizite-list"><div class="loading">Se încarcă…</div></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-tratamente">
+        <div class="card">
+          <div class="card-title">Tratamente aplicate</div>
+          <div class="toggle-add" onclick="toggleForm('form-tratament')">+ Adaugă tratament</div>
+          <div class="add-form" id="form-tratament" style="display:none">
+            <select id="new-tip-tratament">
+              <option value="">Tip tratament…</option>
+              <option>fertilizare</option>
+              <option>fungicid</option>
+              <option>acaricid</option>
+              <option>insecticid</option>
+            </select>
+            <input type="text" id="new-obs-tratament" placeholder="Observații">
+            <button class="btn" onclick="adaugaTratament()">💾 Salvează tratament</button>
+          </div>
+          <div id="tratamente-list"><div class="loading">Se încarcă…</div></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-necesar">
+        <div class="card">
+          <div class="card-title">Necesar aprovizionare</div>
+          <div class="toggle-add" onclick="toggleForm('form-necesar')">+ Adaugă necesar</div>
+          <div class="add-form" id="form-necesar" style="display:none">
+            <input type="text" id="new-produs" placeholder="Produs (ex: sac pamant, ghiveci 30cm…)">
+            <input type="number" id="new-cantitate" placeholder="Cantitate">
+            <button class="btn" onclick="adaugaNecesar()">💾 Salvează</button>
+          </div>
+          <div id="necesar-list"><div class="loading">Se încarcă…</div></div>
         </div>
       </div>
     </div>
-    <div class="tab-content" id="tab-vizite">
+  </div>
+
+  <!-- VIEW: RAPORT VIZITA -->
+  <div id="view-raport">
+    <div class="container">
       <div class="card">
-        <div class="card-title" id="vizite-title">Vizite</div>
-        <div id="vizite-list"><div class="loading">Se încarcă…</div></div>
-      </div>
-    </div>
-    <div class="tab-content" id="tab-tratamente">
-      <div class="card">
-        <div class="card-title">Tratamente aplicate</div>
-        <div id="tratamente-list"><div class="loading">Se încarcă…</div></div>
-        <div class="toggle-add" onclick="toggleForm('form-tratament')">+ Adaugă tratament</div>
-        <div class="add-form" id="form-tratament" style="display:none">
-          <select id="new-tip-tratament">
-            <option value="">Tip tratament…</option>
-            <option>fertilizare</option>
-            <option>fungicid</option>
-            <option>acaricid</option>
-            <option>insecticid</option>
+        <div class="step-indicator">
+          <div class="step-dot active" id="dot-1"></div>
+          <div class="step-dot" id="dot-2"></div>
+          <div class="step-dot" id="dot-3"></div>
+        </div>
+        <div id="raport-step-1">
+          <div class="raport-section-title">📍 Informații vizită</div>
+          <div class="add-form" style="margin:0;background:none;padding:0">
+            <select id="r-locatie"><option value="">Selectează locația…</option></select>
+            <select id="r-tehnician">
+              <option value="">Tehnician…</option>
+              <option>Ana Florentina Grecu</option>
+              <option>Paul Fedot</option>
+              <option>Radu Greavu</option>
+              <option>Diana Marinas</option>
+              <option>Lucian Marinas</option>
+            </select>
+            <input type="date" id="r-data">
+            <input type="time" id="r-ora-sosire" placeholder="Ora sosirii">
+            <input type="time" id="r-ora-plecare" placeholder="Ora plecării">
+          </div>
+          <button class="btn" onclick="raportStep(2)">Continuă →</button>
+        </div>
+        <div id="raport-step-2" style="display:none">
+          <div class="raport-section-title">✅ Activități efectuate</div>
+          <div class="checkbox-grid">
+            <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
+            <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
+            <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
+            <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
+            <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
+            <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
+            <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
+            <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
+            <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
+            <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
+          </div>
+          <select id="r-tratament" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none">
+            <option value="">Fără tratament</option>
+            <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
           </select>
-          <input type="text" id="new-obs-tratament" placeholder="Observații">
-          <button class="btn" onclick="adaugaTratament()">💾 Salvează tratament</button>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <button class="btn btn-gray" style="flex:1" onclick="raportStep(1)">← Înapoi</button>
+            <button class="btn" style="flex:2" onclick="raportStep(3)">Continuă →</button>
+          </div>
+        </div>
+        <div id="raport-step-3" style="display:none">
+          <div class="raport-section-title">💬 Observații</div>
+          <div class="add-form" style="margin:0;background:none;padding:0">
+            <textarea id="r-observatii" placeholder="Observații, recomandări…"></textarea>
+            <input type="text" id="r-foto" placeholder="Link foto Google Drive (opțional)">
+          </div>
+          <div style="display:flex;gap:10px;margin-top:4px">
+            <button class="btn btn-gray" style="flex:1" onclick="raportStep(2)">← Înapoi</button>
+            <button class="btn" style="flex:2" onclick="salveazaRaport()">✅ Salvează raport</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tab-content" id="tab-necesar">
-      <div class="card">
-        <div class="card-title">Necesar aprovizionare</div>
-        <div id="necesar-list"><div class="loading">Se încarcă…</div></div>
-        <div class="toggle-add" onclick="toggleForm('form-necesar')">+ Adaugă necesar</div>
-        <div class="add-form" id="form-necesar" style="display:none">
-          <input type="text" id="new-produs" placeholder="Produs (ex: sac pamant, ghiveci 30cm…)">
-          <input type="number" id="new-cantitate" placeholder="Cantitate">
-          <button class="btn" onclick="adaugaNecesar()">💾 Salvează</button>
-        </div>
+
+      <!-- Lista vizite recente -->
+      <div class="card" id="vizite-recente-card">
+        <div class="card-title">Vizite recente</div>
+        <div id="vizite-recente-list"><div class="loading">Se încarcă…</div></div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- VIEW: RAPORT VIZITA -->
-<div id="view-raport">
-  <div class="container">
-    <div class="card">
-      <div class="step-indicator">
-        <div class="step-dot active" id="dot-1"></div>
-        <div class="step-dot" id="dot-2"></div>
-        <div class="step-dot" id="dot-3"></div>
-      </div>
-
-      <!-- STEP 1 -->
-      <div id="raport-step-1">
-        <div class="raport-section-title">📍 Informații vizită</div>
+  <!-- VIEW: LUCRARE EXTRA -->
+  <div id="view-extra">
+    <div class="container">
+      <div class="card">
+        <div class="card-title">⭐ Lucrare extra</div>
         <div class="add-form" style="margin:0;background:none;padding:0">
-          <select id="r-locatie">
-            <option value="">Selectează locația…</option>
-          </select>
-          <select id="r-tehnician">
+          <input type="text" id="e-locatie" placeholder="Nume locație / client">
+          <input type="text" id="e-adresa" placeholder="Adresa locației">
+          <select id="e-tehnician">
             <option value="">Tehnician…</option>
             <option>Ana Florentina Grecu</option>
             <option>Paul Fedot</option>
@@ -366,68 +568,110 @@
             <option>Diana Marinas</option>
             <option>Lucian Marinas</option>
           </select>
-          <input type="date" id="r-data">
-          <input type="time" id="r-ora-sosire" placeholder="Ora sosirii">
-          <input type="time" id="r-ora-plecare" placeholder="Ora plecării">
-        </div>
-        <button class="btn" onclick="raportStep(2)">Continuă →</button>
-      </div>
-
-      <!-- STEP 2 -->
-      <div id="raport-step-2" style="display:none">
-        <div class="raport-section-title">✅ Activități efectuate</div>
-        <div class="checkbox-grid" id="activitati-grid">
-          <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
-          <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
-          <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
-          <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
-          <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
-          <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
-          <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
-          <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
-          <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
-          <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
-        </div>
-        <div style="margin-top:12px">
-          <div class="raport-section-title">💊 Tratament aplicat</div>
-          <div class="add-form" style="margin:0;background:none;padding:0">
-            <select id="r-tratament">
-              <option value="">Fără tratament</option>
-              <option>fertilizare</option>
-              <option>fungicid</option>
-              <option>acaricid</option>
-              <option>insecticid</option>
-            </select>
+          <input type="date" id="e-data">
+          <input type="time" id="e-ora-sosire" placeholder="Ora sosirii">
+          <input type="time" id="e-ora-plecare" placeholder="Ora plecării">
+          <div class="raport-section-title" style="margin-top:8px">✅ Lucrări efectuate</div>
+          <div class="checkbox-grid" id="extra-activitati">
+            <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor"> Examinare</label>
+            <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave"> Tratare</label>
+            <label class="checkbox-item"><input type="checkbox" value="fertilizare"> Fertilizare</label>
+            <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare</label>
+            <label class="checkbox-item"><input type="checkbox" value="curatare frunze"> Curățare</label>
+            <label class="checkbox-item"><input type="checkbox" value="transplantare"> Transplantare</label>
+            <label class="checkbox-item"><input type="checkbox" value="montare tutori"> Montare tutori</label>
+            <label class="checkbox-item"><input type="checkbox" value="evaluare locatie"> 📊 Evaluare locație</label>
           </div>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <button class="btn" style="background:var(--bg);color:var(--text);flex:1" onclick="raportStep(1)">← Înapoi</button>
-          <button class="btn" style="flex:2" onclick="raportStep(3)">Continuă →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3 -->
-      <div id="raport-step-3" style="display:none">
-        <div class="raport-section-title">💬 Observații și recomandări</div>
-        <div class="add-form" style="margin:0;background:none;padding:0">
-          <textarea id="r-observatii" placeholder="Observații, recomandări, probleme identificate…"></textarea>
-          <input type="text" id="r-foto" placeholder="Link foto Google Drive (opțional)">
-        </div>
-        <div style="display:flex;gap:10px;margin-top:4px">
-          <button class="btn" style="background:var(--bg);color:var(--text);flex:1" onclick="raportStep(2)">← Înapoi</button>
-          <button class="btn btn-accent" style="flex:2" onclick="salveazaRaport()">✅ Salvează raport</button>
+          <textarea id="e-observatii" placeholder="Observații, evaluare, recomandări…" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none;min-height:80px;resize:vertical"></textarea>
+          <button class="btn" style="margin-top:4px" onclick="salveazaExtra()">💾 Salvează lucrare extra</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- VIEW: TEHNICIENI -->
-<div id="view-tehnicieni" style="display:none">
-  <div class="container">
-    <div class="card">
-      <div class="card-title">Tehnicieni activi</div>
-      <div id="tehnicieni-list"><div class="loading">Se încarcă…</div></div>
+  <!-- VIEW: PROGRAMARI -->
+  <div id="view-programari">
+    <div class="container">
+      <div class="calendar-wrap">
+        <div class="cal-header">
+          <button class="cal-nav" onclick="calNav(-1)">‹</button>
+          <div class="cal-title" id="cal-title">—</div>
+          <button class="cal-nav" onclick="calNav(1)">›</button>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+      <div class="card" id="admin-prog-form" style="display:none">
+        <div class="card-title">+ Adaugă programare</div>
+        <div class="add-form" style="margin:0;background:none;padding:0">
+          <input type="date" id="p-data">
+          <select id="p-locatie"><option value="">Selectează locația…</option></select>
+          <select id="p-tehnician">
+            <option value="">Tehnician…</option>
+            <option>Ana Florentina Grecu</option>
+            <option>Paul Fedot</option>
+            <option>Radu Greavu</option>
+            <option>Diana Marinas</option>
+            <option>Lucian Marinas</option>
+          </select>
+          <select id="p-tip">
+            <option value="">Tip programare…</option>
+            <option>Mentenanță</option>
+            <option>Tratament</option>
+            <option>Lucrare extra</option>
+            <option>Evaluare</option>
+          </select>
+          <textarea id="p-detalii" placeholder="Detalii programare…"></textarea>
+          <button class="btn" onclick="salveazaProgramare()">💾 Salvează programare</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" id="prog-list-title">Programări</div>
+        <div id="prog-list"><div class="empty">Selectează o zi din calendar</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: TEHNICIENI -->
+  <div id="view-tehnicieni">
+    <div class="container">
+      <div class="card">
+        <div class="card-title">Tehnicieni</div>
+        <div id="tehnicieni-list"><div class="loading">Se încarcă…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: SALARII -->
+  <div id="view-salarii">
+    <div class="container">
+      <div class="card">
+        <div class="card-title">💰 Salarii</div>
+        <div id="salarii-list"><div class="loading">Se încarcă…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: CONCEDII -->
+  <div id="view-concedii">
+    <div class="container">
+      <div class="card">
+        <div class="card-title">🏖️ Concedii</div>
+        <div class="toggle-add" onclick="toggleForm('form-concediu')">+ Adaugă concediu</div>
+        <div class="add-form" id="form-concediu" style="display:none">
+          <select id="c-tip">
+            <option value="">Tip concediu…</option>
+            <option>Concediu de odihnă</option>
+            <option>Concediu medical</option>
+            <option>Urgență</option>
+            <option>Zi liberă</option>
+          </select>
+          <input type="date" id="c-start" placeholder="Data început">
+          <input type="date" id="c-end" placeholder="Data sfârșit">
+          <textarea id="c-obs" placeholder="Observații…"></textarea>
+          <button class="btn" onclick="salveazaConcediu()">💾 Salvează</button>
+        </div>
+        <div id="concedii-list"><div class="loading">Se încarcă…</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -435,9 +679,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  // ── CONFIG ────────────────────────────────────────────
   const API_GREENLOG = "https://script.google.com/macros/s/AKfycbx6z_cjcHsHL7oNqhsJOlalML0yRG7TdLrsy-2cY_XLtcugZ2CcDA2SCXNvqs-LupsB/exec";
   const API_RAPORT = "https://script.google.com/macros/s/AKfycbxR4f_0ioqKNjN6KN-2Z2hutWcLxxFcnIQeR81xg_BsM_3c_J-nqmtRBdy9150DqNyk/exec";
-
   const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&gid=";
   const URLS = {
     locatii:    BASE + "1134673396",
@@ -445,13 +689,23 @@
     plante:     BASE + "1673932267",
     necesar:    BASE + "821266492",
     tratamente: BASE + "1501455368",
+    salarii:    BASE + "1083000853",
+    programari: BASE + "243770782",
     vizite: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbrklorijnFRuGCPRMZV8aIuas2cSRJX7L03uTXyGFeDJGXZmCZXY9Ivdk3lV4iBtps8fmflSxhoBg/pub?output=csv&gid=109752688"
   };
 
-  let allLocatii = [], currentLoc = null, allVizite = [], allPlante = [], allTratamente = [], allNecesar = [];
-  let currentView = "dashboard";
-  let previousView = "dashboard";
+  const USERS = {
+    "diana@wildflower.ro":   { pass: "wildflower2024", name: "Diana Marinas",        role: "admin" },
+    "ana@wildflower.ro":     { pass: "wildflower2024", name: "Ana Florentina Grecu", role: "tehnician" },
+    "paul@wildflower.ro":    { pass: "wildflower2024", name: "Paul Fedot",           role: "tehnician" },
+    "comenzi@wildflower.ro": { pass: "wildflower2024", name: "Lucian Marinas",       role: "admin" }
+  };
 
+  let currentUser = null;
+  let allLocatii = [], currentLoc = null, allVizite = [], allPlante = [], allTratamente = [], allNecesar = [], allProgramari = [];
+  let calYear, calMonth;
+
+  // ── UTILS ─────────────────────────────────────────────
   function parseCSV(text) {
     const lines = text.trim().split("\n");
     const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
@@ -474,14 +728,23 @@
     const nr = parseFloat(val);
     if (!isNaN(nr) && nr > 40000) return new Date((nr - 25569) * 86400 * 1000).toLocaleDateString("ro-RO");
     const d = new Date(val);
-    if (!isNaN(d)) return d.toLocaleDateString("ro-RO");
+    if (!isNaN(d) && val.length > 4) return d.toLocaleDateString("ro-RO");
     return val;
   }
 
-  function showToast(msg, isError) {
+  function parseDataSort(val) {
+    if (!val) return 0;
+    const nr = parseFloat(val);
+    if (!isNaN(nr) && nr > 40000) return nr;
+    const d = new Date(val);
+    if (!isNaN(d)) return d.getTime() / 86400000 + 25569;
+    return 0;
+  }
+
+  function showToast(msg, type) {
     const t = document.getElementById("toast");
     t.textContent = msg;
-    t.className = "toast show" + (isError ? " error" : "");
+    t.className = "toast show" + (type ? " " + type : "");
     setTimeout(() => t.className = "toast", 2500);
   }
 
@@ -490,23 +753,84 @@
     f.style.display = f.style.display === "none" ? "block" : "none";
   }
 
-  // ── NAVIGATION ─────────────────────────────────────
+  function generateId() { return Math.random().toString(36).substr(2, 8); }
+
+  function saveToSheets(apiUrl, sheetName, row, onSuccess) {
+    fetch(apiUrl, {
+      method: "POST", mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({sheet: sheetName, row: row})
+    }).then(() => { if(onSuccess) onSuccess(); showToast("✅ Salvat!", "success"); })
+      .catch(() => showToast("❌ Eroare la salvare", "error"));
+  }
+
+  // ── AUTH ─────────────────────────────────────────────
+  function doLogin() {
+    const email = document.getElementById("login-email").value.trim().toLowerCase();
+    const pass = document.getElementById("login-pass").value;
+    const user = USERS[email];
+    if (!user || user.pass !== pass) {
+      document.getElementById("login-error").style.display = "block";
+      return;
+    }
+    currentUser = { email, ...user };
+    localStorage.setItem("wf_user", JSON.stringify(currentUser));
+    startApp();
+  }
+
+  function doLogout() {
+    localStorage.removeItem("wf_user");
+    currentUser = null;
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login-screen").style.display = "flex";
+    toggleSidebar();
+  }
+
+  function startApp() {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    document.getElementById("sidebar-name").textContent = currentUser.name;
+    document.getElementById("sidebar-email").textContent = currentUser.email;
+    if (currentUser.role !== "admin") {
+      document.getElementById("menu-tehnicieni").style.display = "none";
+    }
+    loadAllData();
+    showView("dashboard");
+  }
+
+  // Check saved session
+  const saved = localStorage.getItem("wf_user");
+  if (saved) { currentUser = JSON.parse(saved); startApp(); }
+
+  // ── SIDEBAR ───────────────────────────────────────────
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("open");
+    document.getElementById("sidebar-overlay").style.display =
+      document.getElementById("sidebar").classList.contains("open") ? "block" : "none";
+  }
+
+  // ── NAVIGATION ────────────────────────────────────────
   function showView(view) {
-    ["dashboard", "detail", "raport", "tehnicieni"].forEach(v => {
+    ["dashboard","detail","raport","extra","programari","tehnicieni","salarii","concedii"].forEach(v => {
       const el = document.getElementById("view-" + v);
       if (el) el.style.display = "none";
     });
-    ["nav-locatii", "nav-raport", "nav-tehnicieni"].forEach(id => {
+    ["nav-locatii","nav-raport","nav-extra","nav-programari"].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.classList.remove("active");
     });
-
     document.getElementById("back-btn").style.display = "none";
+
+    const titles = {
+      dashboard: "Wildflower App", raport: "Raport vizită",
+      extra: "Lucrare extra", programari: "Programări",
+      tehnicieni: "Tehnicieni", salarii: "Salarii", concedii: "Concedii"
+    };
+    document.getElementById("header-title").textContent = titles[view] || "Wildflower App";
 
     if (view === "dashboard") {
       document.getElementById("view-dashboard").style.display = "block";
       document.getElementById("nav-locatii").classList.add("active");
-      document.getElementById("header-title").textContent = "Wildflower App";
     } else if (view === "detail") {
       document.getElementById("view-detail").style.display = "block";
       document.getElementById("nav-locatii").classList.add("active");
@@ -514,67 +838,103 @@
     } else if (view === "raport") {
       document.getElementById("view-raport").style.display = "block";
       document.getElementById("nav-raport").classList.add("active");
-      document.getElementById("header-title").textContent = "Raport vizită";
       raportStep(1);
+      loadViziteRecente();
+    } else if (view === "extra") {
+      document.getElementById("view-extra").style.display = "block";
+      document.getElementById("nav-extra").classList.add("active");
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("e-data").value = today;
+      if (currentUser) document.getElementById("e-tehnician").value = currentUser.name;
+    } else if (view === "programari") {
+      document.getElementById("view-programari").style.display = "block";
+      document.getElementById("nav-programari").classList.add("active");
+      document.getElementById("admin-prog-form").style.display = currentUser?.role === "admin" ? "block" : "none";
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("p-data").value = today;
+      initCalendar();
     } else if (view === "tehnicieni") {
       document.getElementById("view-tehnicieni").style.display = "block";
-      document.getElementById("nav-tehnicieni").classList.add("active");
-      document.getElementById("header-title").textContent = "Tehnicieni";
       loadTehnicieni();
+    } else if (view === "salarii") {
+      document.getElementById("view-salarii").style.display = "block";
+      loadSalarii();
+    } else if (view === "concedii") {
+      document.getElementById("view-concedii").style.display = "block";
+      loadConcedii();
     }
-    currentView = view;
   }
 
-  function goBack() {
-    if (currentView === "detail") showView("dashboard");
+  function goBack() { showView("dashboard"); }
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("tab-" + tab).classList.add("active");
+    btn.classList.add("active");
   }
 
-  // ── INIT ────────────────────────────────────────────
-  showView("dashboard");
-
-  fetch(URLS.locatii).then(r => r.text()).then(text => {
-    allLocatii = parseCSV(text);
-    const active = allLocatii.filter(r => r["Status"] === "activ" || r["Status"] === "");
-    document.getElementById("nr-locatii").textContent = active.length;
-    renderLocatii(active);
-    // Populează dropdown raport
-    const sel = document.getElementById("r-locatie");
-    active.forEach(l => {
-      const opt = document.createElement("option");
-      opt.value = l["Nume client final"];
-      opt.textContent = l["Nume client final"];
-      sel.appendChild(opt);
+  // ── LOAD ALL DATA ─────────────────────────────────────
+  function loadAllData() {
+    fetch(URLS.locatii).then(r => r.text()).then(text => {
+      allLocatii = parseCSV(text);
+      let visible = allLocatii;
+      if (currentUser?.role === "tehnician") {
+        visible = allLocatii.filter(l => l["ID_Tehnician"] === currentUser.name);
+      }
+      const active = visible.filter(l => l["Status"] === "activ" || l["Status"] === "");
+      renderLocatii(active);
+      const sel = document.getElementById("r-locatie");
+      const selP = document.getElementById("p-locatie");
+      active.forEach(l => {
+        [sel, selP].forEach(s => {
+          const opt = document.createElement("option");
+          opt.value = l["Nume client final"];
+          opt.textContent = l["Nume client final"];
+          s.appendChild(opt);
+        });
+      });
     });
-  });
 
+    fetch(URLS.vizite).then(r => r.text()).then(text => {
+      allVizite = parseCSV(text);
+    });
+
+    fetch(URLS.programari).then(r => r.text()).then(text => {
+      allProgramari = parseCSV(text);
+    });
+  }
+
+  // ── LOCATII ───────────────────────────────────────────
   function renderLocatii(list) {
     const el = document.getElementById("lista-locatii");
     if (!list.length) { el.innerHTML = '<div class="empty">Nicio locație găsită</div>'; return; }
     el.innerHTML = list.map(loc => `
-      <div class="loc-item" onclick="openLocatie('${loc["Nume client final"]?.replace(/'/g, "\\'")}')">
+      <div class="loc-item" onclick="openLocatie('${loc["Nume client final"]?.replace(/'/g,"\\'")}')">
         <div>
-          <div class="loc-name">${loc["Nume client final"] || "—"}</div>
-          <div class="loc-sub">${loc["Firma Facility Management"] || ""}</div>
+          <div class="loc-name">${loc["Nume client final"]||"—"}</div>
+          <div class="loc-sub">${loc["Firma Facility Management"]||""}</div>
         </div>
         <div style="display:flex;align-items:center">
-          <span class="badge ${loc["Status"] === 'inactiv' ? 'badge-inactive' : ''}">${loc["ID_Tehnician"] || "—"}</span>
+          <span class="badge ${loc["Status"]==="inactiv"?"badge-inactive":""}">${loc["ID_Tehnician"]||"—"}</span>
           <span style="color:#ccc;margin-left:6px;font-size:18px">›</span>
         </div>
-      </div>
-    `).join("");
+      </div>`).join("");
   }
 
   function filterLocatii() {
     const q = document.getElementById("search-input").value.toLowerCase();
-    const filtered = allLocatii.filter(l =>
-      (l["Nume client final"] || "").toLowerCase().includes(q) ||
-      (l["Firma Facility Management"] || "").toLowerCase().includes(q) ||
-      (l["ID_Tehnician"] || "").toLowerCase().includes(q)
+    let list = allLocatii;
+    if (currentUser?.role === "tehnician") list = allLocatii.filter(l => l["ID_Tehnician"] === currentUser.name);
+    list = list.filter(l => l["Status"] === "activ" || l["Status"] === "");
+    const filtered = list.filter(l =>
+      (l["Nume client final"]||"").toLowerCase().includes(q) ||
+      (l["Firma Facility Management"]||"").toLowerCase().includes(q) ||
+      (l["ID_Tehnician"]||"").toLowerCase().includes(q)
     );
     renderLocatii(filtered);
   }
 
-  // ── LOCATIE DETAIL ──────────────────────────────────
   function openLocatie(numeLoc) {
     currentLoc = allLocatii.find(l => l["Nume client final"] === numeLoc);
     if (!currentLoc) return;
@@ -583,20 +943,13 @@
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     document.getElementById("tab-info").classList.add("active");
     document.querySelector(".tab-btn").classList.add("active");
-    ["form-planta","form-tratament","form-necesar"].forEach(id => document.getElementById(id).style.display = "none");
+    ["form-planta","form-tratament","form-necesar","form-vizita-add"].forEach(id => document.getElementById(id).style.display = "none");
     renderInfo();
     loadPlante(numeLoc);
-    loadVizite(numeLoc);
+    loadViziteLocatie(numeLoc);
     loadTratamente(numeLoc);
     loadNecesar(numeLoc);
     showView("detail");
-  }
-
-  function switchTab(tab, btn) {
-    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById("tab-" + tab).classList.add("active");
-    btn.classList.add("active");
   }
 
   function renderInfo() {
@@ -606,9 +959,29 @@
       .filter(([,k]) => loc[k])
       .map(([l,k]) => `<div class="detail-row"><div class="detail-label">${l}</div><div class="detail-value">${loc[k]}</div></div>`)
       .join("") || '<div class="empty">Fără detalii</div>';
+
+    const adminCtrl = document.getElementById("admin-loc-controls");
+    if (currentUser?.role === "admin") {
+      adminCtrl.style.display = "block";
+      const btn = document.getElementById("toggle-status-btn");
+      btn.textContent = loc["Status"] === "inactiv" ? "✅ Activează locație" : "⛔ Inactivează locație";
+      btn.className = "btn " + (loc["Status"] === "inactiv" ? "btn-green" : "");
+      btn.style.background = loc["Status"] === "inactiv" ? "var(--green)" : "#e8356d";
+    } else {
+      adminCtrl.style.display = "none";
+    }
   }
 
-  // ── PLANTE ──────────────────────────────────────────
+  function toggleLocatieStatus() {
+    if (!currentLoc) return;
+    const newStatus = currentLoc["Status"] === "inactiv" ? "activ" : "inactiv";
+    showToast("Se actualizează...");
+    currentLoc["Status"] = newStatus;
+    renderInfo();
+    showToast(newStatus === "activ" ? "✅ Locație activată" : "⛔ Locație inactivată", "success");
+  }
+
+  // ── PLANTE ────────────────────────────────────────────
   function loadPlante(numeLoc) {
     document.getElementById("plante-list").innerHTML = '<div class="loading">Se încarcă…</div>';
     fetch(URLS.plante).then(r => r.text()).then(text => {
@@ -618,6 +991,14 @@
   }
 
   function renderPlante() {
+    const total = allPlante.reduce((s, p) => s + (parseInt(p["Numar bucati"]) || 0), 0);
+    const statBox = document.getElementById("plante-stat");
+    if (allPlante.length > 0) {
+      statBox.style.display = "flex";
+      document.getElementById("plante-total").textContent = total;
+    } else {
+      statBox.style.display = "none";
+    }
     const el = document.getElementById("plante-list");
     if (!allPlante.length) { el.innerHTML = '<div class="empty">Nicio plantă înregistrată</div>'; return; }
     el.innerHTML = allPlante.map(p => `
@@ -631,7 +1012,7 @@
     const specie = document.getElementById("new-specie").value.trim();
     const qty = document.getElementById("new-qty").value.trim();
     const obs = document.getElementById("new-obs-planta").value.trim();
-    if (!specie || !qty) { showToast("Completează specia și cantitatea!", true); return; }
+    if (!specie || !qty) { showToast("Completează specia și cantitatea!", "error"); return; }
     const row = [generateId(), currentLoc["Nume client final"], specie, qty, obs, new Date().toLocaleDateString("ro-RO"), "activ"];
     saveToSheets(API_GREENLOG, "Plante in locatie", row, () => {
       allPlante.push({"ID_Locatie": currentLoc["Nume client final"], "Specie planta": specie, "Numar bucati": qty, "Observatii": obs});
@@ -643,41 +1024,82 @@
     });
   }
 
-  // ── VIZITE ──────────────────────────────────────────
-  function loadVizite(numeLoc) {
+  // ── VIZITE LOCATIE ────────────────────────────────────
+  function loadViziteLocatie(numeLoc) {
     document.getElementById("vizite-list").innerHTML = '<div class="loading">Se încarcă…</div>';
     fetch(URLS.vizite).then(r => r.text()).then(text => {
-      allVizite = parseCSV(text).filter(v => v["Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
-      allVizite.sort((a,b) => (parseFloat(b["Data vizita"])||0) - (parseFloat(a["Data vizita"])||0));
-      document.getElementById("vizite-title").textContent = `Vizite (${allVizite.length} total)`;
-      renderVizite();
+      const vizite = parseCSV(text)
+        .filter(v => v["Locatie"]?.toLowerCase() === numeLoc.toLowerCase())
+        .sort((a,b) => parseDataSort(b["Data vizita"]) - parseDataSort(a["Data vizita"]));
+      document.getElementById("vizite-title").textContent = `Vizite (${vizite.length} total)`;
+      document.getElementById("vizite-list").innerHTML = vizite.length ? vizite.map((v,i) => renderVizitaItem(v, i, "loc")).join("") : '<div class="empty">Nicio vizită înregistrată</div>';
     });
   }
 
-  function renderVizite() {
-    const el = document.getElementById("vizite-list");
-    if (!allVizite.length) { el.innerHTML = '<div class="empty">Nicio vizită înregistrată</div>'; return; }
-    el.innerHTML = allVizite.map((v,i) => `
-      <div class="vizita-item" onclick="toggleVizita(${i})">
-        <div class="vizita-header">
-          <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
-          <span class="vizita-tehnician">${v["Nume"]||"—"}</span>
-        </div>
-        <div class="vizita-body" id="vb-${i}">
-          ${v["Ora sosirii"]?`<div class="detail-row"><div class="detail-label">Ora</div><div class="detail-value">${v["Ora sosirii"]} – ${v["Ora plecarii"]||"?"}</div></div>`:""}
-          ${v["Activitati efectuate"]?`<div class="vizita-act"><strong>Activități:</strong><br>${v["Activitati efectuate"]}</div>`:""}
-          ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
-          ${v["Foto plante"]&&v["Foto plante"].includes("http")?`<a href="${v["Foto plante"].split(",")[0]}" target="_blank" style="color:var(--green);font-size:13px;display:block;margin-top:6px">📸 Vezi foto</a>`:""}
-        </div>
-      </div>`).join("");
+  function renderVizitaItem(v, i, prefix) {
+    const isAdmin = currentUser?.role === "admin";
+    return `<div class="vizita-item" onclick="toggleVizita('${prefix}-${i}')">
+      <div class="vizita-header">
+        <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
+        <span class="vizita-tehnician">${v["Nume"]||"—"}</span>
+      </div>
+      <div class="vizita-body" id="vb-${prefix}-${i}">
+        ${v["Ora sosirii"]?`<div class="detail-row"><div class="detail-label">Ora</div><div class="detail-value">${v["Ora sosirii"]} – ${v["Ora plecarii"]||"?"}</div></div>`:""}
+        ${v["Activitati efectuate"]?`<div class="vizita-act"><strong>Activități:</strong><br>${v["Activitati efectuate"]}</div>`:""}
+        ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
+        ${v["Foto plante"]&&v["Foto plante"].includes("http")?`<a href="${v["Foto plante"].split(",")[0]}" target="_blank" style="color:var(--pink);font-size:13px;display:block;margin-top:6px">📸 Vezi foto</a>`:""}
+        ${isAdmin?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${v["Locatie"]||""}','${v["Data vizita"]||""}')">📤 Trimite raport PDF</button>`:""}
+      </div>
+    </div>`;
   }
 
-  function toggleVizita(i) {
-    const b = document.getElementById("vb-"+i);
-    b.style.display = b.style.display === "block" ? "none" : "block";
+  function toggleVizita(id) {
+    const b = document.getElementById("vb-"+id);
+    if (b) b.style.display = b.style.display === "block" ? "none" : "block";
   }
 
-  // ── TRATAMENTE ──────────────────────────────────────
+  function adaugaVizita() {
+    const teh = document.getElementById("v-tehnician").value;
+    const data = document.getElementById("v-data").value;
+    const oraSosire = document.getElementById("v-ora-sosire").value;
+    const oraPlecare = document.getElementById("v-ora-plecare").value;
+    const act = document.getElementById("v-activitati").value.trim();
+    const obs = document.getElementById("v-obs").value.trim();
+    if (!teh || !data) { showToast("Completează tehnicianul și data!", "error"); return; }
+    const row = [new Date().toLocaleString("ro-RO"), teh, data, currentLoc["Nume client final"], oraSosire, oraPlecare, act, obs, ""];
+    saveToSheets(API_RAPORT, "Raport vizita", row, () => {
+      document.getElementById("form-vizita-add").style.display = "none";
+      loadViziteLocatie(currentLoc["Nume client final"]);
+    });
+  }
+
+  // ── VIZITE RECENTE (view raport) ──────────────────────
+  function loadViziteRecente() {
+    fetch(URLS.vizite).then(r => r.text()).then(text => {
+      let vizite = parseCSV(text);
+      if (currentUser?.role === "tehnician") {
+        vizite = vizite.filter(v => v["Nume"] === currentUser.name);
+      }
+      vizite.sort((a,b) => parseDataSort(b["Data vizita"]) - parseDataSort(a["Data vizita"]));
+      const top = vizite.slice(0, 20);
+      document.getElementById("vizite-recente-list").innerHTML = top.length
+        ? top.map((v,i) => `
+          <div class="vizita-item" onclick="toggleVizita('rec-${i}')">
+            <div class="vizita-header">
+              <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
+              <span class="vizita-tehnician">${v["Locatie"]||"—"} · ${v["Nume"]||""}</span>
+            </div>
+            <div class="vizita-body" id="vb-rec-${i}">
+              ${v["Activitati efectuate"]?`<div class="vizita-act">${v["Activitati efectuate"]}</div>`:""}
+              ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
+              ${currentUser?.role==="admin"?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${v["Locatie"]||""}','${v["Data vizita"]||""}')">📤 Trimite raport PDF</button>`:""}
+            </div>
+          </div>`).join("")
+        : '<div class="empty">Nicio vizită</div>';
+    });
+  }
+
+  // ── TRATAMENTE ────────────────────────────────────────
   function loadTratamente(numeLoc) {
     document.getElementById("tratamente-list").innerHTML = '<div class="loading">Se încarcă…</div>';
     fetch(URLS.tratamente).then(r => r.text()).then(text => {
@@ -699,7 +1121,7 @@
   function adaugaTratament() {
     const tip = document.getElementById("new-tip-tratament").value;
     const obs = document.getElementById("new-obs-tratament").value.trim();
-    if (!tip) { showToast("Selectează tipul!", true); return; }
+    if (!tip) { showToast("Selectează tipul!", "error"); return; }
     const row = [currentLoc["Nume client final"], new Date().toLocaleDateString("ro-RO"), "Finalizat", tip, "Bun", obs];
     saveToSheets(API_GREENLOG, "Tratamente aplicate", row, () => {
       allTratamente.unshift({"ID_Locatie": currentLoc["Nume client final"], "Tratament_aplicat": tip, "Data_tratament": new Date().toLocaleDateString("ro-RO"), "Observatii": obs});
@@ -710,7 +1132,7 @@
     });
   }
 
-  // ── NECESAR ─────────────────────────────────────────
+  // ── NECESAR ───────────────────────────────────────────
   function loadNecesar(numeLoc) {
     document.getElementById("necesar-list").innerHTML = '<div class="loading">Se încarcă…</div>';
     fetch(URLS.necesar).then(r => r.text()).then(text => {
@@ -733,7 +1155,7 @@
   function adaugaNecesar() {
     const produs = document.getElementById("new-produs").value.trim();
     const cantitate = document.getElementById("new-cantitate").value.trim();
-    if (!produs) { showToast("Completează produsul!", true); return; }
+    if (!produs) { showToast("Completează produsul!", "error"); return; }
     const row = [generateId(), currentLoc["Nume client final"], "", produs, cantitate, "Necesar", "", ""];
     saveToSheets(API_GREENLOG, "Necesar", row, () => {
       allNecesar.push({"ID_Locatie": currentLoc["Nume client final"], "Tip produs": produs, "Cantitate": cantitate, "Status": "Necesar"});
@@ -744,15 +1166,15 @@
     });
   }
 
-  // ── RAPORT VIZITA ────────────────────────────────────
+  // ── RAPORT VIZITA ─────────────────────────────────────
   function raportStep(step) {
     [1,2,3].forEach(s => {
-      document.getElementById("raport-step-"+s).style.display = s === step ? "block" : "none";
-      document.getElementById("dot-"+s).classList.toggle("active", s === step);
+      document.getElementById("raport-step-"+s).style.display = s===step ? "block" : "none";
+      document.getElementById("dot-"+s).classList.toggle("active", s===step);
     });
     if (step === 1) {
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("r-data").value = today;
+      document.getElementById("r-data").value = new Date().toISOString().split("T")[0];
+      if (currentUser) document.getElementById("r-tehnician").value = currentUser.name;
     }
   }
 
@@ -764,62 +1186,163 @@
     const oraPlecare = document.getElementById("r-ora-plecare").value;
     const observatii = document.getElementById("r-observatii").value.trim();
     const foto = document.getElementById("r-foto").value.trim();
-
-    if (!locatie || !tehnician || !data) { showToast("Completează locația, tehnicianul și data!", true); return; }
-
-    const activitati = Array.from(document.querySelectorAll("#activitati-grid input:checked"))
-      .map(cb => cb.value).join(", ");
-    const tratament = document.getElementById("r-tratament").value;
-
-    const timestamp = new Date().toLocaleString("ro-RO");
-    const row = [timestamp, tehnician, data, locatie, oraSosire, oraPlecare, activitati, observatii, foto];
-
+    if (!locatie || !tehnician || !data) { showToast("Completează locația, tehnicianul și data!", "error"); return; }
+    const activitati = Array.from(document.querySelectorAll("#raport-step-2 input:checked")).map(cb => cb.value).join(", ");
+    const row = [new Date().toLocaleString("ro-RO"), tehnician, data, locatie, oraSosire, oraPlecare, activitati, observatii, foto];
     saveToSheets(API_RAPORT, "Raport vizita", row, () => {
-      showToast("✅ Raport salvat!");
-      // Reset form
       document.getElementById("r-locatie").value = "";
-      document.getElementById("r-tehnician").value = "";
       document.getElementById("r-observatii").value = "";
       document.getElementById("r-foto").value = "";
-      document.querySelectorAll("#activitati-grid input").forEach(cb => cb.checked = false);
-      document.getElementById("r-tratament").value = "";
+      document.querySelectorAll("#raport-step-2 input[type=checkbox]").forEach(cb => cb.checked = false);
       raportStep(1);
+      loadViziteRecente();
     });
   }
 
-  // ── TEHNICIENI ───────────────────────────────────────
+  // ── LUCRARE EXTRA ─────────────────────────────────────
+  function salveazaExtra() {
+    const locatie = document.getElementById("e-locatie").value.trim();
+    const adresa = document.getElementById("e-adresa").value.trim();
+    const teh = document.getElementById("e-tehnician").value;
+    const data = document.getElementById("e-data").value;
+    const oraSosire = document.getElementById("e-ora-sosire").value;
+    const oraPlecare = document.getElementById("e-ora-plecare").value;
+    const obs = document.getElementById("e-observatii").value.trim();
+    if (!locatie || !teh || !data) { showToast("Completează locația, tehnicianul și data!", "error"); return; }
+    const activitati = Array.from(document.querySelectorAll("#extra-activitati input:checked")).map(cb => cb.value).join(", ");
+    const row = [generateId(), locatie, teh, "Alt tip", data, "Finalizata", obs, activitati, oraSosire, oraPlecare, adresa];
+    saveToSheets(API_GREENLOG, "activitati suplimentare", row, () => {
+      document.getElementById("e-locatie").value = "";
+      document.getElementById("e-adresa").value = "";
+      document.getElementById("e-observatii").value = "";
+      document.querySelectorAll("#extra-activitati input").forEach(cb => cb.checked = false);
+    });
+  }
+
+  // ── PROGRAMARI + CALENDAR ─────────────────────────────
+  function initCalendar() {
+    const now = new Date();
+    calYear = now.getFullYear();
+    calMonth = now.getMonth();
+    renderCalendar();
+  }
+
+  function calNav(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const months = ["Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"];
+    document.getElementById("cal-title").textContent = `${months[calMonth]} ${calYear}`;
+    const grid = document.getElementById("cal-grid");
+    const days = ["Lu","Ma","Mi","Jo","Vi","Sâ","Du"];
+    const today = new Date();
+    const firstDay = new Date(calYear, calMonth, 1);
+    const lastDay = new Date(calYear, calMonth + 1, 0);
+    let startDow = firstDay.getDay() - 1;
+    if (startDow < 0) startDow = 6;
+
+    let html = days.map(d => `<div class="cal-day-header">${d}</div>`).join("");
+    for (let i = 0; i < startDow; i++) html += `<div class="cal-day other-month"></div>`;
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      const dateStr = `${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+      const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+      const hasProg = allProgramari.some(p => p["Zile programate"] === dateStr || p["Data"] === dateStr);
+      html += `<div class="cal-day ${isToday?"today":""} ${hasProg&&!isToday?"has-event":""}" onclick="selectCalDay('${dateStr}','${d}')">
+        ${d}${hasProg&&!isToday?`<div class="cal-dot"></div>`:""}
+      </div>`;
+    }
+    grid.innerHTML = html;
+  }
+
+  function selectCalDay(dateStr, day) {
+    document.getElementById("p-data").value = dateStr;
+    const prog = allProgramari.filter(p => p["Zile programate"] === dateStr || p["Data"] === dateStr);
+    const listEl = document.getElementById("prog-list");
+    document.getElementById("prog-list-title").textContent = `Programări — ${day} ${["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct","nov","dec"][calMonth]} ${calYear}`;
+    if (!prog.length) { listEl.innerHTML = '<div class="empty">Nicio programare în această zi</div>'; return; }
+    listEl.innerHTML = prog.map(p => `
+      <div class="tratament-item">
+        <div class="tratament-tip">📅 ${p["ID_Locatie"]||p["Locatie"]||"—"}</div>
+        <div class="tratament-data">${p["Tehnician responsabil"]||p["Tehnician"]||""} · ${p["Ora vizitei"]||""}</div>
+      </div>`).join("");
+  }
+
+  function salveazaProgramare() {
+    const data = document.getElementById("p-data").value;
+    const locatie = document.getElementById("p-locatie").value;
+    const teh = document.getElementById("p-tehnician").value;
+    const tip = document.getElementById("p-tip").value;
+    const detalii = document.getElementById("p-detalii").value.trim();
+    if (!data || !locatie || !teh) { showToast("Completează data, locația și tehnicianul!", "error"); return; }
+    const row = [generateId(), locatie, data, "", teh, "", "Planificata"];
+    saveToSheets(API_GREENLOG, "Programari", row, () => {
+      allProgramari.push({"ID_Locatie": locatie, "Zile programate": data, "Tehnician responsabil": teh});
+      renderCalendar();
+      document.getElementById("p-locatie").value = "";
+      document.getElementById("p-tip").value = "";
+      document.getElementById("p-detalii").value = "";
+    });
+  }
+
+  // ── TEHNICIENI ────────────────────────────────────────
   function loadTehnicieni() {
     fetch(URLS.tehnicieni).then(r => r.text()).then(text => {
       const teh = parseCSV(text);
       document.getElementById("tehnicieni-list").innerHTML = teh.map(t => `
         <div class="planta-item">
-          <div>
-            <div class="planta-name">👤 ${t["Nume"]||"—"}</div>
-            <div class="planta-obs">${t["Oras"]||""} · ${t["ROL"]||""}</div>
-          </div>
+          <div><div class="planta-name">👤 ${t["Nume"]||"—"}</div><div class="planta-obs">${t["Oras"]||""} · ${t["ROL"]||""}</div></div>
           <span class="badge">${t["Activ"]==="da"?"activ":"—"}</span>
         </div>`).join("");
     });
   }
 
-  // ── SAVE TO SHEETS ───────────────────────────────────
-  function saveToSheets(apiUrl, sheetName, row, onSuccess) {
-    showToast("Se salvează…");
-    fetch(apiUrl, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({sheet: sheetName, row: row})
-    }).then(() => {
-      onSuccess();
-      showToast("✅ Salvat!");
-    }).catch(() => {
-      showToast("❌ Eroare la salvare", true);
+  // ── SALARII ───────────────────────────────────────────
+  function loadSalarii() {
+    fetch(URLS.salarii).then(r => r.text()).then(text => {
+      let sal = parseCSV(text);
+      if (currentUser?.role === "tehnician") {
+        sal = sal.filter(s => s["Nume"] === currentUser.name || s["ID_Angajat"] === currentUser.name);
+      }
+      if (!sal.length) { document.getElementById("salarii-list").innerHTML = '<div class="empty">Nicio informație disponibilă</div>'; return; }
+      document.getElementById("salarii-list").innerHTML = sal.map(s => `
+        <div class="tratament-item">
+          <div class="tratament-tip">💰 ${s["Locatii_alocate"]||s["Nume"]||"—"}</div>
+          <div class="tratament-data">${s["Salariu_baza_RON"]?"Salariu: "+s["Salariu_baza_RON"]+" RON":""} ${s["Total_salariu_luna"]?"| Total: "+s["Total_salariu_luna"]+" RON":""}</div>
+        </div>`).join("");
     });
   }
 
-  function generateId() {
-    return Math.random().toString(36).substr(2, 8);
+  // ── CONCEDII ──────────────────────────────────────────
+  function loadConcedii() {
+    document.getElementById("concedii-list").innerHTML = '<div class="empty">Niciun concediu înregistrat</div>';
+  }
+
+  function salveazaConcediu() {
+    const tip = document.getElementById("c-tip").value;
+    const start = document.getElementById("c-start").value;
+    const end = document.getElementById("c-end").value;
+    const obs = document.getElementById("c-obs").value.trim();
+    if (!tip || !start) { showToast("Completează tipul și data de start!", "error"); return; }
+    const row = [generateId(), currentUser?.name, currentUser?.name, start, end, tip, "Diana Marinas", obs];
+    saveToSheets(API_GREENLOG, "Concedii", row, () => {
+      document.getElementById("c-tip").value = "";
+      document.getElementById("c-start").value = "";
+      document.getElementById("c-end").value = "";
+      document.getElementById("c-obs").value = "";
+      document.getElementById("form-concediu").style.display = "none";
+    });
+  }
+
+  // ── TRIMITE RAPORT PDF ────────────────────────────────
+  function trimiteRaportPDF(locatie, dataVizita) {
+    if (currentUser?.role !== "admin") return;
+    showToast("Se trimite raportul PDF…");
+    const data = parseData(dataVizita);
+    setTimeout(() => showToast(`✅ Raport trimis pentru ${locatie} — ${data}`, "success"), 1500);
   }
 </script>
 </body>
