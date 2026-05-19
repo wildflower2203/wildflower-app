@@ -20,114 +20,35 @@
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); padding-bottom: 70px; }
 
-    header {
-      background: var(--pink);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(187,59,128,0.3);
-    }
-    .back-btn { color: white; font-size: 14px; cursor: pointer; padding: 4px 8px 4px 0; display: none; }
+    header { background: var(--pink); padding: 14px 20px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(187,59,128,0.3); }
+    .back-btn { color: white; font-size: 14px; cursor: pointer; padding: 4px 8px 4px 0; display: none; margin-left: auto; }
     header h1 { font-family: 'DM Serif Display', serif; font-size: 20px; color: white; flex: 1; }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      display: flex;
-      z-index: 200;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
-    }
-    .nav-btn {
-      flex: 1;
-      padding: 8px 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      cursor: pointer;
-      color: var(--gray);
-      font-size: 10px;
-      border: none;
-      background: none;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); display: flex; z-index: 200; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
+    .nav-btn { flex: 1; padding: 8px 2px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; color: var(--gray); font-size: 10px; border: none; background: none; font-family: 'DM Sans', sans-serif; }
     .nav-btn.active { color: var(--pink); }
     .nav-btn span { font-size: 18px; }
 
     .search-wrap { padding: 16px 20px 8px; }
-    .search-input {
-      width: 100%;
-      padding: 10px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: 'DM Sans', sans-serif;
-      background: var(--white);
-      outline: none;
-    }
+    .search-input { width: 100%; padding: 10px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 15px; font-family: 'DM Sans', sans-serif; background: var(--white); outline: none; }
     .search-input:focus { border-color: var(--pink); }
 
     .container { padding: 12px 20px 20px; max-width: 680px; margin: 0 auto; }
 
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 18px 20px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 10px rgba(187,59,128,0.08);
-    }
-    .card-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 12px;
-    }
+    .card { background: var(--white); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(187,59,128,0.08); }
+    .card-title { font-size: 11px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
 
-    .loc-item {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
+    .loc-item { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
     .loc-item:last-child { border-bottom: none; }
     .loc-name { font-size: 15px; font-weight: 500; }
     .loc-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
     .badge { background: var(--pink-light); color: var(--pink); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 10px; }
     .badge-inactive { background: #f5f5f5; color: #aaa; }
     .badge-green { background: #e8f5e9; color: #2d5a27; }
+    .badge-orange { background: #fff3e0; color: #e65100; }
 
-    .tabs {
-      display: flex;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      padding: 0 16px;
-      position: sticky;
-      top: 57px;
-      z-index: 90;
-    }
-    .tab-btn {
-      padding: 12px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--gray);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-      background: none;
-      border-top: none; border-left: none; border-right: none;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .tabs { display: flex; background: var(--white); border-bottom: 1px solid var(--border); overflow-x: auto; padding: 0 16px; position: sticky; top: 57px; z-index: 90; }
+    .tab-btn { padding: 12px 12px; font-size: 12px; font-weight: 500; color: var(--gray); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
     .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
 
     .detail-row { padding: 12px 0; border-bottom: 1px solid var(--border); }
@@ -144,11 +65,21 @@
     .vizita-obs { font-size: 13px; color: #555; padding: 8px; background: var(--bg); border-radius: 8px; margin-top: 6px; line-height: 1.4; }
     .vizita-act { font-size: 12px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
 
-    .planta-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .planta-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
     .planta-item:last-child { border-bottom: none; }
     .planta-name { font-size: 14px; font-weight: 500; }
     .planta-obs { font-size: 12px; color: var(--gray); margin-top: 2px; }
-    .planta-qty { background: var(--pink-light); color: var(--pink); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .planta-qty { background: var(--pink-light); color: var(--pink); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .planta-actions { display: flex; gap: 6px; margin-top: 4px; }
+    .btn-micro { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 3px 8px; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; color: var(--gray); }
+    .btn-micro:hover { border-color: var(--pink); color: var(--pink); }
+    .btn-micro.delete:hover { border-color: #e8356d; color: #e8356d; }
+
+    .necesar-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .necesar-item:last-child { border-bottom: none; }
+    .necesar-name { font-size: 14px; font-weight: 500; }
+    .necesar-status { font-size: 12px; margin-top: 2px; }
+    .necesar-check { width: 20px; height: 20px; accent-color: var(--pink); cursor: pointer; }
 
     .tratament-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
     .tratament-item:last-child { border-bottom: none; }
@@ -156,35 +87,15 @@
     .tratament-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
 
     .add-form { background: var(--bg); border-radius: 12px; padding: 16px; margin-top: 12px; }
-    .add-form input, .add-form select, .add-form textarea {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 14px;
-      font-family: 'DM Sans', sans-serif;
-      background: var(--white);
-      outline: none;
-      margin-bottom: 10px;
-    }
+    .add-form input, .add-form select, .add-form textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; background: var(--white); outline: none; margin-bottom: 10px; }
     .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--pink); }
     .add-form textarea { min-height: 80px; resize: vertical; }
 
-    .btn {
-      width: 100%;
-      padding: 13px;
-      background: var(--pink);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-    }
+    .btn { width: 100%; padding: 13px; background: var(--pink); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; }
     .btn:active { opacity: 0.85; }
-    .btn-green { background: var(--green); }
-    .btn-gray { background: #eee; color: var(--text); }
+    .btn-green { background: var(--green) !important; }
+    .btn-gray { background: #eee !important; color: var(--text) !important; }
+    .btn-danger { background: #e8356d !important; }
     .toggle-add { text-align: center; color: var(--pink); font-size: 13px; cursor: pointer; padding: 10px; font-weight: 500; }
 
     .empty { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; }
@@ -202,7 +113,6 @@
     .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s; }
     .step-dot.active { background: var(--pink); }
 
-    /* CALENDAR */
     .calendar-wrap { background: var(--white); border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(187,59,128,0.08); }
     .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .cal-title { font-size: 16px; font-weight: 600; color: var(--pink); }
@@ -216,54 +126,45 @@
     .cal-day.other-month { color: #ccc; }
     .cal-dot { width: 4px; height: 4px; background: var(--pink); border-radius: 50%; margin: 2px auto 0; }
 
-    /* LOGIN */
-    .login-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
-      padding: 20px;
-    }
-    .login-card {
-      background: white;
-      border-radius: 24px;
-      padding: 40px 32px;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: 0 20px 60px rgba(187,59,128,0.3);
-    }
+    .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%); padding: 20px; }
+    .login-card { background: white; border-radius: 24px; padding: 40px 32px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(187,59,128,0.3); }
     .login-logo { text-align: center; margin-bottom: 32px; }
     .login-logo h1 { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--pink); }
     .login-logo p { font-size: 13px; color: var(--gray); margin-top: 4px; }
-    .login-input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      margin-bottom: 12px;
-    }
+    .login-input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 12px; }
     .login-input:focus { border-color: var(--pink); }
     .login-error { color: #e8356d; font-size: 13px; text-align: center; margin-bottom: 12px; display: none; }
 
-    .toast {
-      position: fixed;
-      bottom: 90px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--pink);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 20px;
-      font-size: 14px;
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-      white-space: nowrap;
-    }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 300; }
+    .sidebar { position: fixed; left: -280px; top: 0; bottom: 0; width: 280px; background: white; z-index: 301; transition: left 0.3s; box-shadow: 4px 0 20px rgba(0,0,0,0.1); }
+    .sidebar.open { left: 0; }
+    .sidebar-header { background: var(--pink); padding: 50px 20px 20px; }
+    .sidebar-user { color: white; }
+    .sidebar-name { font-size: 18px; font-weight: 600; }
+    .sidebar-email { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+    .sidebar-menu { padding: 16px 0; }
+    .sidebar-item { padding: 14px 20px; display: flex; align-items: center; gap: 12px; font-size: 15px; cursor: pointer; transition: background 0.1s; }
+    .sidebar-item:hover { background: var(--bg); }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .menu-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: white; padding: 4px; }
+
+    .send-btn { background: none; border: 1px solid var(--pink); color: var(--pink); padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 6px; }
+
+    .edit-form { background: var(--bg); border-radius: 10px; padding: 12px; margin-top: 8px; display: none; }
+    .edit-form input { width: 100%; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: white; outline: none; margin-bottom: 8px; }
+    .edit-form input:focus { border-color: var(--pink); }
+
+    .salariu-card { background: var(--pink-light); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+    .salariu-locatie { font-size: 14px; font-weight: 600; color: var(--pink-dark); }
+    .salariu-suma { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--pink); margin-top: 4px; }
+    .salariu-sub { font-size: 12px; color: var(--gray); }
+
+    .concediu-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .concediu-item:last-child { border-bottom: none; }
+    .concediu-tip { font-size: 13px; font-weight: 600; color: var(--pink); }
+    .concediu-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: var(--pink); color: white; padding: 12px 24px; border-radius: 20px; font-size: 14px; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; }
     .toast.show { opacity: 1; }
     .toast.error { background: #e8356d; }
     .toast.success { background: #2d5a27; }
@@ -272,51 +173,6 @@
     #view-dashboard, #view-detail, #view-raport, #view-extra, #view-programari, #view-tehnicieni, #view-salarii, #view-concedii { display: none; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
-    /* SIDEBAR */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 300; }
-    .sidebar {
-      position: fixed;
-      left: -280px;
-      top: 0; bottom: 0;
-      width: 280px;
-      background: white;
-      z-index: 301;
-      transition: left 0.3s;
-      padding: 0;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.1);
-    }
-    .sidebar.open { left: 0; }
-    .sidebar-header { background: var(--pink); padding: 50px 20px 20px; }
-    .sidebar-user { color: white; }
-    .sidebar-name { font-size: 18px; font-weight: 600; }
-    .sidebar-email { font-size: 13px; opacity: 0.8; margin-top: 2px; }
-    .sidebar-menu { padding: 16px 0; }
-    .sidebar-item {
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-    .sidebar-item:hover { background: var(--bg); }
-    .sidebar-item.active { color: var(--pink); font-weight: 500; }
-    .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
-    .menu-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: white; padding: 4px; }
-
-    .send-btn {
-      background: none;
-      border: 1px solid var(--pink);
-      color: var(--pink);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 11px;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      margin-top: 6px;
-    }
   </style>
 </head>
 <body>
@@ -341,10 +197,9 @@
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <span>🌸</span>
     <h1 id="header-title">Wildflower App</h1>
-    <span class="back-btn" id="back-btn" onclick="goBack()" style="display:none;color:white;margin-left:auto">← Înapoi</span>
+    <span class="back-btn" id="back-btn" onclick="goBack()">← Înapoi</span>
   </header>
 
-  <!-- SIDEBAR -->
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -355,16 +210,15 @@
     </div>
     <div class="sidebar-menu">
       <div class="sidebar-item" onclick="showView('dashboard');toggleSidebar()">📍 Locații</div>
-      <div class="sidebar-item" onclick="showView('tehnicieni');toggleSidebar()" id="menu-tehnicieni">👥 Tehnicieni</div>
+      <div class="sidebar-item" id="menu-tehnicieni" onclick="showView('tehnicieni');toggleSidebar()">👥 Tehnicieni</div>
       <div class="sidebar-divider"></div>
-      <div class="sidebar-item" onclick="showView('salarii');toggleSidebar()">💰 Salarii</div>
-      <div class="sidebar-item" onclick="showView('concedii');toggleSidebar()">🏖️ Concedii</div>
+      <div class="sidebar-item" id="menu-salarii" onclick="showView('salarii');toggleSidebar()">💰 Salarii</div>
+      <div class="sidebar-item" id="menu-concedii" onclick="showView('concedii');toggleSidebar()">🏖️ Concedii</div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-item" onclick="doLogout()" style="color:#e8356d">🚪 Ieși din cont</div>
     </div>
   </div>
 
-  <!-- BOTTOM NAV -->
   <nav class="bottom-nav">
     <button class="nav-btn active" id="nav-locatii" onclick="showView('dashboard')"><span>📍</span>Locații</button>
     <button class="nav-btn" id="nav-raport" onclick="showView('raport')"><span>📋</span>Raport</button>
@@ -372,7 +226,7 @@
     <button class="nav-btn" id="nav-programari" onclick="showView('programari')"><span>📅</span>Programări</button>
   </nav>
 
-  <!-- VIEW: DASHBOARD -->
+  <!-- DASHBOARD -->
   <div id="view-dashboard">
     <div class="search-wrap">
       <input class="search-input" type="text" placeholder="🔍  Caută locație, tehnician..." id="search-input" oninput="filterLocatii()">
@@ -385,7 +239,7 @@
     </div>
   </div>
 
-  <!-- VIEW: DETAIL -->
+  <!-- DETAIL -->
   <div id="view-detail">
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('info',this)">Info</button>
@@ -395,16 +249,18 @@
       <button class="tab-btn" onclick="switchTab('necesar',this)">📦 Necesar</button>
     </div>
     <div class="container">
+      <!-- INFO -->
       <div class="tab-content active" id="tab-info">
         <div class="card">
           <div class="card-title">Detalii locație</div>
           <div id="detail-info-content"></div>
         </div>
-        <div id="admin-loc-controls" style="display:none">
-          <button class="btn" id="toggle-status-btn" onclick="toggleLocatieStatus()" style="margin-top:4px"></button>
+        <div id="admin-loc-controls" style="display:none;margin-top:4px">
+          <button class="btn" id="toggle-status-btn" onclick="toggleLocatieStatus()"></button>
         </div>
       </div>
 
+      <!-- PLANTE -->
       <div class="tab-content" id="tab-plante">
         <div class="card">
           <div id="plante-stat" class="stat-box" style="display:none">
@@ -423,6 +279,7 @@
         </div>
       </div>
 
+      <!-- VIZITE -->
       <div class="tab-content" id="tab-vizite">
         <div class="card">
           <div class="card-title" id="vizite-title">Vizite</div>
@@ -447,6 +304,7 @@
         </div>
       </div>
 
+      <!-- TRATAMENTE -->
       <div class="tab-content" id="tab-tratamente">
         <div class="card">
           <div class="card-title">Tratamente aplicate</div>
@@ -454,10 +312,7 @@
           <div class="add-form" id="form-tratament" style="display:none">
             <select id="new-tip-tratament">
               <option value="">Tip tratament…</option>
-              <option>fertilizare</option>
-              <option>fungicid</option>
-              <option>acaricid</option>
-              <option>insecticid</option>
+              <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
             </select>
             <input type="text" id="new-obs-tratament" placeholder="Observații">
             <button class="btn" onclick="adaugaTratament()">💾 Salvează tratament</button>
@@ -466,13 +321,28 @@
         </div>
       </div>
 
+      <!-- NECESAR -->
       <div class="tab-content" id="tab-necesar">
         <div class="card">
           <div class="card-title">Necesar aprovizionare</div>
           <div class="toggle-add" onclick="toggleForm('form-necesar')">+ Adaugă necesar</div>
           <div class="add-form" id="form-necesar" style="display:none">
-            <input type="text" id="new-produs" placeholder="Produs (ex: sac pamant, ghiveci 30cm…)">
+            <select id="new-tip-necesar">
+              <option value="">Tip produs…</option>
+              <option>sac pamant</option>
+              <option>sac bilute argila</option>
+              <option>ghiveci 25 cm</option>
+              <option>ghiveci 30 cm</option>
+              <option>ghiveci 40 cm</option>
+              <option>tutori 1 m</option>
+              <option>tutori 1.5 m</option>
+              <option>tutori 2 m</option>
+              <option>transplantare</option>
+              <option>plante noi</option>
+            </select>
+            <input type="text" id="new-produs-custom" placeholder="Sau scrie alt produs…">
             <input type="number" id="new-cantitate" placeholder="Cantitate">
+            <textarea id="new-obs-necesar" placeholder="Observații…" style="min-height:50px"></textarea>
             <button class="btn" onclick="adaugaNecesar()">💾 Salvează</button>
           </div>
           <div id="necesar-list"><div class="loading">Se încarcă…</div></div>
@@ -481,7 +351,7 @@
     </div>
   </div>
 
-  <!-- VIEW: RAPORT VIZITA -->
+  <!-- RAPORT VIZITA -->
   <div id="view-raport">
     <div class="container">
       <div class="card">
@@ -496,11 +366,7 @@
             <select id="r-locatie"><option value="">Selectează locația…</option></select>
             <select id="r-tehnician">
               <option value="">Tehnician…</option>
-              <option>Ana Florentina Grecu</option>
-              <option>Paul Fedot</option>
-              <option>Radu Greavu</option>
-              <option>Diana Marinas</option>
-              <option>Lucian Marinas</option>
+              <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
             </select>
             <input type="date" id="r-data">
             <input type="time" id="r-ora-sosire" placeholder="Ora sosirii">
@@ -510,7 +376,7 @@
         </div>
         <div id="raport-step-2" style="display:none">
           <div class="raport-section-title">✅ Activități efectuate</div>
-          <div class="checkbox-grid">
+          <div class="checkbox-grid" id="act-grid">
             <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
             <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
             <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
@@ -543,35 +409,29 @@
           </div>
         </div>
       </div>
-
-      <!-- Lista vizite recente -->
-      <div class="card" id="vizite-recente-card">
+      <div class="card">
         <div class="card-title">Vizite recente</div>
         <div id="vizite-recente-list"><div class="loading">Se încarcă…</div></div>
       </div>
     </div>
   </div>
 
-  <!-- VIEW: LUCRARE EXTRA -->
+  <!-- LUCRARE EXTRA -->
   <div id="view-extra">
     <div class="container">
       <div class="card">
         <div class="card-title">⭐ Lucrare extra</div>
         <div class="add-form" style="margin:0;background:none;padding:0">
-          <input type="text" id="e-locatie" placeholder="Nume locație / client">
+          <input type="text" id="e-locatie" placeholder="Nume locație / client *">
           <input type="text" id="e-adresa" placeholder="Adresa locației">
           <select id="e-tehnician">
             <option value="">Tehnician…</option>
-            <option>Ana Florentina Grecu</option>
-            <option>Paul Fedot</option>
-            <option>Radu Greavu</option>
-            <option>Diana Marinas</option>
-            <option>Lucian Marinas</option>
+            <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
           </select>
           <input type="date" id="e-data">
           <input type="time" id="e-ora-sosire" placeholder="Ora sosirii">
           <input type="time" id="e-ora-plecare" placeholder="Ora plecării">
-          <div class="raport-section-title" style="margin-top:8px">✅ Lucrări efectuate</div>
+          <div class="raport-section-title" style="margin-top:4px">✅ Lucrări efectuate</div>
           <div class="checkbox-grid" id="extra-activitati">
             <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor"> Examinare</label>
             <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave"> Tratare</label>
@@ -583,13 +443,17 @@
             <label class="checkbox-item"><input type="checkbox" value="evaluare locatie"> 📊 Evaluare locație</label>
           </div>
           <textarea id="e-observatii" placeholder="Observații, evaluare, recomandări…" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none;min-height:80px;resize:vertical"></textarea>
+          <div class="raport-section-title" style="margin-top:4px">👤 Date de contact (opțional)</div>
+          <input type="text" id="e-contact-nume" placeholder="Nume persoană de contact">
+          <input type="tel" id="e-contact-tel" placeholder="Telefon">
+          <input type="email" id="e-contact-email" placeholder="Email">
           <button class="btn" style="margin-top:4px" onclick="salveazaExtra()">💾 Salvează lucrare extra</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- VIEW: PROGRAMARI -->
+  <!-- PROGRAMARI -->
   <div id="view-programari">
     <div class="container">
       <div class="calendar-wrap">
@@ -607,18 +471,11 @@
           <select id="p-locatie"><option value="">Selectează locația…</option></select>
           <select id="p-tehnician">
             <option value="">Tehnician…</option>
-            <option>Ana Florentina Grecu</option>
-            <option>Paul Fedot</option>
-            <option>Radu Greavu</option>
-            <option>Diana Marinas</option>
-            <option>Lucian Marinas</option>
+            <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
           </select>
           <select id="p-tip">
             <option value="">Tip programare…</option>
-            <option>Mentenanță</option>
-            <option>Tratament</option>
-            <option>Lucrare extra</option>
-            <option>Evaluare</option>
+            <option>Mentenanță</option><option>Tratament</option><option>Lucrare extra</option><option>Evaluare</option>
           </select>
           <textarea id="p-detalii" placeholder="Detalii programare…"></textarea>
           <button class="btn" onclick="salveazaProgramare()">💾 Salvează programare</button>
@@ -631,7 +488,7 @@
     </div>
   </div>
 
-  <!-- VIEW: TEHNICIENI -->
+  <!-- TEHNICIENI -->
   <div id="view-tehnicieni">
     <div class="container">
       <div class="card">
@@ -641,21 +498,21 @@
     </div>
   </div>
 
-  <!-- VIEW: SALARII -->
+  <!-- SALARII -->
   <div id="view-salarii">
     <div class="container">
       <div class="card">
-        <div class="card-title">💰 Salarii</div>
+        <div class="card-title" id="salarii-title">💰 Salarii</div>
         <div id="salarii-list"><div class="loading">Se încarcă…</div></div>
       </div>
     </div>
   </div>
 
-  <!-- VIEW: CONCEDII -->
+  <!-- CONCEDII -->
   <div id="view-concedii">
     <div class="container">
       <div class="card">
-        <div class="card-title">🏖️ Concedii</div>
+        <div class="card-title">🏖️ Concediile mele</div>
         <div class="toggle-add" onclick="toggleForm('form-concediu')">+ Adaugă concediu</div>
         <div class="add-form" id="form-concediu" style="display:none">
           <select id="c-tip">
@@ -679,9 +536,8 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── CONFIG ────────────────────────────────────────────
   const API_GREENLOG = "https://script.google.com/macros/s/AKfycbx6z_cjcHsHL7oNqhsJOlalML0yRG7TdLrsy-2cY_XLtcugZ2CcDA2SCXNvqs-LupsB/exec";
-  const API_RAPORT = "https://script.google.com/macros/s/AKfycbxR4f_0ioqKNjN6KN-2Z2hutWcLxxFcnIQeR81xg_BsM_3c_J-nqmtRBdy9150DqNyk/exec";
+  const API_RAPORT   = "https://script.google.com/macros/s/AKfycbxR4f_0ioqKNjN6KN-2Z2hutWcLxxFcnIQeR81xg_BsM_3c_J-nqmtRBdy9150DqNyk/exec";
   const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&gid=";
   const URLS = {
     locatii:    BASE + "1134673396",
@@ -689,44 +545,52 @@
     plante:     BASE + "1673932267",
     necesar:    BASE + "821266492",
     tratamente: BASE + "1501455368",
-    salarii:    BASE + "1083000853",
+    salarii:    BASE + "296694408",
+    concedii:   BASE + "1163164599",
     programari: BASE + "243770782",
     vizite: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbrklorijnFRuGCPRMZV8aIuas2cSRJX7L03uTXyGFeDJGXZmCZXY9Ivdk3lV4iBtps8fmflSxhoBg/pub?output=csv&gid=109752688"
   };
 
+  // USERS — role: admin = vede tot | demo = vede tot fara salarii/concedii | tehnician = doar locatiile lui
   const USERS = {
     "diana@wildflower.ro":   { pass: "wildflower2024", name: "Diana Marinas",        role: "admin" },
-    "ana@wildflower.ro":     { pass: "wildflower2024", name: "Ana Florentina Grecu", role: "tehnician" },
-    "paul@wildflower.ro":    { pass: "wildflower2024", name: "Paul Fedot",           role: "tehnician" },
-    "comenzi@wildflower.ro": { pass: "wildflower2024", name: "Lucian Marinas",       role: "admin" }
+    "comenzi@wildflower.ro": { pass: "wildflower2024", name: "Lucian Marinas",        role: "demo" },
+    "ana@wildflower.ro":     { pass: "wildflower2024", name: "Ana Florentina Grecu",  role: "tehnician" },
+    "paul@wildflower.ro":    { pass: "wildflower2024", name: "Paul Fedot",            role: "tehnician" },
+    "radu@wildflower.ro":    { pass: "wildflower2024", name: "Radu Greavu",           role: "tehnician" }
   };
 
   let currentUser = null;
-  let allLocatii = [], currentLoc = null, allVizite = [], allPlante = [], allTratamente = [], allNecesar = [], allProgramari = [];
+  let allLocatii = [], currentLoc = null, allPlante = [], allTratamente = [], allNecesar = [], allProgramari = [];
   let calYear, calMonth;
 
   // ── UTILS ─────────────────────────────────────────────
   function parseCSV(text) {
     const lines = text.trim().split("\n");
-    const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
+    const headers = lines[0].split(",").map(h => h.trim().replace(/"/g,""));
     return lines.slice(1).map(line => {
       const vals = []; let cur = "", inQ = false;
       for (let i = 0; i < line.length; i++) {
-        if (line[i] === '"') inQ = !inQ;
-        else if (line[i] === ',' && !inQ) { vals.push(cur.trim()); cur = ""; }
-        else cur += line[i];
+        if (line[i]==='"') inQ=!inQ;
+        else if (line[i]===',' && !inQ) { vals.push(cur.trim()); cur=""; }
+        else cur+=line[i];
       }
       vals.push(cur.trim());
       const obj = {};
-      headers.forEach((h, i) => obj[h] = vals[i] || "");
+      headers.forEach((h,i) => obj[h] = vals[i]||"");
       return obj;
     });
   }
 
   function parseData(val) {
     if (!val) return "—";
+    // Excel serial number
     const nr = parseFloat(val);
-    if (!isNaN(nr) && nr > 40000) return new Date((nr - 25569) * 86400 * 1000).toLocaleDateString("ro-RO");
+    if (!isNaN(nr) && nr > 40000 && nr < 60000) {
+      const d = new Date(Date.UTC(1899,11,30) + nr*86400000);
+      return d.toLocaleDateString("ro-RO");
+    }
+    // Try parsing as date string
     const d = new Date(val);
     if (!isNaN(d) && val.length > 4) return d.toLocaleDateString("ro-RO");
     return val;
@@ -735,40 +599,40 @@
   function parseDataSort(val) {
     if (!val) return 0;
     const nr = parseFloat(val);
-    if (!isNaN(nr) && nr > 40000) return nr;
+    if (!isNaN(nr) && nr > 40000 && nr < 60000) return nr;
     const d = new Date(val);
-    if (!isNaN(d)) return d.getTime() / 86400000 + 25569;
+    if (!isNaN(d)) return d.getTime()/86400000 + 25569;
     return 0;
   }
 
   function showToast(msg, type) {
     const t = document.getElementById("toast");
     t.textContent = msg;
-    t.className = "toast show" + (type ? " " + type : "");
+    t.className = "toast show" + (type ? " "+type : "");
     setTimeout(() => t.className = "toast", 2500);
   }
 
   function toggleForm(id) {
     const f = document.getElementById(id);
-    f.style.display = f.style.display === "none" ? "block" : "none";
+    f.style.display = f.style.display==="none" ? "block" : "none";
   }
 
-  function generateId() { return Math.random().toString(36).substr(2, 8); }
+  function generateId() { return Math.random().toString(36).substr(2,8); }
 
   function saveToSheets(apiUrl, sheetName, row, onSuccess) {
     fetch(apiUrl, {
-      method: "POST", mode: "no-cors",
-      headers: {"Content-Type": "application/json"},
+      method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"application/json"},
       body: JSON.stringify({sheet: sheetName, row: row})
     }).then(() => { if(onSuccess) onSuccess(); showToast("✅ Salvat!", "success"); })
-      .catch(() => showToast("❌ Eroare la salvare", "error"));
+      .catch(() => showToast("❌ Eroare la salvare","error"));
   }
 
-  // ── AUTH ─────────────────────────────────────────────
+  // ── AUTH ──────────────────────────────────────────────
   function doLogin() {
     const email = document.getElementById("login-email").value.trim().toLowerCase();
-    const pass = document.getElementById("login-pass").value;
-    const user = USERS[email];
+    const pass  = document.getElementById("login-pass").value;
+    const user  = USERS[email];
     if (!user || user.pass !== pass) {
       document.getElementById("login-error").style.display = "block";
       return;
@@ -789,16 +653,20 @@
   function startApp() {
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("app").style.display = "block";
-    document.getElementById("sidebar-name").textContent = currentUser.name;
+    document.getElementById("sidebar-name").textContent  = currentUser.name;
     document.getElementById("sidebar-email").textContent = currentUser.email;
-    if (currentUser.role !== "admin") {
-      document.getElementById("menu-tehnicieni").style.display = "none";
-    }
+
+    // Permisiuni meniu
+    const isSalarii  = currentUser.role === "admin";
+    const isTehnicieni = currentUser.role === "admin" || currentUser.role === "demo";
+    document.getElementById("menu-salarii").style.display   = isSalarii  ? "flex" : "none";
+    document.getElementById("menu-concedii").style.display  = isSalarii  ? "flex" : "none";
+    document.getElementById("menu-tehnicieni").style.display = isTehnicieni ? "flex" : "none";
+
     loadAllData();
     showView("dashboard");
   }
 
-  // Check saved session
   const saved = localStorage.getItem("wf_user");
   if (saved) { currentUser = JSON.parse(saved); startApp(); }
 
@@ -812,7 +680,7 @@
   // ── NAVIGATION ────────────────────────────────────────
   function showView(view) {
     ["dashboard","detail","raport","extra","programari","tehnicieni","salarii","concedii"].forEach(v => {
-      const el = document.getElementById("view-" + v);
+      const el = document.getElementById("view-"+v);
       if (el) el.style.display = "none";
     });
     ["nav-locatii","nav-raport","nav-extra","nav-programari"].forEach(id => {
@@ -821,45 +689,38 @@
     });
     document.getElementById("back-btn").style.display = "none";
 
-    const titles = {
-      dashboard: "Wildflower App", raport: "Raport vizită",
-      extra: "Lucrare extra", programari: "Programări",
-      tehnicieni: "Tehnicieni", salarii: "Salarii", concedii: "Concedii"
-    };
+    const titles = { dashboard:"Wildflower App", raport:"Raport vizită", extra:"Lucrare extra", programari:"Programări", tehnicieni:"Tehnicieni", salarii:"Salarii", concedii:"Concedii" };
     document.getElementById("header-title").textContent = titles[view] || "Wildflower App";
 
-    if (view === "dashboard") {
+    if (view==="dashboard") {
       document.getElementById("view-dashboard").style.display = "block";
       document.getElementById("nav-locatii").classList.add("active");
-    } else if (view === "detail") {
+    } else if (view==="detail") {
       document.getElementById("view-detail").style.display = "block";
       document.getElementById("nav-locatii").classList.add("active");
       document.getElementById("back-btn").style.display = "inline";
-    } else if (view === "raport") {
+    } else if (view==="raport") {
       document.getElementById("view-raport").style.display = "block";
       document.getElementById("nav-raport").classList.add("active");
       raportStep(1);
       loadViziteRecente();
-    } else if (view === "extra") {
+    } else if (view==="extra") {
       document.getElementById("view-extra").style.display = "block";
       document.getElementById("nav-extra").classList.add("active");
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("e-data").value = today;
+      document.getElementById("e-data").value = new Date().toISOString().split("T")[0];
       if (currentUser) document.getElementById("e-tehnician").value = currentUser.name;
-    } else if (view === "programari") {
+    } else if (view==="programari") {
       document.getElementById("view-programari").style.display = "block";
       document.getElementById("nav-programari").classList.add("active");
-      document.getElementById("admin-prog-form").style.display = currentUser?.role === "admin" ? "block" : "none";
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("p-data").value = today;
+      document.getElementById("admin-prog-form").style.display = currentUser?.role==="admin" ? "block" : "none";
       initCalendar();
-    } else if (view === "tehnicieni") {
+    } else if (view==="tehnicieni") {
       document.getElementById("view-tehnicieni").style.display = "block";
       loadTehnicieni();
-    } else if (view === "salarii") {
+    } else if (view==="salarii") {
       document.getElementById("view-salarii").style.display = "block";
       loadSalarii();
-    } else if (view === "concedii") {
+    } else if (view==="concedii") {
       document.getElementById("view-concedii").style.display = "block";
       loadConcedii();
     }
@@ -870,45 +731,36 @@
   function switchTab(tab, btn) {
     document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById("tab-" + tab).classList.add("active");
+    document.getElementById("tab-"+tab).classList.add("active");
     btn.classList.add("active");
   }
 
-  // ── LOAD ALL DATA ─────────────────────────────────────
+  // ── LOAD DATA ─────────────────────────────────────────
   function loadAllData() {
-    fetch(URLS.locatii).then(r => r.text()).then(text => {
+    fetch(URLS.locatii).then(r=>r.text()).then(text => {
       allLocatii = parseCSV(text);
       let visible = allLocatii;
-      if (currentUser?.role === "tehnician") {
-        visible = allLocatii.filter(l => l["ID_Tehnician"] === currentUser.name);
-      }
-      const active = visible.filter(l => l["Status"] === "activ" || l["Status"] === "");
-      renderLocatii(active);
-      const sel = document.getElementById("r-locatie");
-      const selP = document.getElementById("p-locatie");
-      active.forEach(l => {
-        [sel, selP].forEach(s => {
+      if (currentUser?.role==="tehnician") visible = allLocatii.filter(l => l["ID_Tehnician"]===currentUser.name);
+      renderLocatii(visible.filter(l => l["Status"]==="activ" || l["Status"]===""));
+      // Populate dropdowns
+      const active = allLocatii.filter(l => l["Status"]==="activ" || l["Status"]==="");
+      ["r-locatie","p-locatie"].forEach(id => {
+        const sel = document.getElementById(id);
+        active.forEach(l => {
           const opt = document.createElement("option");
           opt.value = l["Nume client final"];
           opt.textContent = l["Nume client final"];
-          s.appendChild(opt);
+          sel.appendChild(opt);
         });
       });
     });
-
-    fetch(URLS.vizite).then(r => r.text()).then(text => {
-      allVizite = parseCSV(text);
-    });
-
-    fetch(URLS.programari).then(r => r.text()).then(text => {
-      allProgramari = parseCSV(text);
-    });
+    fetch(URLS.programari).then(r=>r.text()).then(text => { allProgramari = parseCSV(text); });
   }
 
   // ── LOCATII ───────────────────────────────────────────
   function renderLocatii(list) {
     const el = document.getElementById("lista-locatii");
-    if (!list.length) { el.innerHTML = '<div class="empty">Nicio locație găsită</div>'; return; }
+    if (!list.length) { el.innerHTML='<div class="empty">Nicio locație găsită</div>'; return; }
     el.innerHTML = list.map(loc => `
       <div class="loc-item" onclick="openLocatie('${loc["Nume client final"]?.replace(/'/g,"\\'")}')">
         <div>
@@ -925,25 +777,24 @@
   function filterLocatii() {
     const q = document.getElementById("search-input").value.toLowerCase();
     let list = allLocatii;
-    if (currentUser?.role === "tehnician") list = allLocatii.filter(l => l["ID_Tehnician"] === currentUser.name);
-    list = list.filter(l => l["Status"] === "activ" || l["Status"] === "");
-    const filtered = list.filter(l =>
+    if (currentUser?.role==="tehnician") list = allLocatii.filter(l=>l["ID_Tehnician"]===currentUser.name);
+    list = list.filter(l=>l["Status"]==="activ"||l["Status"]==="");
+    renderLocatii(list.filter(l =>
       (l["Nume client final"]||"").toLowerCase().includes(q) ||
       (l["Firma Facility Management"]||"").toLowerCase().includes(q) ||
       (l["ID_Tehnician"]||"").toLowerCase().includes(q)
-    );
-    renderLocatii(filtered);
+    ));
   }
 
   function openLocatie(numeLoc) {
-    currentLoc = allLocatii.find(l => l["Nume client final"] === numeLoc);
+    currentLoc = allLocatii.find(l=>l["Nume client final"]===numeLoc);
     if (!currentLoc) return;
     document.getElementById("header-title").textContent = numeLoc;
-    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
     document.getElementById("tab-info").classList.add("active");
     document.querySelector(".tab-btn").classList.add("active");
-    ["form-planta","form-tratament","form-necesar","form-vizita-add"].forEach(id => document.getElementById(id).style.display = "none");
+    ["form-planta","form-tratament","form-necesar","form-vizita-add"].forEach(id=>document.getElementById(id).style.display="none");
     renderInfo();
     loadPlante(numeLoc);
     loadViziteLocatie(numeLoc);
@@ -956,17 +807,16 @@
     const loc = currentLoc;
     const fields = [["Tehnician","ID_Tehnician"],["Firma Facility","Firma Facility Management"],["Adresă","Adresa"],["Email","email"],["Nr. plante","Numar total plante"],["Observații","Observatii locatie"],["Status","Status"]];
     document.getElementById("detail-info-content").innerHTML = fields
-      .filter(([,k]) => loc[k])
-      .map(([l,k]) => `<div class="detail-row"><div class="detail-label">${l}</div><div class="detail-value">${loc[k]}</div></div>`)
+      .filter(([,k])=>loc[k])
+      .map(([l,k])=>`<div class="detail-row"><div class="detail-label">${l}</div><div class="detail-value">${loc[k]}</div></div>`)
       .join("") || '<div class="empty">Fără detalii</div>';
 
     const adminCtrl = document.getElementById("admin-loc-controls");
-    if (currentUser?.role === "admin") {
+    if (currentUser?.role==="admin") {
       adminCtrl.style.display = "block";
       const btn = document.getElementById("toggle-status-btn");
-      btn.textContent = loc["Status"] === "inactiv" ? "✅ Activează locație" : "⛔ Inactivează locație";
-      btn.className = "btn " + (loc["Status"] === "inactiv" ? "btn-green" : "");
-      btn.style.background = loc["Status"] === "inactiv" ? "var(--green)" : "#e8356d";
+      btn.textContent = loc["Status"]==="inactiv" ? "✅ Activează locație" : "⛔ Inactivează locație";
+      btn.style.background = loc["Status"]==="inactiv" ? "var(--green)" : "#e8356d";
     } else {
       adminCtrl.style.display = "none";
     }
@@ -974,70 +824,107 @@
 
   function toggleLocatieStatus() {
     if (!currentLoc) return;
-    const newStatus = currentLoc["Status"] === "inactiv" ? "activ" : "inactiv";
-    showToast("Se actualizează...");
-    currentLoc["Status"] = newStatus;
+    currentLoc["Status"] = currentLoc["Status"]==="inactiv" ? "activ" : "inactiv";
     renderInfo();
-    showToast(newStatus === "activ" ? "✅ Locație activată" : "⛔ Locație inactivată", "success");
+    showToast(currentLoc["Status"]==="activ" ? "✅ Locație activată" : "⛔ Locație inactivată","success");
   }
 
   // ── PLANTE ────────────────────────────────────────────
   function loadPlante(numeLoc) {
-    document.getElementById("plante-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.plante).then(r => r.text()).then(text => {
-      allPlante = parseCSV(text).filter(p => p["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+    document.getElementById("plante-list").innerHTML='<div class="loading">Se încarcă…</div>';
+    fetch(URLS.plante).then(r=>r.text()).then(text => {
+      allPlante = parseCSV(text).filter(p=>p["ID_Locatie"]?.toLowerCase()===numeLoc.toLowerCase());
       renderPlante();
     });
   }
 
   function renderPlante() {
-    const total = allPlante.reduce((s, p) => s + (parseInt(p["Numar bucati"]) || 0), 0);
+    const total = allPlante.reduce((s,p)=>s+(parseInt(p["Numar bucati"])||0),0);
     const statBox = document.getElementById("plante-stat");
-    if (allPlante.length > 0) {
-      statBox.style.display = "flex";
-      document.getElementById("plante-total").textContent = total;
-    } else {
-      statBox.style.display = "none";
-    }
+    statBox.style.display = allPlante.length>0 ? "flex" : "none";
+    document.getElementById("plante-total").textContent = total;
+
     const el = document.getElementById("plante-list");
-    if (!allPlante.length) { el.innerHTML = '<div class="empty">Nicio plantă înregistrată</div>'; return; }
-    el.innerHTML = allPlante.map(p => `
+    if (!allPlante.length) { el.innerHTML='<div class="empty">Nicio plantă înregistrată</div>'; return; }
+    el.innerHTML = allPlante.map((p,i) => `
       <div class="planta-item">
-        <div><div class="planta-name">🌿 ${p["Specie planta"]||"—"}</div>${p["Observatii"]?`<div class="planta-obs">${p["Observatii"]}</div>`:""}</div>
+        <div style="flex:1">
+          <div class="planta-name">🌿 ${p["Specie planta"]||"—"}</div>
+          ${p["Observatii"]?`<div class="planta-obs">${p["Observatii"]}</div>`:""}
+          <div class="planta-actions">
+            <button class="btn-micro" onclick="toggleEditPlanta(${i})">✏️ Edit</button>
+            <button class="btn-micro delete" onclick="stergePlanta(${i})">🗑️ Șterge</button>
+          </div>
+          <div class="edit-form" id="edit-planta-${i}">
+            <input type="text" id="ep-specie-${i}" value="${p["Specie planta"]||""}" placeholder="Specie">
+            <input type="number" id="ep-qty-${i}" value="${p["Numar bucati"]||""}" placeholder="Cantitate">
+            <input type="text" id="ep-obs-${i}" value="${p["Observatii"]||""}" placeholder="Observații">
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-gray" style="flex:1;padding:8px" onclick="toggleEditPlanta(${i})">Anulează</button>
+              <button class="btn" style="flex:2;padding:8px" onclick="salveazaEditPlanta(${i})">💾 Salvează</button>
+            </div>
+          </div>
+        </div>
         <span class="planta-qty">×${p["Numar bucati"]||"?"}</span>
       </div>`).join("");
   }
 
+  function toggleEditPlanta(i) {
+    const f = document.getElementById("edit-planta-"+i);
+    f.style.display = f.style.display==="none"||f.style.display==="" ? "block" : "none";
+  }
+
+  function salveazaEditPlanta(i) {
+    const specie = document.getElementById("ep-specie-"+i).value.trim();
+    const qty    = document.getElementById("ep-qty-"+i).value.trim();
+    const obs    = document.getElementById("ep-obs-"+i).value.trim();
+    if (!specie) { showToast("Completează specia!","error"); return; }
+    allPlante[i]["Specie planta"] = specie;
+    allPlante[i]["Numar bucati"]  = qty;
+    allPlante[i]["Observatii"]    = obs;
+    renderPlante();
+    showToast("✅ Plantă actualizată!","success");
+  }
+
+  function stergePlanta(i) {
+    if (!confirm(`Ștergi "${allPlante[i]["Specie planta"]}"?`)) return;
+    allPlante.splice(i,1);
+    renderPlante();
+    showToast("🗑️ Plantă ștearsă","success");
+  }
+
   function adaugaPlanta() {
     const specie = document.getElementById("new-specie").value.trim();
-    const qty = document.getElementById("new-qty").value.trim();
-    const obs = document.getElementById("new-obs-planta").value.trim();
-    if (!specie || !qty) { showToast("Completează specia și cantitatea!", "error"); return; }
+    const qty    = document.getElementById("new-qty").value.trim();
+    const obs    = document.getElementById("new-obs-planta").value.trim();
+    if (!specie||!qty) { showToast("Completează specia și cantitatea!","error"); return; }
     const row = [generateId(), currentLoc["Nume client final"], specie, qty, obs, new Date().toLocaleDateString("ro-RO"), "activ"];
     saveToSheets(API_GREENLOG, "Plante in locatie", row, () => {
-      allPlante.push({"ID_Locatie": currentLoc["Nume client final"], "Specie planta": specie, "Numar bucati": qty, "Observatii": obs});
+      allPlante.push({"ID_Locatie":currentLoc["Nume client final"],"Specie planta":specie,"Numar bucati":qty,"Observatii":obs});
       renderPlante();
-      document.getElementById("new-specie").value = "";
-      document.getElementById("new-qty").value = "";
-      document.getElementById("new-obs-planta").value = "";
-      document.getElementById("form-planta").style.display = "none";
+      document.getElementById("new-specie").value="";
+      document.getElementById("new-qty").value="";
+      document.getElementById("new-obs-planta").value="";
+      document.getElementById("form-planta").style.display="none";
     });
   }
 
   // ── VIZITE LOCATIE ────────────────────────────────────
   function loadViziteLocatie(numeLoc) {
-    document.getElementById("vizite-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.vizite).then(r => r.text()).then(text => {
+    document.getElementById("vizite-list").innerHTML='<div class="loading">Se încarcă…</div>';
+    fetch(URLS.vizite).then(r=>r.text()).then(text => {
       const vizite = parseCSV(text)
-        .filter(v => v["Locatie"]?.toLowerCase() === numeLoc.toLowerCase())
-        .sort((a,b) => parseDataSort(b["Data vizita"]) - parseDataSort(a["Data vizita"]));
-      document.getElementById("vizite-title").textContent = `Vizite (${vizite.length} total)`;
-      document.getElementById("vizite-list").innerHTML = vizite.length ? vizite.map((v,i) => renderVizitaItem(v, i, "loc")).join("") : '<div class="empty">Nicio vizită înregistrată</div>';
+        .filter(v=>v["Locatie"]?.toLowerCase()===numeLoc.toLowerCase())
+        .sort((a,b)=>parseDataSort(b["Data vizita"])-parseDataSort(a["Data vizita"]));
+      document.getElementById("vizite-title").textContent=`Vizite (${vizite.length} total)`;
+      document.getElementById("vizite-list").innerHTML = vizite.length
+        ? vizite.map((v,i)=>renderVizitaItem(v,i,"loc")).join("")
+        : '<div class="empty">Nicio vizită înregistrată</div>';
     });
   }
 
   function renderVizitaItem(v, i, prefix) {
-    const isAdmin = currentUser?.role === "admin";
+    const isAdmin = currentUser?.role==="admin";
     return `<div class="vizita-item" onclick="toggleVizita('${prefix}-${i}')">
       <div class="vizita-header">
         <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
@@ -1048,14 +935,14 @@
         ${v["Activitati efectuate"]?`<div class="vizita-act"><strong>Activități:</strong><br>${v["Activitati efectuate"]}</div>`:""}
         ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
         ${v["Foto plante"]&&v["Foto plante"].includes("http")?`<a href="${v["Foto plante"].split(",")[0]}" target="_blank" style="color:var(--pink);font-size:13px;display:block;margin-top:6px">📸 Vezi foto</a>`:""}
-        ${isAdmin?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${v["Locatie"]||""}','${v["Data vizita"]||""}')">📤 Trimite raport PDF</button>`:""}
+        ${isAdmin?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${(v["Locatie"]||"").replace(/'/g,"\\'")}','${v["Data vizita"]||""}','${(v["Nume"]||"").replace(/'/g,"\\'")}')">📤 Trimite raport PDF</button>`:""}
       </div>
     </div>`;
   }
 
   function toggleVizita(id) {
     const b = document.getElementById("vb-"+id);
-    if (b) b.style.display = b.style.display === "block" ? "none" : "block";
+    if (b) b.style.display = b.style.display==="block" ? "none" : "block";
   }
 
   function adaugaVizita() {
@@ -1065,25 +952,22 @@
     const oraPlecare = document.getElementById("v-ora-plecare").value;
     const act = document.getElementById("v-activitati").value.trim();
     const obs = document.getElementById("v-obs").value.trim();
-    if (!teh || !data) { showToast("Completează tehnicianul și data!", "error"); return; }
+    if (!teh||!data) { showToast("Completează tehnicianul și data!","error"); return; }
     const row = [new Date().toLocaleString("ro-RO"), teh, data, currentLoc["Nume client final"], oraSosire, oraPlecare, act, obs, ""];
     saveToSheets(API_RAPORT, "Raport vizita", row, () => {
-      document.getElementById("form-vizita-add").style.display = "none";
+      document.getElementById("form-vizita-add").style.display="none";
       loadViziteLocatie(currentLoc["Nume client final"]);
     });
   }
 
-  // ── VIZITE RECENTE (view raport) ──────────────────────
+  // ── VIZITE RECENTE ────────────────────────────────────
   function loadViziteRecente() {
-    fetch(URLS.vizite).then(r => r.text()).then(text => {
+    fetch(URLS.vizite).then(r=>r.text()).then(text => {
       let vizite = parseCSV(text);
-      if (currentUser?.role === "tehnician") {
-        vizite = vizite.filter(v => v["Nume"] === currentUser.name);
-      }
-      vizite.sort((a,b) => parseDataSort(b["Data vizita"]) - parseDataSort(a["Data vizita"]));
-      const top = vizite.slice(0, 20);
-      document.getElementById("vizite-recente-list").innerHTML = top.length
-        ? top.map((v,i) => `
+      if (currentUser?.role==="tehnician") vizite = vizite.filter(v=>v["Nume"]===currentUser.name);
+      vizite.sort((a,b)=>parseDataSort(b["Data vizita"])-parseDataSort(a["Data vizita"]));
+      document.getElementById("vizite-recente-list").innerHTML = vizite.slice(0,20).length
+        ? vizite.slice(0,20).map((v,i)=>`
           <div class="vizita-item" onclick="toggleVizita('rec-${i}')">
             <div class="vizita-header">
               <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
@@ -1092,7 +976,7 @@
             <div class="vizita-body" id="vb-rec-${i}">
               ${v["Activitati efectuate"]?`<div class="vizita-act">${v["Activitati efectuate"]}</div>`:""}
               ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
-              ${currentUser?.role==="admin"?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${v["Locatie"]||""}','${v["Data vizita"]||""}')">📤 Trimite raport PDF</button>`:""}
+              ${currentUser?.role==="admin"?`<button class="send-btn" onclick="event.stopPropagation();trimiteRaportPDF('${(v["Locatie"]||"").replace(/'/g,"\\'")}','${v["Data vizita"]||""}','${(v["Nume"]||"").replace(/'/g,"\\'")}')">📤 Trimite raport PDF</button>`:""}
             </div>
           </div>`).join("")
         : '<div class="empty">Nicio vizită</div>';
@@ -1101,17 +985,17 @@
 
   // ── TRATAMENTE ────────────────────────────────────────
   function loadTratamente(numeLoc) {
-    document.getElementById("tratamente-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.tratamente).then(r => r.text()).then(text => {
-      allTratamente = parseCSV(text).filter(t => t["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+    document.getElementById("tratamente-list").innerHTML='<div class="loading">Se încarcă…</div>';
+    fetch(URLS.tratamente).then(r=>r.text()).then(text => {
+      allTratamente = parseCSV(text).filter(t=>t["ID_Locatie"]?.toLowerCase()===numeLoc.toLowerCase());
       renderTratamente();
     });
   }
 
   function renderTratamente() {
     const el = document.getElementById("tratamente-list");
-    if (!allTratamente.length) { el.innerHTML = '<div class="empty">Niciun tratament înregistrat</div>'; return; }
-    el.innerHTML = allTratamente.map(t => `
+    if (!allTratamente.length) { el.innerHTML='<div class="empty">Niciun tratament înregistrat</div>'; return; }
+    el.innerHTML = allTratamente.map(t=>`
       <div class="tratament-item">
         <div class="tratament-tip">💊 ${t["Tratament_aplicat"]||t["Stare"]||"—"}</div>
         <div class="tratament-data">${parseData(t["Data_tratament"])}${t["Observatii"]?" · "+t["Observatii"]:""}</div>
@@ -1121,79 +1005,97 @@
   function adaugaTratament() {
     const tip = document.getElementById("new-tip-tratament").value;
     const obs = document.getElementById("new-obs-tratament").value.trim();
-    if (!tip) { showToast("Selectează tipul!", "error"); return; }
+    if (!tip) { showToast("Selectează tipul!","error"); return; }
     const row = [currentLoc["Nume client final"], new Date().toLocaleDateString("ro-RO"), "Finalizat", tip, "Bun", obs];
     saveToSheets(API_GREENLOG, "Tratamente aplicate", row, () => {
-      allTratamente.unshift({"ID_Locatie": currentLoc["Nume client final"], "Tratament_aplicat": tip, "Data_tratament": new Date().toLocaleDateString("ro-RO"), "Observatii": obs});
+      allTratamente.unshift({"ID_Locatie":currentLoc["Nume client final"],"Tratament_aplicat":tip,"Data_tratament":new Date().toLocaleDateString("ro-RO"),"Observatii":obs});
       renderTratamente();
-      document.getElementById("new-tip-tratament").value = "";
-      document.getElementById("new-obs-tratament").value = "";
-      document.getElementById("form-tratament").style.display = "none";
+      document.getElementById("new-tip-tratament").value="";
+      document.getElementById("new-obs-tratament").value="";
+      document.getElementById("form-tratament").style.display="none";
     });
   }
 
   // ── NECESAR ───────────────────────────────────────────
   function loadNecesar(numeLoc) {
-    document.getElementById("necesar-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.necesar).then(r => r.text()).then(text => {
-      allNecesar = parseCSV(text).filter(n => n["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+    document.getElementById("necesar-list").innerHTML='<div class="loading">Se încarcă…</div>';
+    fetch(URLS.necesar).then(r=>r.text()).then(text => {
+      allNecesar = parseCSV(text).filter(n=>n["ID_Locatie"]?.toLowerCase()===numeLoc.toLowerCase());
       renderNecesar();
     });
   }
 
   function renderNecesar() {
     const el = document.getElementById("necesar-list");
-    const items = allNecesar.filter(n => n["Tip produs"]);
-    if (!items.length) { el.innerHTML = '<div class="empty">Niciun necesar înregistrat</div>'; return; }
-    el.innerHTML = items.map(n => `
-      <div class="planta-item">
-        <div><div class="planta-name">📦 ${n["Tip produs"]||"—"}</div>${n["Status"]?`<div class="planta-obs">${n["Status"]}</div>`:""}</div>
-        ${n["Cantitate"]?`<span class="planta-qty">×${n["Cantitate"]}</span>`:""}
+    const items = allNecesar.filter(n=>n["Tip produs"]);
+    if (!items.length) { el.innerHTML='<div class="empty">Niciun necesar înregistrat</div>'; return; }
+    el.innerHTML = items.map((n,i)=>`
+      <div class="necesar-item">
+        <div style="flex:1">
+          <div class="necesar-name">📦 ${n["Tip produs"]||"—"} ${n["Cantitate"]?`<span style="color:var(--pink);font-weight:600">×${n["Cantitate"]}</span>`:""}  </div>
+          <div class="necesar-status" style="color:${n["Status"]==="Livrat"?"#2d5a27":"var(--gray)"}">
+            ${n["Status"]==="Livrat"?"✅ Livrat / Finalizat":n["Status"]||""}
+          </div>
+          ${n["Observatii"]?`<div style="font-size:12px;color:var(--gray)">${n["Observatii"]}</div>`:""}
+        </div>
+        <input type="checkbox" class="necesar-check" ${n["Status"]==="Livrat"?"checked":""} onchange="toggleNecesar(${i},this)" title="Marchează ca livrat">
       </div>`).join("");
   }
 
+  function toggleNecesar(i, cb) {
+    const items = allNecesar.filter(n=>n["Tip produs"]);
+    items[i]["Status"] = cb.checked ? "Livrat" : "Necesar";
+    renderNecesar();
+    showToast(cb.checked ? "✅ Marcat ca livrat!" : "↩️ Marcat ca necesar","success");
+  }
+
   function adaugaNecesar() {
-    const produs = document.getElementById("new-produs").value.trim();
+    const tipSel = document.getElementById("new-tip-necesar").value;
+    const tipCustom = document.getElementById("new-produs-custom").value.trim();
+    const produs = tipCustom || tipSel;
     const cantitate = document.getElementById("new-cantitate").value.trim();
-    if (!produs) { showToast("Completează produsul!", "error"); return; }
-    const row = [generateId(), currentLoc["Nume client final"], "", produs, cantitate, "Necesar", "", ""];
+    const obs = document.getElementById("new-obs-necesar").value.trim();
+    if (!produs) { showToast("Completează produsul!","error"); return; }
+    const row = [generateId(), currentLoc["Nume client final"], "", produs, cantitate, "Necesar", "", obs];
     saveToSheets(API_GREENLOG, "Necesar", row, () => {
-      allNecesar.push({"ID_Locatie": currentLoc["Nume client final"], "Tip produs": produs, "Cantitate": cantitate, "Status": "Necesar"});
+      allNecesar.push({"ID_Locatie":currentLoc["Nume client final"],"Tip produs":produs,"Cantitate":cantitate,"Status":"Necesar","Observatii":obs});
       renderNecesar();
-      document.getElementById("new-produs").value = "";
-      document.getElementById("new-cantitate").value = "";
-      document.getElementById("form-necesar").style.display = "none";
+      document.getElementById("new-tip-necesar").value="";
+      document.getElementById("new-produs-custom").value="";
+      document.getElementById("new-cantitate").value="";
+      document.getElementById("new-obs-necesar").value="";
+      document.getElementById("form-necesar").style.display="none";
     });
   }
 
   // ── RAPORT VIZITA ─────────────────────────────────────
   function raportStep(step) {
     [1,2,3].forEach(s => {
-      document.getElementById("raport-step-"+s).style.display = s===step ? "block" : "none";
+      document.getElementById("raport-step-"+s).style.display = s===step?"block":"none";
       document.getElementById("dot-"+s).classList.toggle("active", s===step);
     });
-    if (step === 1) {
+    if (step===1) {
       document.getElementById("r-data").value = new Date().toISOString().split("T")[0];
       if (currentUser) document.getElementById("r-tehnician").value = currentUser.name;
     }
   }
 
   function salveazaRaport() {
-    const locatie = document.getElementById("r-locatie").value;
+    const locatie   = document.getElementById("r-locatie").value;
     const tehnician = document.getElementById("r-tehnician").value;
-    const data = document.getElementById("r-data").value;
+    const data      = document.getElementById("r-data").value;
     const oraSosire = document.getElementById("r-ora-sosire").value;
-    const oraPlecare = document.getElementById("r-ora-plecare").value;
-    const observatii = document.getElementById("r-observatii").value.trim();
-    const foto = document.getElementById("r-foto").value.trim();
-    if (!locatie || !tehnician || !data) { showToast("Completează locația, tehnicianul și data!", "error"); return; }
-    const activitati = Array.from(document.querySelectorAll("#raport-step-2 input:checked")).map(cb => cb.value).join(", ");
+    const oraPlecare= document.getElementById("r-ora-plecare").value;
+    const observatii= document.getElementById("r-observatii").value.trim();
+    const foto      = document.getElementById("r-foto").value.trim();
+    if (!locatie||!tehnician||!data) { showToast("Completează locația, tehnicianul și data!","error"); return; }
+    const activitati = Array.from(document.querySelectorAll("#act-grid input:checked")).map(cb=>cb.value).join(", ");
     const row = [new Date().toLocaleString("ro-RO"), tehnician, data, locatie, oraSosire, oraPlecare, activitati, observatii, foto];
     saveToSheets(API_RAPORT, "Raport vizita", row, () => {
-      document.getElementById("r-locatie").value = "";
-      document.getElementById("r-observatii").value = "";
-      document.getElementById("r-foto").value = "";
-      document.querySelectorAll("#raport-step-2 input[type=checkbox]").forEach(cb => cb.checked = false);
+      document.getElementById("r-locatie").value="";
+      document.getElementById("r-observatii").value="";
+      document.getElementById("r-foto").value="";
+      document.querySelectorAll("#act-grid input[type=checkbox]").forEach(cb=>cb.checked=false);
       raportStep(1);
       loadViziteRecente();
     });
@@ -1201,21 +1103,28 @@
 
   // ── LUCRARE EXTRA ─────────────────────────────────────
   function salveazaExtra() {
-    const locatie = document.getElementById("e-locatie").value.trim();
-    const adresa = document.getElementById("e-adresa").value.trim();
-    const teh = document.getElementById("e-tehnician").value;
-    const data = document.getElementById("e-data").value;
-    const oraSosire = document.getElementById("e-ora-sosire").value;
-    const oraPlecare = document.getElementById("e-ora-plecare").value;
-    const obs = document.getElementById("e-observatii").value.trim();
-    if (!locatie || !teh || !data) { showToast("Completează locația, tehnicianul și data!", "error"); return; }
-    const activitati = Array.from(document.querySelectorAll("#extra-activitati input:checked")).map(cb => cb.value).join(", ");
-    const row = [generateId(), locatie, teh, "Alt tip", data, "Finalizata", obs, activitati, oraSosire, oraPlecare, adresa];
+    const locatie  = document.getElementById("e-locatie").value.trim();
+    const adresa   = document.getElementById("e-adresa").value.trim();
+    const teh      = document.getElementById("e-tehnician").value;
+    const data     = document.getElementById("e-data").value;
+    const oraSos   = document.getElementById("e-ora-sosire").value;
+    const oraPl    = document.getElementById("e-ora-plecare").value;
+    const obs      = document.getElementById("e-observatii").value.trim();
+    const cNume    = document.getElementById("e-contact-nume").value.trim();
+    const cTel     = document.getElementById("e-contact-tel").value.trim();
+    const cEmail   = document.getElementById("e-contact-email").value.trim();
+    if (!locatie||!teh||!data) { showToast("Completează locația, tehnicianul și data!","error"); return; }
+    const activitati = Array.from(document.querySelectorAll("#extra-activitati input:checked")).map(cb=>cb.value).join(", ");
+    const contact = [cNume,cTel,cEmail].filter(Boolean).join(" | ");
+    const row = [generateId(), locatie, teh, "Alt tip", data, "Finalizata", obs, activitati, oraSos, oraPl, adresa, contact];
     saveToSheets(API_GREENLOG, "activitati suplimentare", row, () => {
-      document.getElementById("e-locatie").value = "";
-      document.getElementById("e-adresa").value = "";
-      document.getElementById("e-observatii").value = "";
-      document.querySelectorAll("#extra-activitati input").forEach(cb => cb.checked = false);
+      document.getElementById("e-locatie").value="";
+      document.getElementById("e-adresa").value="";
+      document.getElementById("e-observatii").value="";
+      document.getElementById("e-contact-nume").value="";
+      document.getElementById("e-contact-tel").value="";
+      document.getElementById("e-contact-email").value="";
+      document.querySelectorAll("#extra-activitati input").forEach(cb=>cb.checked=false);
     });
   }
 
@@ -1229,8 +1138,8 @@
 
   function calNav(dir) {
     calMonth += dir;
-    if (calMonth > 11) { calMonth = 0; calYear++; }
-    if (calMonth < 0) { calMonth = 11; calYear--; }
+    if (calMonth>11) { calMonth=0; calYear++; }
+    if (calMonth<0)  { calMonth=11; calYear--; }
     renderCalendar();
   }
 
@@ -1240,18 +1149,17 @@
     const grid = document.getElementById("cal-grid");
     const days = ["Lu","Ma","Mi","Jo","Vi","Sâ","Du"];
     const today = new Date();
-    const firstDay = new Date(calYear, calMonth, 1);
-    const lastDay = new Date(calYear, calMonth + 1, 0);
-    let startDow = firstDay.getDay() - 1;
-    if (startDow < 0) startDow = 6;
+    let startDow = new Date(calYear,calMonth,1).getDay()-1;
+    if (startDow<0) startDow=6;
+    const lastDay = new Date(calYear,calMonth+1,0).getDate();
 
-    let html = days.map(d => `<div class="cal-day-header">${d}</div>`).join("");
-    for (let i = 0; i < startDow; i++) html += `<div class="cal-day other-month"></div>`;
-    for (let d = 1; d <= lastDay.getDate(); d++) {
+    let html = days.map(d=>`<div class="cal-day-header">${d}</div>`).join("");
+    for (let i=0;i<startDow;i++) html+=`<div class="cal-day other-month"></div>`;
+    for (let d=1;d<=lastDay;d++) {
       const dateStr = `${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-      const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
-      const hasProg = allProgramari.some(p => p["Zile programate"] === dateStr || p["Data"] === dateStr);
-      html += `<div class="cal-day ${isToday?"today":""} ${hasProg&&!isToday?"has-event":""}" onclick="selectCalDay('${dateStr}','${d}')">
+      const isToday = d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
+      const hasProg = allProgramari.some(p=>p["Zile programate"]===dateStr||p["Data"]===dateStr);
+      html+=`<div class="cal-day ${isToday?"today":""} ${hasProg&&!isToday?"has-event":""}" onclick="selectCalDay('${dateStr}','${d}')">
         ${d}${hasProg&&!isToday?`<div class="cal-dot"></div>`:""}
       </div>`;
     }
@@ -1260,39 +1168,39 @@
 
   function selectCalDay(dateStr, day) {
     document.getElementById("p-data").value = dateStr;
-    const prog = allProgramari.filter(p => p["Zile programate"] === dateStr || p["Data"] === dateStr);
-    const listEl = document.getElementById("prog-list");
-    document.getElementById("prog-list-title").textContent = `Programări — ${day} ${["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct","nov","dec"][calMonth]} ${calYear}`;
-    if (!prog.length) { listEl.innerHTML = '<div class="empty">Nicio programare în această zi</div>'; return; }
-    listEl.innerHTML = prog.map(p => `
-      <div class="tratament-item">
-        <div class="tratament-tip">📅 ${p["ID_Locatie"]||p["Locatie"]||"—"}</div>
-        <div class="tratament-data">${p["Tehnician responsabil"]||p["Tehnician"]||""} · ${p["Ora vizitei"]||""}</div>
-      </div>`).join("");
+    const prog = allProgramari.filter(p=>p["Zile programate"]===dateStr||p["Data"]===dateStr);
+    const months = ["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct","nov","dec"];
+    document.getElementById("prog-list-title").textContent = `Programări — ${day} ${months[calMonth]} ${calYear}`;
+    document.getElementById("prog-list").innerHTML = prog.length
+      ? prog.map(p=>`<div class="tratament-item">
+          <div class="tratament-tip">📅 ${p["ID_Locatie"]||p["Locatie"]||"—"}</div>
+          <div class="tratament-data">${p["Tehnician responsabil"]||p["Tehnician"]||""} ${p["Ora vizitei"]?"· "+p["Ora vizitei"]:""}</div>
+        </div>`).join("")
+      : '<div class="empty">Nicio programare în această zi</div>';
   }
 
   function salveazaProgramare() {
-    const data = document.getElementById("p-data").value;
+    const data    = document.getElementById("p-data").value;
     const locatie = document.getElementById("p-locatie").value;
-    const teh = document.getElementById("p-tehnician").value;
-    const tip = document.getElementById("p-tip").value;
+    const teh     = document.getElementById("p-tehnician").value;
+    const tip     = document.getElementById("p-tip").value;
     const detalii = document.getElementById("p-detalii").value.trim();
-    if (!data || !locatie || !teh) { showToast("Completează data, locația și tehnicianul!", "error"); return; }
+    if (!data||!locatie||!teh) { showToast("Completează data, locația și tehnicianul!","error"); return; }
     const row = [generateId(), locatie, data, "", teh, "", "Planificata"];
     saveToSheets(API_GREENLOG, "Programari", row, () => {
-      allProgramari.push({"ID_Locatie": locatie, "Zile programate": data, "Tehnician responsabil": teh});
+      allProgramari.push({"ID_Locatie":locatie,"Zile programate":data,"Tehnician responsabil":teh});
       renderCalendar();
-      document.getElementById("p-locatie").value = "";
-      document.getElementById("p-tip").value = "";
-      document.getElementById("p-detalii").value = "";
+      document.getElementById("p-locatie").value="";
+      document.getElementById("p-tip").value="";
+      document.getElementById("p-detalii").value="";
     });
   }
 
   // ── TEHNICIENI ────────────────────────────────────────
   function loadTehnicieni() {
-    fetch(URLS.tehnicieni).then(r => r.text()).then(text => {
+    fetch(URLS.tehnicieni).then(r=>r.text()).then(text => {
       const teh = parseCSV(text);
-      document.getElementById("tehnicieni-list").innerHTML = teh.map(t => `
+      document.getElementById("tehnicieni-list").innerHTML = teh.map(t=>`
         <div class="planta-item">
           <div><div class="planta-name">👤 ${t["Nume"]||"—"}</div><div class="planta-obs">${t["Oras"]||""} · ${t["ROL"]||""}</div></div>
           <span class="badge">${t["Activ"]==="da"?"activ":"—"}</span>
@@ -1302,47 +1210,87 @@
 
   // ── SALARII ───────────────────────────────────────────
   function loadSalarii() {
-    fetch(URLS.salarii).then(r => r.text()).then(text => {
+    fetch(URLS.salarii).then(r=>r.text()).then(text => {
       let sal = parseCSV(text);
-      if (currentUser?.role === "tehnician") {
-        sal = sal.filter(s => s["Nume"] === currentUser.name || s["ID_Angajat"] === currentUser.name);
+      if (currentUser?.role==="tehnician") {
+        sal = sal.filter(s=>s["Nume"]===currentUser.name||s["ID_Angajat"]===currentUser.name);
       }
-      if (!sal.length) { document.getElementById("salarii-list").innerHTML = '<div class="empty">Nicio informație disponibilă</div>'; return; }
-      document.getElementById("salarii-list").innerHTML = sal.map(s => `
-        <div class="tratament-item">
-          <div class="tratament-tip">💰 ${s["Locatii_alocate"]||s["Nume"]||"—"}</div>
-          <div class="tratament-data">${s["Salariu_baza_RON"]?"Salariu: "+s["Salariu_baza_RON"]+" RON":""} ${s["Total_salariu_luna"]?"| Total: "+s["Total_salariu_luna"]+" RON":""}</div>
+      if (!sal.length) {
+        document.getElementById("salarii-list").innerHTML='<div class="empty">Nicio informație disponibilă</div>';
+        return;
+      }
+
+      // Grupează pe angajat
+      const grouped = {};
+      sal.forEach(s => {
+        const nume = s["Nume"]||"—";
+        if (!grouped[nume]) grouped[nume] = { total: 0, locatii: [] };
+        const suma = parseFloat(s["Salariu_baza_RON"])||0;
+        grouped[nume].total += suma;
+        if (s["Locatii_alocate"]) grouped[nume].locatii.push({loc: s["Locatii_alocate"], suma});
+      });
+
+      document.getElementById("salarii-list").innerHTML = Object.entries(grouped).map(([nume,data])=>`
+        <div class="salariu-card">
+          <div class="salariu-locatie">👤 ${nume}</div>
+          <div class="salariu-suma">${data.total.toLocaleString("ro-RO")} RON</div>
+          <div class="salariu-sub">Total locații alocate</div>
+          <div style="margin-top:10px">
+            ${data.locatii.map(l=>`<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-top:1px solid rgba(187,59,128,0.1)"><span>${l.loc}</span><span style="font-weight:600;color:var(--pink)">${l.suma} RON</span></div>`).join("")}
+          </div>
         </div>`).join("");
     });
   }
 
-  // ── CONCEDII ──────────────────────────────────────────
+  // ── CONCEDII ─────────────────────────────────────────
   function loadConcedii() {
-    document.getElementById("concedii-list").innerHTML = '<div class="empty">Niciun concediu înregistrat</div>';
+    fetch(URLS.concedii).then(r=>r.text()).then(text => {
+      let conc = parseCSV(text);
+      if (currentUser?.role!=="admin") {
+        conc = conc.filter(c=>c["Nume"]===currentUser.name||c["ID_Tehnician"]===currentUser.name);
+      }
+      if (!conc.length) {
+        document.getElementById("concedii-list").innerHTML='<div class="empty">Niciun concediu înregistrat</div>';
+        return;
+      }
+      document.getElementById("concedii-list").innerHTML = conc.map(c=>`
+        <div class="concediu-item">
+          <div class="concediu-tip">${c["Tip_concediu"]||"Concediu"} — ${c["Nume"]||""}</div>
+          <div class="concediu-data">${parseData(c["Data_start"])} → ${parseData(c["Data_sfarsit"])}</div>
+          ${c["Observatii"]?`<div style="font-size:12px;color:var(--gray);margin-top:2px">${c["Observatii"]}</div>`:""}
+        </div>`).join("");
+    });
   }
 
   function salveazaConcediu() {
-    const tip = document.getElementById("c-tip").value;
+    const tip   = document.getElementById("c-tip").value;
     const start = document.getElementById("c-start").value;
-    const end = document.getElementById("c-end").value;
-    const obs = document.getElementById("c-obs").value.trim();
-    if (!tip || !start) { showToast("Completează tipul și data de start!", "error"); return; }
+    const end   = document.getElementById("c-end").value;
+    const obs   = document.getElementById("c-obs").value.trim();
+    if (!tip||!start) { showToast("Completează tipul și data de start!","error"); return; }
     const row = [generateId(), currentUser?.name, currentUser?.name, start, end, tip, "Diana Marinas", obs];
     saveToSheets(API_GREENLOG, "Concedii", row, () => {
-      document.getElementById("c-tip").value = "";
-      document.getElementById("c-start").value = "";
-      document.getElementById("c-end").value = "";
-      document.getElementById("c-obs").value = "";
-      document.getElementById("form-concediu").style.display = "none";
+      document.getElementById("c-tip").value="";
+      document.getElementById("c-start").value="";
+      document.getElementById("c-end").value="";
+      document.getElementById("c-obs").value="";
+      document.getElementById("form-concediu").style.display="none";
+      loadConcedii();
     });
   }
 
   // ── TRIMITE RAPORT PDF ────────────────────────────────
-  function trimiteRaportPDF(locatie, dataVizita) {
-    if (currentUser?.role !== "admin") return;
-    showToast("Se trimite raportul PDF…");
-    const data = parseData(dataVizita);
-    setTimeout(() => showToast(`✅ Raport trimis pentru ${locatie} — ${data}`, "success"), 1500);
+  function trimiteRaportPDF(locatie, dataVizita, tehnician) {
+    if (currentUser?.role!=="admin") return;
+    showToast("Se pregătește raportul PDF…");
+    // Apelează Apps Script pentru trimitere email
+    fetch(API_GREENLOG+"?action=sendReport&locatie="+encodeURIComponent(locatie)+"&data="+encodeURIComponent(dataVizita), {
+      method:"GET", mode:"no-cors"
+    }).then(() => {
+      showToast(`✅ Raport trimis pentru ${locatie}`, "success");
+    }).catch(() => {
+      showToast("❌ Eroare la trimitere","error");
+    });
   }
 </script>
 </body>
