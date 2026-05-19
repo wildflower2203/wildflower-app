@@ -689,7 +689,9 @@
     document.getElementById("menu-concedii").style.display = (currentUser.role === "admin" || currentUser.role === "tehnician") ? "flex" : "none";
     document.getElementById("menu-tehnicieni").style.display = isTehnicieni ? "flex" : "none";
 
-    loadAllData();
+    if (currentUser.role === "admin") {
+  document.getElementById("admin-add-loc").style.display = "block";
+}
     showView("dashboard");
   }
 
