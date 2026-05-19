@@ -15,11 +15,11 @@
       --gray: #888;
       --border: #efefea;
       --text: #1a1a1a;
+      --accent: #e8356d;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); padding-bottom: 70px; }
 
-    /* HEADER */
     header {
       background: var(--white);
       padding: 14px 20px;
@@ -32,17 +32,39 @@
       z-index: 100;
       box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     }
-    .back-btn {
-      color: var(--green);
-      font-size: 14px;
-      cursor: pointer;
-      padding: 4px 8px 4px 0;
-      display: none;
-    }
+    .back-btn { color: var(--green); font-size: 14px; cursor: pointer; padding: 4px 8px 4px 0; display: none; }
     header h1 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--green); flex: 1; }
-    .header-icon { font-size: 22px; }
 
-    /* SEARCH */
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      display: flex;
+      z-index: 200;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+    }
+    .nav-btn {
+      flex: 1;
+      padding: 10px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      color: var(--gray);
+      font-size: 11px;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+    .nav-btn.active { color: var(--green); }
+    .nav-btn span { font-size: 20px; }
+
     .search-wrap { padding: 16px 20px 8px; }
     .search-input {
       width: 100%;
@@ -53,14 +75,11 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--white);
       outline: none;
-      transition: border-color 0.2s;
     }
     .search-input:focus { border-color: var(--green-mid); }
 
-    /* CONTAINER */
-    .container { padding: 12px 20px 80px; max-width: 680px; margin: 0 auto; }
+    .container { padding: 12px 20px 20px; max-width: 680px; margin: 0 auto; }
 
-    /* CARDS */
     .card {
       background: var(--white);
       border-radius: 16px;
@@ -75,11 +94,13 @@
       text-transform: uppercase;
       letter-spacing: 0.8px;
       margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .stat-number { font-family: 'DM Serif Display', serif; font-size: 42px; color: var(--green); line-height: 1; }
     .stat-sub { font-size: 13px; color: var(--gray); margin-top: 4px; }
 
-    /* LOCATII LIST */
     .loc-item {
       padding: 14px 0;
       border-bottom: 1px solid var(--border);
@@ -87,46 +108,31 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      transition: background 0.1s;
     }
     .loc-item:last-child { border-bottom: none; }
-    .loc-item:active { background: var(--bg); }
     .loc-name { font-size: 15px; font-weight: 500; }
     .loc-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
-    .badge {
-      background: var(--green-light);
-      color: var(--green);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 500;
-      white-space: nowrap;
-      margin-left: 10px;
-    }
+    .badge { background: var(--green-light); color: var(--green); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 10px; }
     .badge-inactive { background: #f5f5f5; color: #aaa; }
-    .arrow-icon { color: #ccc; margin-left: 6px; font-size: 16px; }
 
-    /* TABS */
     .tabs {
       display: flex;
       background: var(--white);
       border-bottom: 1px solid var(--border);
       overflow-x: auto;
       padding: 0 20px;
-      gap: 4px;
       position: sticky;
       top: 57px;
       z-index: 90;
     }
     .tab-btn {
-      padding: 12px 16px;
+      padding: 12px 14px;
       font-size: 13px;
       font-weight: 500;
       color: var(--gray);
       cursor: pointer;
       border-bottom: 2px solid transparent;
       white-space: nowrap;
-      transition: all 0.2s;
       background: none;
       border-top: none;
       border-left: none;
@@ -135,33 +141,31 @@
     }
     .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
 
-    /* DETAIL ROWS */
     .detail-row { padding: 12px 0; border-bottom: 1px solid var(--border); }
     .detail-row:last-child { border-bottom: none; }
     .detail-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-    .detail-value { font-size: 14px; color: var(--text); }
+    .detail-value { font-size: 14px; }
 
-    /* VIZITA ITEM */
-    .vizita-item {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-    }
+    .vizita-item { padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
     .vizita-item:last-child { border-bottom: none; }
-    .vizita-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .vizita-header { display: flex; justify-content: space-between; align-items: center; }
     .vizita-data { font-size: 13px; font-weight: 600; color: var(--green); }
     .vizita-tehnician { font-size: 12px; color: var(--gray); }
-    .vizita-obs { font-size: 13px; color: #555; margin-top: 4px; line-height: 1.4; }
-    .vizita-activitati { font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.4; }
+    .vizita-body { display: none; margin-top: 10px; }
+    .vizita-obs { font-size: 13px; color: #555; padding: 8px; background: var(--bg); border-radius: 8px; margin-top: 6px; line-height: 1.4; }
+    .vizita-act { font-size: 12px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
 
-    /* PLANTA ITEM */
-    .planta-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+    .planta-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .planta-item:last-child { border-bottom: none; }
     .planta-name { font-size: 14px; font-weight: 500; }
     .planta-obs { font-size: 12px; color: var(--gray); margin-top: 2px; }
     .planta-qty { background: var(--green-light); color: var(--green); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
 
-    /* ADD FORM */
+    .tratament-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .tratament-item:last-child { border-bottom: none; }
+    .tratament-tip { font-size: 13px; font-weight: 500; color: var(--green); }
+    .tratament-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
     .add-form { background: var(--bg); border-radius: 12px; padding: 16px; margin-top: 12px; }
     .add-form input, .add-form select, .add-form textarea {
       width: 100%;
@@ -173,12 +177,13 @@
       background: var(--white);
       outline: none;
       margin-bottom: 10px;
-      transition: border-color 0.2s;
     }
     .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--green-mid); }
+    .add-form textarea { min-height: 80px; resize: vertical; }
+
     .btn {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       background: var(--green);
       color: white;
       border: none;
@@ -187,39 +192,27 @@
       font-weight: 500;
       font-family: 'DM Sans', sans-serif;
       cursor: pointer;
-      transition: background 0.2s;
     }
-    .btn:active { background: var(--green-mid); }
-    .btn-outline {
-      background: none;
-      color: var(--green);
-      border: 1.5px solid var(--green);
-      margin-bottom: 10px;
-    }
-    .toggle-add { text-align: center; color: var(--green); font-size: 13px; cursor: pointer; padding: 8px; }
+    .btn:active { opacity: 0.85; }
+    .btn-accent { background: var(--accent); }
+    .toggle-add { text-align: center; color: var(--green); font-size: 13px; cursor: pointer; padding: 10px; font-weight: 500; }
 
-    /* EMPTY STATE */
     .empty { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; }
-
-    /* TRATAMENT ITEM */
-    .tratament-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .tratament-item:last-child { border-bottom: none; }
-    .tratament-tip { font-size: 13px; font-weight: 500; color: var(--green); }
-    .tratament-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
-
-    /* VIEWS */
-    #dashboard-view { display: block; }
-    #detail-view { display: none; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* LOADING */
     .loading { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; }
 
-    /* TOAST */
+    /* RAPORT FORM */
+    .raport-section { margin-bottom: 20px; }
+    .raport-section-title { font-size: 13px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--bg); border-radius: 10px; cursor: pointer; font-size: 13px; }
+    .checkbox-item input { width: 16px; height: 16px; accent-color: var(--green); }
+    .step-indicator { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; }
+    .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .step-dot.active { background: var(--green); }
+
     .toast {
       position: fixed;
-      bottom: 30px;
+      bottom: 90px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--green);
@@ -231,22 +224,41 @@
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
+      white-space: nowrap;
     }
     .toast.show { opacity: 1; }
+    .toast.error { background: #e8356d; }
+
+    #view-dashboard, #view-detail, #view-raport { display: none; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
 
 <header>
-  <span class="back-btn" id="back-btn" onclick="showDashboard()">← Înapoi</span>
-  <span class="header-icon">🌸</span>
+  <span class="back-btn" id="back-btn" onclick="goBack()">← Înapoi</span>
+  <span>🌸</span>
   <h1 id="header-title">Wildflower App</h1>
 </header>
 
-<!-- DASHBOARD -->
-<div id="dashboard-view">
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" id="nav-locatii" onclick="showView('dashboard')">
+    <span>📍</span>Locații
+  </button>
+  <button class="nav-btn" id="nav-raport" onclick="showView('raport')">
+    <span>📋</span>Raport vizită
+  </button>
+  <button class="nav-btn" id="nav-tehnicieni" onclick="showView('tehnicieni')">
+    <span>👥</span>Tehnicieni
+  </button>
+</nav>
+
+<!-- VIEW: DASHBOARD -->
+<div id="view-dashboard">
   <div class="search-wrap">
-    <input class="search-input" type="text" placeholder="🔍  Caută locație, client, tehnician..." id="search-input" oninput="filterLocatii()">
+    <input class="search-input" type="text" placeholder="🔍  Caută locație, tehnician..." id="search-input" oninput="filterLocatii()">
   </div>
   <div class="container">
     <div class="card">
@@ -261,26 +273,22 @@
   </div>
 </div>
 
-<!-- DETAIL VIEW -->
-<div id="detail-view">
+<!-- VIEW: DETAIL -->
+<div id="view-detail">
   <div class="tabs" id="tabs-bar">
-    <button class="tab-btn active" onclick="switchTab('info')">Info</button>
-    <button class="tab-btn" onclick="switchTab('plante')">🌿 Plante</button>
-    <button class="tab-btn" onclick="switchTab('vizite')">📋 Vizite</button>
-    <button class="tab-btn" onclick="switchTab('tratamente')">💊 Tratamente</button>
-    <button class="tab-btn" onclick="switchTab('necesar')">📦 Necesar</button>
+    <button class="tab-btn active" onclick="switchTab('info', this)">Info</button>
+    <button class="tab-btn" onclick="switchTab('plante', this)">🌿 Plante</button>
+    <button class="tab-btn" onclick="switchTab('vizite', this)">📋 Vizite</button>
+    <button class="tab-btn" onclick="switchTab('tratamente', this)">💊 Tratamente</button>
+    <button class="tab-btn" onclick="switchTab('necesar', this)">📦 Necesar</button>
   </div>
-
   <div class="container">
-    <!-- TAB INFO -->
     <div class="tab-content active" id="tab-info">
       <div class="card">
         <div class="card-title">Detalii locație</div>
         <div id="detail-info-content"></div>
       </div>
     </div>
-
-    <!-- TAB PLANTE -->
     <div class="tab-content" id="tab-plante">
       <div class="card">
         <div class="card-title">Plante în locație</div>
@@ -290,20 +298,16 @@
           <input type="text" id="new-specie" placeholder="Specie plantă (ex: Monstera)">
           <input type="number" id="new-qty" placeholder="Număr bucăți">
           <input type="text" id="new-obs-planta" placeholder="Observații (opțional)">
-          <button class="btn" onclick="adaugaPlanta()">Salvează plantă</button>
+          <button class="btn" onclick="adaugaPlanta()">💾 Salvează plantă</button>
         </div>
       </div>
     </div>
-
-    <!-- TAB VIZITE -->
     <div class="tab-content" id="tab-vizite">
       <div class="card">
         <div class="card-title" id="vizite-title">Vizite</div>
         <div id="vizite-list"><div class="loading">Se încarcă…</div></div>
       </div>
     </div>
-
-    <!-- TAB TRATAMENTE -->
     <div class="tab-content" id="tab-tratamente">
       <div class="card">
         <div class="card-title">Tratamente aplicate</div>
@@ -318,12 +322,10 @@
             <option>insecticid</option>
           </select>
           <input type="text" id="new-obs-tratament" placeholder="Observații">
-          <button class="btn" onclick="adaugaTratament()">Salvează tratament</button>
+          <button class="btn" onclick="adaugaTratament()">💾 Salvează tratament</button>
         </div>
       </div>
     </div>
-
-    <!-- TAB NECESAR -->
     <div class="tab-content" id="tab-necesar">
       <div class="card">
         <div class="card-title">Necesar aprovizionare</div>
@@ -332,9 +334,100 @@
         <div class="add-form" id="form-necesar" style="display:none">
           <input type="text" id="new-produs" placeholder="Produs (ex: sac pamant, ghiveci 30cm…)">
           <input type="number" id="new-cantitate" placeholder="Cantitate">
-          <button class="btn" onclick="adaugaNecesar()">Salvează</button>
+          <button class="btn" onclick="adaugaNecesar()">💾 Salvează</button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW: RAPORT VIZITA -->
+<div id="view-raport">
+  <div class="container">
+    <div class="card">
+      <div class="step-indicator">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+        <div class="step-dot" id="dot-3"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="raport-step-1">
+        <div class="raport-section-title">📍 Informații vizită</div>
+        <div class="add-form" style="margin:0;background:none;padding:0">
+          <select id="r-locatie">
+            <option value="">Selectează locația…</option>
+          </select>
+          <select id="r-tehnician">
+            <option value="">Tehnician…</option>
+            <option>Ana Florentina Grecu</option>
+            <option>Paul Fedot</option>
+            <option>Radu Greavu</option>
+            <option>Diana Marinas</option>
+            <option>Lucian Marinas</option>
+          </select>
+          <input type="date" id="r-data">
+          <input type="time" id="r-ora-sosire" placeholder="Ora sosirii">
+          <input type="time" id="r-ora-plecare" placeholder="Ora plecării">
+        </div>
+        <button class="btn" onclick="raportStep(2)">Continuă →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="raport-step-2" style="display:none">
+        <div class="raport-section-title">✅ Activități efectuate</div>
+        <div class="checkbox-grid" id="activitati-grid">
+          <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
+          <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
+          <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
+          <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
+          <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
+          <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
+          <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
+          <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
+          <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
+          <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
+        </div>
+        <div style="margin-top:12px">
+          <div class="raport-section-title">💊 Tratament aplicat</div>
+          <div class="add-form" style="margin:0;background:none;padding:0">
+            <select id="r-tratament">
+              <option value="">Fără tratament</option>
+              <option>fertilizare</option>
+              <option>fungicid</option>
+              <option>acaricid</option>
+              <option>insecticid</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn" style="background:var(--bg);color:var(--text);flex:1" onclick="raportStep(1)">← Înapoi</button>
+          <button class="btn" style="flex:2" onclick="raportStep(3)">Continuă →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="raport-step-3" style="display:none">
+        <div class="raport-section-title">💬 Observații și recomandări</div>
+        <div class="add-form" style="margin:0;background:none;padding:0">
+          <textarea id="r-observatii" placeholder="Observații, recomandări, probleme identificate…"></textarea>
+          <input type="text" id="r-foto" placeholder="Link foto Google Drive (opțional)">
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px">
+          <button class="btn" style="background:var(--bg);color:var(--text);flex:1" onclick="raportStep(2)">← Înapoi</button>
+          <button class="btn btn-accent" style="flex:2" onclick="salveazaRaport()">✅ Salvează raport</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW: TEHNICIENI -->
+<div id="view-tehnicieni" style="display:none">
+  <div class="container">
+    <div class="card">
+      <div class="card-title">Tehnicieni activi</div>
+      <div id="tehnicieni-list"><div class="loading">Se încarcă…</div></div>
     </div>
   </div>
 </div>
@@ -342,7 +435,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── URLS ──────────────────────────────────────────────
+  const API_GREENLOG = "https://script.google.com/macros/s/AKfycbx6z_cjcHsHL7oNqhsJOlalML0yRG7TdLrsy-2cY_XLtcugZ2CcDA2SCXNvqs-LupsB/exec";
+  const API_RAPORT = "https://script.google.com/macros/s/AKfycbxR4f_0ioqKNjN6KN-2Z2hutWcLxxFcnIQeR81xg_BsM_3c_J-nqmtRBdy9150DqNyk/exec";
+
   const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&gid=";
   const URLS = {
     locatii:    BASE + "1134673396",
@@ -350,28 +445,22 @@
     plante:     BASE + "1673932267",
     necesar:    BASE + "821266492",
     tratamente: BASE + "1501455368",
-    vizite:     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbrklorijnFRuGCPRMZV8aIuas2cSRJX7L03uTXyGFeDJGXZmCZXY9Ivdk3lV4iBtps8fmflSxhoBg/pub?output=csv&gid=109752688"
+    vizite: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbrklorijnFRuGCPRMZV8aIuas2cSRJX7L03uTXyGFeDJGXZmCZXY9Ivdk3lV4iBtps8fmflSxhoBg/pub?output=csv&gid=109752688"
   };
 
-  // ── STATE ─────────────────────────────────────────────
-  let allLocatii = [];
-  let currentLoc = null;
-  let allVizite = [];
-  let allPlante = [];
-  let allTratamente = [];
-  let allNecesar = [];
+  let allLocatii = [], currentLoc = null, allVizite = [], allPlante = [], allTratamente = [], allNecesar = [];
+  let currentView = "dashboard";
+  let previousView = "dashboard";
 
-  // ── CSV PARSER ────────────────────────────────────────
   function parseCSV(text) {
     const lines = text.trim().split("\n");
     const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
     return lines.slice(1).map(line => {
-      const vals = [];
-      let cur = "", inQ = false;
+      const vals = []; let cur = "", inQ = false;
       for (let i = 0; i < line.length; i++) {
-        if (line[i] === '"') { inQ = !inQ; }
+        if (line[i] === '"') inQ = !inQ;
         else if (line[i] === ',' && !inQ) { vals.push(cur.trim()); cur = ""; }
-        else { cur += line[i]; }
+        else cur += line[i];
       }
       vals.push(cur.trim());
       const obj = {};
@@ -380,57 +469,83 @@
     });
   }
 
-  // ── DATE PARSER ───────────────────────────────────────
   function parseData(val) {
     if (!val) return "—";
     const nr = parseFloat(val);
-    if (!isNaN(nr) && nr > 40000) {
-      return new Date((nr - 25569) * 86400 * 1000).toLocaleDateString("ro-RO");
-    }
+    if (!isNaN(nr) && nr > 40000) return new Date((nr - 25569) * 86400 * 1000).toLocaleDateString("ro-RO");
     const d = new Date(val);
     if (!isNaN(d)) return d.toLocaleDateString("ro-RO");
     return val;
   }
 
-  // ── TOAST ─────────────────────────────────────────────
-  function showToast(msg) {
+  function showToast(msg, isError) {
     const t = document.getElementById("toast");
     t.textContent = msg;
-    t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 2500);
+    t.className = "toast show" + (isError ? " error" : "");
+    setTimeout(() => t.className = "toast", 2500);
   }
 
-  // ── TOGGLE FORM ───────────────────────────────────────
   function toggleForm(id) {
     const f = document.getElementById(id);
     f.style.display = f.style.display === "none" ? "block" : "none";
   }
 
-  // ── NAVIGATION ────────────────────────────────────────
-  function showDashboard() {
-    document.getElementById("detail-view").style.display = "none";
-    document.getElementById("dashboard-view").style.display = "block";
-    document.getElementById("back-btn").style.display = "none";
-    document.getElementById("header-title").textContent = "Wildflower App";
-    currentLoc = null;
-  }
-
-  function switchTab(tab) {
-    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById("tab-" + tab).classList.add("active");
-    event.target.classList.add("active");
-  }
-
-  // ── LOAD DASHBOARD ────────────────────────────────────
-  fetch(URLS.locatii)
-    .then(r => r.text())
-    .then(text => {
-      allLocatii = parseCSV(text);
-      const active = allLocatii.filter(r => r["Status"] === "activ" || r["Status"] === "");
-      document.getElementById("nr-locatii").textContent = active.length;
-      renderLocatii(active);
+  // ── NAVIGATION ─────────────────────────────────────
+  function showView(view) {
+    ["dashboard", "detail", "raport", "tehnicieni"].forEach(v => {
+      const el = document.getElementById("view-" + v);
+      if (el) el.style.display = "none";
     });
+    ["nav-locatii", "nav-raport", "nav-tehnicieni"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("active");
+    });
+
+    document.getElementById("back-btn").style.display = "none";
+
+    if (view === "dashboard") {
+      document.getElementById("view-dashboard").style.display = "block";
+      document.getElementById("nav-locatii").classList.add("active");
+      document.getElementById("header-title").textContent = "Wildflower App";
+    } else if (view === "detail") {
+      document.getElementById("view-detail").style.display = "block";
+      document.getElementById("nav-locatii").classList.add("active");
+      document.getElementById("back-btn").style.display = "inline";
+    } else if (view === "raport") {
+      document.getElementById("view-raport").style.display = "block";
+      document.getElementById("nav-raport").classList.add("active");
+      document.getElementById("header-title").textContent = "Raport vizită";
+      raportStep(1);
+    } else if (view === "tehnicieni") {
+      document.getElementById("view-tehnicieni").style.display = "block";
+      document.getElementById("nav-tehnicieni").classList.add("active");
+      document.getElementById("header-title").textContent = "Tehnicieni";
+      loadTehnicieni();
+    }
+    currentView = view;
+  }
+
+  function goBack() {
+    if (currentView === "detail") showView("dashboard");
+  }
+
+  // ── INIT ────────────────────────────────────────────
+  showView("dashboard");
+
+  fetch(URLS.locatii).then(r => r.text()).then(text => {
+    allLocatii = parseCSV(text);
+    const active = allLocatii.filter(r => r["Status"] === "activ" || r["Status"] === "");
+    document.getElementById("nr-locatii").textContent = active.length;
+    renderLocatii(active);
+    // Populează dropdown raport
+    const sel = document.getElementById("r-locatie");
+    active.forEach(l => {
+      const opt = document.createElement("option");
+      opt.value = l["Nume client final"];
+      opt.textContent = l["Nume client final"];
+      sel.appendChild(opt);
+    });
+  });
 
   function renderLocatii(list) {
     const el = document.getElementById("lista-locatii");
@@ -443,7 +558,7 @@
         </div>
         <div style="display:flex;align-items:center">
           <span class="badge ${loc["Status"] === 'inactiv' ? 'badge-inactive' : ''}">${loc["ID_Tehnician"] || "—"}</span>
-          <span class="arrow-icon">›</span>
+          <span style="color:#ccc;margin-left:6px;font-size:18px">›</span>
         </div>
       </div>
     `).join("");
@@ -459,67 +574,47 @@
     renderLocatii(filtered);
   }
 
-  // ── OPEN LOCATIE ──────────────────────────────────────
+  // ── LOCATIE DETAIL ──────────────────────────────────
   function openLocatie(numeLoc) {
     currentLoc = allLocatii.find(l => l["Nume client final"] === numeLoc);
     if (!currentLoc) return;
-
-    document.getElementById("dashboard-view").style.display = "none";
-    document.getElementById("detail-view").style.display = "block";
-    document.getElementById("back-btn").style.display = "inline";
     document.getElementById("header-title").textContent = numeLoc;
-
-    // Reset tabs
     document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     document.getElementById("tab-info").classList.add("active");
     document.querySelector(".tab-btn").classList.add("active");
-
-    // Hide forms
-    ["form-planta", "form-tratament", "form-necesar"].forEach(id => {
-      document.getElementById(id).style.display = "none";
-    });
-
+    ["form-planta","form-tratament","form-necesar"].forEach(id => document.getElementById(id).style.display = "none");
     renderInfo();
     loadPlante(numeLoc);
     loadVizite(numeLoc);
     loadTratamente(numeLoc);
     loadNecesar(numeLoc);
+    showView("detail");
   }
 
-  // ── INFO TAB ──────────────────────────────────────────
+  function switchTab(tab, btn) {
+    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("tab-" + tab).classList.add("active");
+    btn.classList.add("active");
+  }
+
   function renderInfo() {
     const loc = currentLoc;
-    const fields = [
-      ["Tehnician", "ID_Tehnician"],
-      ["Firma Facility", "Firma Facility Management"],
-      ["Adresă", "Adresa"],
-      ["Email", "email"],
-      ["Nr. plante", "Numar total plante"],
-      ["Observații", "Observatii locatie"],
-      ["Status", "Status"]
-    ];
-    let html = "";
-    fields.forEach(([label, key]) => {
-      if (loc[key]) {
-        html += `<div class="detail-row">
-          <div class="detail-label">${label}</div>
-          <div class="detail-value">${loc[key]}</div>
-        </div>`;
-      }
-    });
-    document.getElementById("detail-info-content").innerHTML = html || '<div class="empty">Fără detalii</div>';
+    const fields = [["Tehnician","ID_Tehnician"],["Firma Facility","Firma Facility Management"],["Adresă","Adresa"],["Email","email"],["Nr. plante","Numar total plante"],["Observații","Observatii locatie"],["Status","Status"]];
+    document.getElementById("detail-info-content").innerHTML = fields
+      .filter(([,k]) => loc[k])
+      .map(([l,k]) => `<div class="detail-row"><div class="detail-label">${l}</div><div class="detail-value">${loc[k]}</div></div>`)
+      .join("") || '<div class="empty">Fără detalii</div>';
   }
 
-  // ── PLANTE TAB ────────────────────────────────────────
+  // ── PLANTE ──────────────────────────────────────────
   function loadPlante(numeLoc) {
     document.getElementById("plante-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.plante)
-      .then(r => r.text())
-      .then(text => {
-        allPlante = parseCSV(text).filter(p => p["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
-        renderPlante();
-      });
+    fetch(URLS.plante).then(r => r.text()).then(text => {
+      allPlante = parseCSV(text).filter(p => p["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+      renderPlante();
+    });
   }
 
   function renderPlante() {
@@ -527,80 +622,68 @@
     if (!allPlante.length) { el.innerHTML = '<div class="empty">Nicio plantă înregistrată</div>'; return; }
     el.innerHTML = allPlante.map(p => `
       <div class="planta-item">
-        <div>
-          <div class="planta-name">🌿 ${p["Specie planta"] || "—"}</div>
-          ${p["Observatii"] ? `<div class="planta-obs">${p["Observatii"]}</div>` : ""}
-        </div>
-        <span class="planta-qty">×${p["Numar bucati"] || "?"}</span>
-      </div>
-    `).join("");
+        <div><div class="planta-name">🌿 ${p["Specie planta"]||"—"}</div>${p["Observatii"]?`<div class="planta-obs">${p["Observatii"]}</div>`:""}</div>
+        <span class="planta-qty">×${p["Numar bucati"]||"?"}</span>
+      </div>`).join("");
   }
 
   function adaugaPlanta() {
     const specie = document.getElementById("new-specie").value.trim();
     const qty = document.getElementById("new-qty").value.trim();
     const obs = document.getElementById("new-obs-planta").value.trim();
-    if (!specie || !qty) { showToast("Completează specia și cantitatea!"); return; }
-    allPlante.push({ "ID_Locatie": currentLoc["Nume client final"], "Specie planta": specie, "Numar bucati": qty, "Observatii": obs });
-    renderPlante();
-    document.getElementById("new-specie").value = "";
-    document.getElementById("new-qty").value = "";
-    document.getElementById("new-obs-planta").value = "";
-    document.getElementById("form-planta").style.display = "none";
-    showToast("✅ Plantă adăugată!");
+    if (!specie || !qty) { showToast("Completează specia și cantitatea!", true); return; }
+    const row = [generateId(), currentLoc["Nume client final"], specie, qty, obs, new Date().toLocaleDateString("ro-RO"), "activ"];
+    saveToSheets(API_GREENLOG, "Plante in locatie", row, () => {
+      allPlante.push({"ID_Locatie": currentLoc["Nume client final"], "Specie planta": specie, "Numar bucati": qty, "Observatii": obs});
+      renderPlante();
+      document.getElementById("new-specie").value = "";
+      document.getElementById("new-qty").value = "";
+      document.getElementById("new-obs-planta").value = "";
+      document.getElementById("form-planta").style.display = "none";
+    });
   }
 
-  // ── VIZITE TAB ────────────────────────────────────────
+  // ── VIZITE ──────────────────────────────────────────
   function loadVizite(numeLoc) {
     document.getElementById("vizite-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.vizite)
-      .then(r => r.text())
-      .then(text => {
-        const toate = parseCSV(text);
-        allVizite = toate.filter(v => v["Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
-        allVizite.sort((a, b) => {
-          const da = parseFloat(a["Data vizita"]) || 0;
-          const db = parseFloat(b["Data vizita"]) || 0;
-          return db - da;
-        });
-        document.getElementById("vizite-title").textContent = `Vizite (${allVizite.length} total)`;
-        renderVizite();
-      });
+    fetch(URLS.vizite).then(r => r.text()).then(text => {
+      allVizite = parseCSV(text).filter(v => v["Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+      allVizite.sort((a,b) => (parseFloat(b["Data vizita"])||0) - (parseFloat(a["Data vizita"])||0));
+      document.getElementById("vizite-title").textContent = `Vizite (${allVizite.length} total)`;
+      renderVizite();
+    });
   }
 
   function renderVizite() {
     const el = document.getElementById("vizite-list");
     if (!allVizite.length) { el.innerHTML = '<div class="empty">Nicio vizită înregistrată</div>'; return; }
-    el.innerHTML = allVizite.map((v, i) => `
+    el.innerHTML = allVizite.map((v,i) => `
       <div class="vizita-item" onclick="toggleVizita(${i})">
         <div class="vizita-header">
           <span class="vizita-data">📅 ${parseData(v["Data vizita"])}</span>
-          <span class="vizita-tehnician">${v["Nume"] || "—"}</span>
+          <span class="vizita-tehnician">${v["Nume"]||"—"}</span>
         </div>
-        <div id="vizita-body-${i}" style="display:none">
-          ${v["Ora sosirii"] ? `<div class="detail-row"><div class="detail-label">Ora</div><div class="detail-value">${v["Ora sosirii"]} – ${v["Ora plecarii"] || "?"}</div></div>` : ""}
-          ${v["Activitati efectuate"] ? `<div class="vizita-activitati" style="margin-top:8px"><strong>Activități:</strong><br>${v["Activitati efectuate"]}</div>` : ""}
-          ${v["Observation/recomandari"] ? `<div class="vizita-obs" style="margin-top:8px;padding:8px;background:#f7f6f2;border-radius:8px">💬 ${v["Observation/recomandari"]}</div>` : ""}
-          ${v["Foto plante"] ? `<div style="margin-top:8px"><a href="${v["Foto plante"]}" target="_blank" style="color:var(--green);font-size:13px">📸 Vezi foto</a></div>` : ""}
+        <div class="vizita-body" id="vb-${i}">
+          ${v["Ora sosirii"]?`<div class="detail-row"><div class="detail-label">Ora</div><div class="detail-value">${v["Ora sosirii"]} – ${v["Ora plecarii"]||"?"}</div></div>`:""}
+          ${v["Activitati efectuate"]?`<div class="vizita-act"><strong>Activități:</strong><br>${v["Activitati efectuate"]}</div>`:""}
+          ${v["Observation/recomandari"]?`<div class="vizita-obs">💬 ${v["Observation/recomandari"]}</div>`:""}
+          ${v["Foto plante"]&&v["Foto plante"].includes("http")?`<a href="${v["Foto plante"].split(",")[0]}" target="_blank" style="color:var(--green);font-size:13px;display:block;margin-top:6px">📸 Vezi foto</a>`:""}
         </div>
-      </div>
-    `).join("");
+      </div>`).join("");
   }
 
   function toggleVizita(i) {
-    const body = document.getElementById("vizita-body-" + i);
-    body.style.display = body.style.display === "none" ? "block" : "none";
+    const b = document.getElementById("vb-"+i);
+    b.style.display = b.style.display === "block" ? "none" : "block";
   }
 
-  // ── TRATAMENTE TAB ────────────────────────────────────
+  // ── TRATAMENTE ──────────────────────────────────────
   function loadTratamente(numeLoc) {
     document.getElementById("tratamente-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.tratamente)
-      .then(r => r.text())
-      .then(text => {
-        allTratamente = parseCSV(text).filter(t => t["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
-        renderTratamente();
-      });
+    fetch(URLS.tratamente).then(r => r.text()).then(text => {
+      allTratamente = parseCSV(text).filter(t => t["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+      renderTratamente();
+    });
   }
 
   function renderTratamente() {
@@ -608,60 +691,135 @@
     if (!allTratamente.length) { el.innerHTML = '<div class="empty">Niciun tratament înregistrat</div>'; return; }
     el.innerHTML = allTratamente.map(t => `
       <div class="tratament-item">
-        <div class="tratament-tip">💊 ${t["Tratament_aplicat"] || t["Stare"] || "—"}</div>
-        <div class="tratament-data">${parseData(t["Data_tratament"])} ${t["Observatii"] ? "· " + t["Observatii"] : ""}</div>
-      </div>
-    `).join("");
+        <div class="tratament-tip">💊 ${t["Tratament_aplicat"]||t["Stare"]||"—"}</div>
+        <div class="tratament-data">${parseData(t["Data_tratament"])}${t["Observatii"]?" · "+t["Observatii"]:""}</div>
+      </div>`).join("");
   }
 
   function adaugaTratament() {
     const tip = document.getElementById("new-tip-tratament").value;
     const obs = document.getElementById("new-obs-tratament").value.trim();
-    if (!tip) { showToast("Selectează tipul de tratament!"); return; }
-    allTratamente.unshift({ "ID_Locatie": currentLoc["Nume client final"], "Tratament_aplicat": tip, "Data_tratament": new Date().toLocaleDateString("ro-RO"), "Observatii": obs });
-    renderTratamente();
-    document.getElementById("new-tip-tratament").value = "";
-    document.getElementById("new-obs-tratament").value = "";
-    document.getElementById("form-tratament").style.display = "none";
-    showToast("✅ Tratament adăugat!");
+    if (!tip) { showToast("Selectează tipul!", true); return; }
+    const row = [currentLoc["Nume client final"], new Date().toLocaleDateString("ro-RO"), "Finalizat", tip, "Bun", obs];
+    saveToSheets(API_GREENLOG, "Tratamente aplicate", row, () => {
+      allTratamente.unshift({"ID_Locatie": currentLoc["Nume client final"], "Tratament_aplicat": tip, "Data_tratament": new Date().toLocaleDateString("ro-RO"), "Observatii": obs});
+      renderTratamente();
+      document.getElementById("new-tip-tratament").value = "";
+      document.getElementById("new-obs-tratament").value = "";
+      document.getElementById("form-tratament").style.display = "none";
+    });
   }
 
-  // ── NECESAR TAB ───────────────────────────────────────
+  // ── NECESAR ─────────────────────────────────────────
   function loadNecesar(numeLoc) {
     document.getElementById("necesar-list").innerHTML = '<div class="loading">Se încarcă…</div>';
-    fetch(URLS.necesar)
-      .then(r => r.text())
-      .then(text => {
-        allNecesar = parseCSV(text).filter(n => n["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
-        renderNecesar();
-      });
+    fetch(URLS.necesar).then(r => r.text()).then(text => {
+      allNecesar = parseCSV(text).filter(n => n["ID_Locatie"]?.toLowerCase() === numeLoc.toLowerCase());
+      renderNecesar();
+    });
   }
 
   function renderNecesar() {
     const el = document.getElementById("necesar-list");
-    const items = allNecesar.filter(n => n["Tip produs"] || n["tip produs"]);
+    const items = allNecesar.filter(n => n["Tip produs"]);
     if (!items.length) { el.innerHTML = '<div class="empty">Niciun necesar înregistrat</div>'; return; }
     el.innerHTML = items.map(n => `
       <div class="planta-item">
-        <div>
-          <div class="planta-name">📦 ${n["Tip produs"] || n["tip produs"] || "—"}</div>
-          ${n["Status"] ? `<div class="planta-obs">${n["Status"]}</div>` : ""}
-        </div>
-        ${n["Cantitate"] ? `<span class="planta-qty">×${n["Cantitate"]}</span>` : ""}
-      </div>
-    `).join("");
+        <div><div class="planta-name">📦 ${n["Tip produs"]||"—"}</div>${n["Status"]?`<div class="planta-obs">${n["Status"]}</div>`:""}</div>
+        ${n["Cantitate"]?`<span class="planta-qty">×${n["Cantitate"]}</span>`:""}
+      </div>`).join("");
   }
 
   function adaugaNecesar() {
     const produs = document.getElementById("new-produs").value.trim();
     const cantitate = document.getElementById("new-cantitate").value.trim();
-    if (!produs) { showToast("Completează produsul!"); return; }
-    allNecesar.push({ "ID_Locatie": currentLoc["Nume client final"], "Tip produs": produs, "Cantitate": cantitate, "Status": "Necesar" });
-    renderNecesar();
-    document.getElementById("new-produs").value = "";
-    document.getElementById("new-cantitate").value = "";
-    document.getElementById("form-necesar").style.display = "none";
-    showToast("✅ Necesar adăugat!");
+    if (!produs) { showToast("Completează produsul!", true); return; }
+    const row = [generateId(), currentLoc["Nume client final"], "", produs, cantitate, "Necesar", "", ""];
+    saveToSheets(API_GREENLOG, "Necesar", row, () => {
+      allNecesar.push({"ID_Locatie": currentLoc["Nume client final"], "Tip produs": produs, "Cantitate": cantitate, "Status": "Necesar"});
+      renderNecesar();
+      document.getElementById("new-produs").value = "";
+      document.getElementById("new-cantitate").value = "";
+      document.getElementById("form-necesar").style.display = "none";
+    });
+  }
+
+  // ── RAPORT VIZITA ────────────────────────────────────
+  function raportStep(step) {
+    [1,2,3].forEach(s => {
+      document.getElementById("raport-step-"+s).style.display = s === step ? "block" : "none";
+      document.getElementById("dot-"+s).classList.toggle("active", s === step);
+    });
+    if (step === 1) {
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("r-data").value = today;
+    }
+  }
+
+  function salveazaRaport() {
+    const locatie = document.getElementById("r-locatie").value;
+    const tehnician = document.getElementById("r-tehnician").value;
+    const data = document.getElementById("r-data").value;
+    const oraSosire = document.getElementById("r-ora-sosire").value;
+    const oraPlecare = document.getElementById("r-ora-plecare").value;
+    const observatii = document.getElementById("r-observatii").value.trim();
+    const foto = document.getElementById("r-foto").value.trim();
+
+    if (!locatie || !tehnician || !data) { showToast("Completează locația, tehnicianul și data!", true); return; }
+
+    const activitati = Array.from(document.querySelectorAll("#activitati-grid input:checked"))
+      .map(cb => cb.value).join(", ");
+    const tratament = document.getElementById("r-tratament").value;
+
+    const timestamp = new Date().toLocaleString("ro-RO");
+    const row = [timestamp, tehnician, data, locatie, oraSosire, oraPlecare, activitati, observatii, foto];
+
+    saveToSheets(API_RAPORT, "Raport vizita", row, () => {
+      showToast("✅ Raport salvat!");
+      // Reset form
+      document.getElementById("r-locatie").value = "";
+      document.getElementById("r-tehnician").value = "";
+      document.getElementById("r-observatii").value = "";
+      document.getElementById("r-foto").value = "";
+      document.querySelectorAll("#activitati-grid input").forEach(cb => cb.checked = false);
+      document.getElementById("r-tratament").value = "";
+      raportStep(1);
+    });
+  }
+
+  // ── TEHNICIENI ───────────────────────────────────────
+  function loadTehnicieni() {
+    fetch(URLS.tehnicieni).then(r => r.text()).then(text => {
+      const teh = parseCSV(text);
+      document.getElementById("tehnicieni-list").innerHTML = teh.map(t => `
+        <div class="planta-item">
+          <div>
+            <div class="planta-name">👤 ${t["Nume"]||"—"}</div>
+            <div class="planta-obs">${t["Oras"]||""} · ${t["ROL"]||""}</div>
+          </div>
+          <span class="badge">${t["Activ"]==="da"?"activ":"—"}</span>
+        </div>`).join("");
+    });
+  }
+
+  // ── SAVE TO SHEETS ───────────────────────────────────
+  function saveToSheets(apiUrl, sheetName, row, onSuccess) {
+    showToast("Se salvează…");
+    fetch(apiUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({sheet: sheetName, row: row})
+    }).then(() => {
+      onSuccess();
+      showToast("✅ Salvat!");
+    }).catch(() => {
+      showToast("❌ Eroare la salvare", true);
+    });
+  }
+
+  function generateId() {
+    return Math.random().toString(36).substr(2, 8);
   }
 </script>
 </body>
