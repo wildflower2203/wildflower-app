@@ -620,13 +620,21 @@
   function generateId() { return Math.random().toString(36).substr(2,8); }
 
   function saveToSheets(apiUrl, sheetName, row, onSuccess) {
-    fetch(apiUrl, {
-      method:"POST", mode:"no-cors",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({sheet: sheetName, row: row})
-    }).then(() => { if(onSuccess) onSuccess(); showToast("✅ Salvat!", "success"); })
-      .catch(() => showToast("❌ Eroare la salvare","error"));
-  }
+  if (saveToSheets._saving) return;
+  saveToSheets._saving = true;
+  fetch(apiUrl, {
+    method:"POST", mode:"no-cors",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({sheet: sheetName, row: row})
+  }).then(() => {
+    saveToSheets._saving = false;
+    if(onSuccess) onSuccess();
+    showToast("✅ Salvat!", "success");
+  }).catch(() => {
+    saveToSheets._saving = false;
+    showToast("❌ Eroare la salvare","error");
+  });
+}
 
   // ── AUTH ──────────────────────────────────────────────
   function doLogin() {
