@@ -1306,6 +1306,27 @@
       loadConcedii();
     });
   }
+  function adaugaLocatie() {
+  const nume = document.getElementById("loc-nume").value.trim();
+  const firma = document.getElementById("loc-firma").value.trim();
+  const adresa = document.getElementById("loc-adresa").value.trim();
+  const email = document.getElementById("loc-email").value.trim();
+  const teh = document.getElementById("loc-tehnician").value;
+  const obs = document.getElementById("loc-obs").value.trim();
+  if (!nume || !email) { showToast("Completează numele și emailul!", "error"); return; }
+  const row = [generateId(), teh, nume, firma, adresa, email, "", obs, "activ"];
+  saveToSheets(API_GREENLOG, "Locatii", row, () => {
+    allLocatii.push({"Nume client final": nume, "Firma Facility Management": firma, "Adresa": adresa, "email": email, "ID_Tehnician": teh, "Observatii locatie": obs, "Status": "activ"});
+    filterLocatii();
+    document.getElementById("loc-nume").value = "";
+    document.getElementById("loc-firma").value = "";
+    document.getElementById("loc-adresa").value = "";
+    document.getElementById("loc-email").value = "";
+    document.getElementById("loc-obs").value = "";
+    document.getElementById("loc-tehnician").value = "";
+    document.getElementById("form-add-locatie").style.display = "none";
+  });
+}
 
   // ── TRIMITE RAPORT PDF ────────────────────────────────
   function trimiteRaportPDF(locatie, dataVizita, tehnician) {
