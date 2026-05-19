@@ -1233,7 +1233,7 @@
       sal.forEach(s => {
         const nume = s["Nume"]||"—";
         if (!grouped[nume]) grouped[nume] = { total: 0, locatii: [] };
-        const suma = parseFloat(s["Salariu_baza_RON"])||0;
+        const suma = parseFloat((s["Salariu_baza_RON"]||"0").toString().replace(/[^0-9.]/g,""))||0;
         grouped[nume].total += suma;
         if (s["Locatii_alocate"]) grouped[nume].locatii.push({loc: s["Locatii_alocate"], suma});
       });
