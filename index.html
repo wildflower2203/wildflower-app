@@ -668,7 +668,7 @@
     const isSalarii  = currentUser.role === "admin";
     const isTehnicieni = currentUser.role === "admin" || currentUser.role === "demo";
     document.getElementById("menu-salarii").style.display   = isSalarii  ? "flex" : "none";
-    document.getElementById("menu-concedii").style.display  = isSalarii  ? "flex" : "none";
+    document.getElementById("menu-concedii").style.display = (currentUser.role === "admin" || currentUser.role === "tehnician") ? "flex" : "none";
     document.getElementById("menu-tehnicieni").style.display = isTehnicieni ? "flex" : "none";
 
     loadAllData();
