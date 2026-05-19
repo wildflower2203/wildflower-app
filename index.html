@@ -782,6 +782,14 @@
     saveToSheets(API_GREENLOG, "Locatii", row, () => {
       allLocatii.push({"Nume client final":nume,"Firma Facility Management":firma,"Adresa":adresa,"email":email,"ID_Tehnician":teh,"Observatii locatie":obs,"Status":"activ"});
       filterLocatii();
+      ["r-locatie","p-locatie"].forEach(id => {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  const opt = document.createElement("option");
+  opt.value = nume;
+  opt.textContent = nume;
+  sel.appendChild(opt);
+});
       ["loc-nume","loc-firma","loc-adresa","loc-email","loc-obs"].forEach(id=>document.getElementById(id).value="");
       document.getElementById("loc-tehnician").value="";
       document.getElementById("form-add-locatie").style.display="none";
