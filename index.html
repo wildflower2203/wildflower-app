@@ -901,11 +901,21 @@
   }
 
   function stergePlanta(i) {
-    if (!confirm(`Ștergi "${allPlante[i]["Specie planta"]}"?`)) return;
-    allPlante.splice(i,1);
+  if (!confirm(`Ștergi "${allPlante[i]["Specie planta"]}"?`)) return;
+  const specie  = allPlante[i]["Specie planta"];
+  const locatie = currentLoc["Nume client final"];
+  fetch(API_GREENLOG, {
+    method: "POST", mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({action: "deletePlanta", locatie: locatie, specie: specie})
+  }).then(() => {
+    allPlante.splice(i, 1);
     renderPlante();
-    showToast("🗑️ Plantă ștearsă","success");
-  }
+    showToast("🗑️ Plantă ștearsă", "success");
+  }).catch(() => {
+    showToast("❌ Eroare la ștergere", "error");
+  });
+}
 
   function adaugaPlanta() {
     const specie = document.getElementById("new-specie").value.trim();
