@@ -723,7 +723,7 @@
       allLocatii = parseCSV(text);
       let visible = allLocatii;
       if (currentUser?.role==="tehnician") visible = allLocatii.filter(l=>l["ID_Tehnician"]===currentUser.name);
-      renderLocatii(visible.filter(l=>l["Status"]==="activ"||l["Status"]===""));
+      renderLocatii(visible);
       const active = allLocatii.filter(l=>l["Status"]==="activ"||l["Status"]==="");
       ["r-locatie","p-locatie"].forEach(id => {
         const sel = document.getElementById(id);
