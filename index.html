@@ -743,20 +743,23 @@
   }
 
   function renderLocatii(list) {
-    const el = document.getElementById("lista-locatii");
-    if (!list.length) { el.innerHTML='<div class="empty">Nicio locație găsită</div>'; return; }
-    el.innerHTML = list.map(loc => `
+  const el = document.getElementById("lista-locatii");
+  if (!list.length) { el.innerHTML = '<div class="empty">Nicio locație găsită</div>'; return; }
+  el.innerHTML = list.map(loc => {
+    const inactiv = loc["Status"] === "inactiv";
+    return `
       <div class="loc-item" onclick="openLocatie('${(loc["Nume client final"]||"").replace(/'/g,"\\'")}')">
         <div>
-          <div class="loc-name">${loc["Nume client final"]||"—"}</div>
+          <div class="loc-name" style="${inactiv ? "color:#aaa;text-decoration:line-through" : ""}">${loc["Nume client final"]||"—"}</div>
           <div class="loc-sub">${loc["Firma Facility Management"]||""}</div>
         </div>
         <div style="display:flex;align-items:center">
-          <span class="badge ${loc["Status"]==="inactiv"?"badge-inactive":""}">${loc["ID_Tehnician"]||"—"}</span>
+          <span class="badge ${inactiv ? "badge-inactive" : ""}">${inactiv ? "inactiv" : loc["ID_Tehnician"]||"—"}</span>
           <span style="color:#ccc;margin-left:6px;font-size:18px">›</span>
         </div>
-      </div>`).join("");
-  }
+      </div>`;
+  }).join("");
+}
 
   function filterLocatii() {
     const q = document.getElementById("search-input").value.toLowerCase();
