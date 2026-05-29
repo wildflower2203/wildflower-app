@@ -765,7 +765,7 @@
     const q = document.getElementById("search-input").value.toLowerCase();
     let list = allLocatii;
     if (currentUser?.role==="tehnician") list = allLocatii.filter(l=>l["ID_Tehnician"]===currentUser.name);
-    list = list.filter(l=>l["Status"]==="activ"||l["Status"]==="");
+    
     renderLocatii(list.filter(l =>
       (l["Nume client final"]||"").toLowerCase().includes(q) ||
       (l["Firma Facility Management"]||"").toLowerCase().includes(q) ||
