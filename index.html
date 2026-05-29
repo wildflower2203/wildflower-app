@@ -830,11 +830,21 @@
   }
 
   function toggleLocatieStatus() {
-    if (!currentLoc) return;
-    currentLoc["Status"] = currentLoc["Status"]==="inactiv" ? "activ" : "inactiv";
+  if (!currentLoc) return;
+  const newStatus = currentLoc["Status"] === "inactiv" ? "activ" : "inactiv";
+  fetch(API_GREENLOG, {
+    method: "POST", mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({action: "updateStatus", nume: currentLoc["Nume client final"], status: newStatus})
+  }).then(() => {
+    currentLoc["Status"] = newStatus;
+    const idx = allLocatii.findIndex(l => l["Nume client final"] === currentLoc["Nume client final"]);
+    if (idx !== -1) allLocatii[idx]["Status"] = newStatus;
     renderInfo();
-    showToast(currentLoc["Status"]==="activ" ? "✅ Locație activată" : "⛔ Locație inactivată","success");
-  }
+    filterLocatii();
+    showToast(newStatus === "activ" ? "✅ Locație activată" : "⛔ Locație inactivată", "success");
+  });
+}
 
   function loadPlante(numeLoc) {
     document.getElementById("plante-list").innerHTML='<div class="loading">Se încarcă…</div>';
