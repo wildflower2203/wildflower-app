@@ -82,7 +82,7 @@
     .tratament-data { font-size: 12px; color: var(--gray); margin-top: 2px; }
 
     .add-form { background: var(--bg); border-radius: 12px; padding: 16px; margin-top: 12px; }
-    .add-form input, .add-form select, .add-form textarea { display: block; width: 100%; padding: 10px 14px;; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; background: var(--white); outline: none; margin-bottom: 10px; }
+    .add-form input, .add-form select, .add-form textarea { display: block; width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; background: var(--white); outline: none; margin-bottom: 10px; }
     .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--pink); }
     .add-form textarea { min-height: 80px; resize: vertical; }
     .edit-form { background: var(--bg); border-radius: 10px; padding: 12px; margin-top: 8px; display: none; }
@@ -104,7 +104,7 @@
     .raport-section-title { font-size: 13px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; margin-top: 16px; }
     .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .checkbox-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: var(--bg); border-radius: 10px; cursor: pointer; font-size: 13px; }
-    .checkbox-item input { width: 16px; height: 16px; accent-color: var(--pink); }
+    .checkbox-item input { width: 16px; height: 16px; accent-color: var(--pink); margin-bottom: 0; }
     .step-indicator { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; }
     .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s; }
     .step-dot.active { background: var(--pink); }
@@ -215,8 +215,8 @@
   <!-- DASHBOARD -->
   <div id="view-dashboard">
     <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.05;pointer-events:none;z-index:0;">
-  <img src="Logo_WildB.png" style="width:300px;">
-</div>
+      <img src="Logo_WildB.png" style="width:300px;">
+    </div>
     <div class="search-wrap">
       <input class="search-input" type="text" placeholder="🔍  Caută locație, tehnician..." id="search-input" oninput="filterLocatii()">
     </div>
@@ -286,63 +286,35 @@
       <div class="tab-content" id="tab-vizite">
         <div class="card">
           <div class="card-title" id="vizite-title">Vizite</div>
-          <div class="toggle-add" onclick="toggleForm('form-vizita-add')" style="margin-bottom:8px">+ Adaugă vizită</div>
+          <div class="toggle-add" id="toggle-add-vizita" onclick="deschideFormVizita()" style="margin-bottom:8px">+ Adaugă vizită</div>
           <div class="add-form" id="form-vizita-add" style="display:none">
-  <select id="v-tehnician">
-    <option value="">Tehnician…</option>
-    <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
-  </select>
-  <input type="date" id="v-data">
-  <input type="time" id="v-ora-sosire" placeholder="Ora sosirii">
-  <input type="time" id="v-ora-plecare" placeholder="Ora plecării">
-  <div class="raport-section-title" style="margin-top:8px">✅ Activități efectuate</div>
-  <div class="checkbox-grid" id="v-act-grid">
-    <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
-    <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
-    <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
-    <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
-    <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
-    <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
-    <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
-    <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
-    <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
-    <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
-  </div>
-  <select id="v-tratament" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none">
-    <option value="">Fără tratament</option>
-    <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
-  </select>
-  <textarea id="v-obs" placeholder="Observații, recomandări…" style="margin-top:10px"></textarea>
-  <button class="btn" onclick="adaugaVizita()">💾 Salvează vizită</button>
-</div>
-  <select id="v-tehnician">
-    <option value="">Tehnician…</option>
-    <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
-  </select>
-  <input type="date" id="v-data">
-  <input type="time" id="v-ora-sosire" placeholder="Ora sosirii">
-  <input type="time" id="v-ora-plecare" placeholder="Ora plecării">
-  <div class="raport-section-title" style="margin-top:8px">✅ Activități efectuate</div>
-  <div class="checkbox-grid" id="v-act-grid">
-    <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
-    <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
-    <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
-    <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
-    <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
-    <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
-    <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
-    <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
-    <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
-    <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
-  </div>
-  <select id="v-tratament" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none">
-    <option value="">Fără tratament</option>
-    <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
-  </select>
-  <textarea id="v-obs" placeholder="Observații, recomandări…" style="margin-top:10px"></textarea>
-  <button class="btn" onclick="adaugaVizita()">💾 Salvează vizită</button>
-</div>
-         
+            <select id="v-tehnician">
+              <option value="">Tehnician…</option>
+              <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
+            </select>
+            <input type="date" id="v-data">
+            <input type="time" id="v-ora-sosire">
+            <input type="time" id="v-ora-plecare">
+            <div class="raport-section-title">✅ Activități efectuate</div>
+            <div class="checkbox-grid" id="v-act-grid">
+              <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
+              <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
+              <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
+              <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
+              <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
+              <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
+              <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
+              <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
+              <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
+              <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
+            </div>
+            <select id="v-tratament">
+              <option value="">Fără tratament</option>
+              <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
+            </select>
+            <textarea id="v-obs" placeholder="Observații, recomandări…"></textarea>
+            <button class="btn" onclick="adaugaVizita()">💾 Salvează vizită</button>
+          </div>
           <div id="vizite-list"><div class="loading">Se încarcă…</div></div>
         </div>
       </div>
@@ -472,7 +444,7 @@
             <label class="checkbox-item"><input type="checkbox" value="montare tutori"> Montare tutori</label>
             <label class="checkbox-item"><input type="checkbox" value="evaluare locatie"> 📊 Evaluare</label>
           </div>
-          <textarea id="e-observatii" placeholder="Observații, evaluare…" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none;min-height:80px;resize:vertical"></textarea>
+          <textarea id="e-observatii" placeholder="Observații, evaluare…" style="margin-top:12px;min-height:80px;resize:vertical"></textarea>
           <div class="raport-section-title">👤 Date de contact (opțional)</div>
           <input type="text" id="e-contact-nume" placeholder="Nume persoană de contact">
           <input type="tel" id="e-contact-tel" placeholder="Telefon">
@@ -564,7 +536,7 @@
 
 <script>
   const API_GREENLOG = "https://script.google.com/macros/s/AKfycbwqk54oqRppvzGiN6Ry3n0vjBUCQOm1r12v-Y2IiM_qj_zkHEWIuf1c_vEUg7Hc7Zin/exec";
-  const API_RAPORT   = "https://script.google.com/macros/s/AKfycbxR4f_0ioqKNjN6KN-2Z2hutWcLxxFcnIQeR81xg_BsM_3c_J-nqmtRBdy9150DqNyk/exec";
+  const API_RAPORT   = API_GREENLOG;
   const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRptU49euOwAQU38YSG92XQFbhbPRImhp_X_OmedfxHSHP7rX3Xv_4WbtLRym-MeA96E1dLEA8fzKoM/pub?output=csv&gid=";
   const URLS = {
     locatii:    BASE + "1134673396",
@@ -790,29 +762,28 @@
   }
 
   function renderLocatii(list) {
-  const el = document.getElementById("lista-locatii");
-  if (!list.length) { el.innerHTML = '<div class="empty">Nicio locație găsită</div>'; return; }
-  el.innerHTML = list.map(loc => {
-    const inactiv = loc["Status"] === "inactiv";
-    return `
-      <div class="loc-item" onclick="openLocatie('${(loc["Nume client final"]||"").replace(/'/g,"\\'")}')">
-        <div>
-          <div class="loc-name" style="${inactiv ? "color:#aaa;text-decoration:line-through" : ""}">${loc["Nume client final"]||"—"}</div>
-          <div class="loc-sub">${loc["Firma Facility Management"]||""}</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <span class="badge ${inactiv ? "badge-inactive" : ""}">${inactiv ? "inactiv" : loc["ID_Tehnician"]||"—"}</span>
-          <span style="color:#ccc;margin-left:6px;font-size:18px">›</span>
-        </div>
-      </div>`;
-  }).join("");
-}
+    const el = document.getElementById("lista-locatii");
+    if (!list.length) { el.innerHTML = '<div class="empty">Nicio locație găsită</div>'; return; }
+    el.innerHTML = list.map(loc => {
+      const inactiv = loc["Status"] === "inactiv";
+      return `
+        <div class="loc-item" onclick="openLocatie('${(loc["Nume client final"]||"").replace(/'/g,"\\'")}')">
+          <div>
+            <div class="loc-name" style="${inactiv ? "color:#aaa;text-decoration:line-through" : ""}">${loc["Nume client final"]||"—"}</div>
+            <div class="loc-sub">${loc["Firma Facility Management"]||""}</div>
+          </div>
+          <div style="display:flex;align-items:center">
+            <span class="badge ${inactiv ? "badge-inactive" : ""}">${inactiv ? "inactiv" : loc["ID_Tehnician"]||"—"}</span>
+            <span style="color:#ccc;margin-left:6px;font-size:18px">›</span>
+          </div>
+        </div>`;
+    }).join("");
+  }
 
   function filterLocatii() {
     const q = document.getElementById("search-input").value.toLowerCase();
     let list = allLocatii;
     if (currentUser?.role==="tehnician") list = allLocatii.filter(l=>l["ID_Tehnician"]===currentUser.name);
-    
     renderLocatii(list.filter(l =>
       (l["Nume client final"]||"").toLowerCase().includes(q) ||
       (l["Firma Facility Management"]||"").toLowerCase().includes(q) ||
@@ -833,13 +804,13 @@
       allLocatii.push({"Nume client final":nume,"Firma Facility Management":firma,"Adresa":adresa,"email":email,"ID_Tehnician":teh,"Observatii locatie":obs,"Status":"activ"});
       filterLocatii();
       ["r-locatie","p-locatie"].forEach(id => {
-  const sel = document.getElementById(id);
-  if (!sel) return;
-  const opt = document.createElement("option");
-  opt.value = nume;
-  opt.textContent = nume;
-  sel.appendChild(opt);
-});
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        const opt = document.createElement("option");
+        opt.value = nume;
+        opt.textContent = nume;
+        sel.appendChild(opt);
+      });
       ["loc-nume","loc-firma","loc-adresa","loc-email","loc-obs"].forEach(id=>document.getElementById(id).value="");
       document.getElementById("loc-tehnician").value="";
       document.getElementById("form-add-locatie").style.display="none";
@@ -849,12 +820,15 @@
   function openLocatie(numeLoc) {
     currentLoc = allLocatii.find(l=>l["Nume client final"]===numeLoc);
     if (!currentLoc) return;
+    const inactiv = currentLoc["Status"] === "inactiv";
     document.getElementById("header-title").textContent = numeLoc;
     document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
     document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
     document.getElementById("tab-info").classList.add("active");
     document.querySelector(".tab-btn").classList.add("active");
     ["form-planta","form-tratament","form-necesar","form-vizita-add"].forEach(id=>document.getElementById(id).style.display="none");
+    // Freeze: ascunde butoanele + pentru locatii inactive
+    document.querySelectorAll(".toggle-add").forEach(btn => btn.style.display = inactiv ? "none" : "block");
     renderInfo();
     loadPlante(numeLoc);
     loadViziteLocatie(numeLoc);
@@ -880,21 +854,21 @@
   }
 
   function toggleLocatieStatus() {
-  if (!currentLoc) return;
-  const newStatus = currentLoc["Status"] === "inactiv" ? "activ" : "inactiv";
-  fetch(API_GREENLOG, {
-    method: "POST", mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({action: "updateStatus", nume: currentLoc["Nume client final"], status: newStatus})
-  }).then(() => {
-    currentLoc["Status"] = newStatus;
-    const idx = allLocatii.findIndex(l => l["Nume client final"] === currentLoc["Nume client final"]);
-    if (idx !== -1) allLocatii[idx]["Status"] = newStatus;
-    renderInfo();
-    filterLocatii();
-    showToast(newStatus === "activ" ? "✅ Locație activată" : "⛔ Locație inactivată", "success");
-  });
-}
+    if (!currentLoc) return;
+    const newStatus = currentLoc["Status"] === "inactiv" ? "activ" : "inactiv";
+    fetch(API_GREENLOG, {
+      method: "POST", mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({action: "updateStatus", nume: currentLoc["Nume client final"], status: newStatus})
+    }).then(() => {
+      currentLoc["Status"] = newStatus;
+      const idx = allLocatii.findIndex(l => l["Nume client final"] === currentLoc["Nume client final"]);
+      if (idx !== -1) allLocatii[idx]["Status"] = newStatus;
+      renderInfo();
+      filterLocatii();
+      showToast(newStatus === "activ" ? "✅ Locație activată" : "⛔ Locație inactivată", "success");
+    });
+  }
 
   function loadPlante(numeLoc) {
     document.getElementById("plante-list").innerHTML='<div class="loading">Se încarcă…</div>';
@@ -948,21 +922,21 @@
   }
 
   function stergePlanta(i) {
-  if (!confirm(`Ștergi "${allPlante[i]["Specie planta"]}"?`)) return;
-  const specie  = allPlante[i]["Specie planta"];
-  const locatie = currentLoc["Nume client final"];
-  fetch(API_GREENLOG, {
-    method: "POST", mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({action: "deletePlanta", locatie: locatie, specie: specie})
-  }).then(() => {
-    allPlante.splice(i, 1);
-    renderPlante();
-    showToast("🗑️ Plantă ștearsă", "success");
-  }).catch(() => {
-    showToast("❌ Eroare la ștergere", "error");
-  });
-}
+    if (!confirm(`Ștergi "${allPlante[i]["Specie planta"]}"?`)) return;
+    const specie  = allPlante[i]["Specie planta"];
+    const locatie = currentLoc["Nume client final"];
+    fetch(API_GREENLOG, {
+      method: "POST", mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({action: "deletePlanta", locatie: locatie, specie: specie})
+    }).then(() => {
+      allPlante.splice(i, 1);
+      renderPlante();
+      showToast("🗑️ Plantă ștearsă", "success");
+    }).catch(() => {
+      showToast("❌ Eroare la ștergere", "error");
+    });
+  }
 
   function adaugaPlanta() {
     const specie = document.getElementById("new-specie").value.trim();
@@ -1015,23 +989,34 @@
     if (b) b.style.display = b.style.display==="block" ? "none" : "block";
   }
 
+  function deschideFormVizita() {
+    const f = document.getElementById("form-vizita-add");
+    const isVisible = f.style.display === "block";
+    f.style.display = isVisible ? "none" : "block";
+    if (!isVisible) {
+      // Pre-fill data curenta si tehnician
+      document.getElementById("v-data").value = new Date().toISOString().split("T")[0];
+      if (currentUser) document.getElementById("v-tehnician").value = currentUser.name;
+    }
+  }
+
   function adaugaVizita() {
-  const teh  = document.getElementById("v-tehnician").value;
-  const data = document.getElementById("v-data").value;
-  const oraSosire  = document.getElementById("v-ora-sosire").value;
-  const oraPlecare = document.getElementById("v-ora-plecare").value;
-  const obs = document.getElementById("v-obs").value.trim();
-  if (!teh||!data) { showToast("Completează tehnicianul și data!","error"); return; }
-  const activitati = Array.from(document.querySelectorAll("#v-act-grid input:checked")).map(cb=>cb.value).join(", ");
-  const row = [new Date().toLocaleString("ro-RO"), teh, data, currentLoc["Nume client final"], oraSosire, oraPlecare, activitati, obs, ""];
-  saveToSheets(API_GREENLOG, "Raport vizita", row, () => {
-    document.getElementById("form-vizita-add").style.display = "none";
-    document.querySelectorAll("#v-act-grid input[type=checkbox]").forEach(cb => cb.checked = false);
-    document.getElementById("v-tratament").value = "";
-    document.getElementById("v-obs").value = "";
-    loadViziteLocatie(currentLoc["Nume client final"]);
-  });
-}
+    const teh  = document.getElementById("v-tehnician").value;
+    const data = document.getElementById("v-data").value;
+    const oraSosire  = document.getElementById("v-ora-sosire").value;
+    const oraPlecare = document.getElementById("v-ora-plecare").value;
+    const obs = document.getElementById("v-obs").value.trim();
+    if (!teh||!data) { showToast("Completează tehnicianul și data!","error"); return; }
+    const activitati = Array.from(document.querySelectorAll("#v-act-grid input:checked")).map(cb=>cb.value).join(", ");
+    const row = [new Date().toLocaleString("ro-RO"), teh, data, currentLoc["Nume client final"], oraSosire, oraPlecare, activitati, obs, ""];
+    saveToSheets(API_GREENLOG, "Raport vizita", row, () => {
+      document.getElementById("form-vizita-add").style.display = "none";
+      document.querySelectorAll("#v-act-grid input[type=checkbox]").forEach(cb => cb.checked = false);
+      document.getElementById("v-tratament").value = "";
+      document.getElementById("v-obs").value = "";
+      loadViziteLocatie(currentLoc["Nume client final"]);
+    });
+  }
 
   function loadViziteRecente() {
     fetch(URLS.vizite).then(r=>r.text()).then(text => {
@@ -1161,7 +1146,7 @@
     if (!locatie||!tehnician||!data) { showToast("Completează locația, tehnicianul și data!","error"); return; }
     const activitati = Array.from(document.querySelectorAll("#act-grid input:checked")).map(cb=>cb.value).join(", ");
     const row = [new Date().toLocaleString("ro-RO"), tehnician, data, locatie, oraSosire, oraPlecare, activitati, observatii, foto];
-    saveToSheets(API_RAPORT, "Raport vizita", row, () => {
+    saveToSheets(API_GREENLOG, "Raport vizita", row, () => {
       document.getElementById("r-locatie").value="";
       document.getElementById("r-observatii").value="";
       document.getElementById("r-foto").value="";
