@@ -288,6 +288,33 @@
           <div class="card-title" id="vizite-title">Vizite</div>
           <div class="toggle-add" onclick="toggleForm('form-vizita-add')" style="margin-bottom:8px">+ Adaugă vizită</div>
           <div class="add-form" id="form-vizita-add" style="display:none">
+  <select id="v-tehnician">
+    <option value="">Tehnician…</option>
+    <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
+  </select>
+  <input type="date" id="v-data">
+  <input type="time" id="v-ora-sosire" placeholder="Ora sosirii">
+  <input type="time" id="v-ora-plecare" placeholder="Ora plecării">
+  <div class="raport-section-title" style="margin-top:8px">✅ Activități efectuate</div>
+  <div class="checkbox-grid" id="v-act-grid">
+    <label class="checkbox-item"><input type="checkbox" value="examinarea plantelor in vederea depistarii eventualilor daunatori"> Examinare dăunători</label>
+    <label class="checkbox-item"><input type="checkbox" value="tratarea plantelor bolnave sau atacate de daunatori"> Tratare bolnave</label>
+    <label class="checkbox-item"><input type="checkbox" value="fertilizarea periodica"> Fertilizare</label>
+    <label class="checkbox-item"><input type="checkbox" value="udarea solului"> Udare sol</label>
+    <label class="checkbox-item"><input type="checkbox" value="curatarea frunzelor de praf"> Curățare frunze</label>
+    <label class="checkbox-item"><input type="checkbox" value="pulverizarea frunzelor cu apa"> Pulverizare</label>
+    <label class="checkbox-item"><input type="checkbox" value="curatarea exterioara a ghivecelor"> Curățare ghivece</label>
+    <label class="checkbox-item"><input type="checkbox" value="rotirea periodica a ghivecelor"> Rotire ghivece</label>
+    <label class="checkbox-item"><input type="checkbox" value="amplasarea plantelor"> Amplasare plante</label>
+    <label class="checkbox-item"><input type="checkbox" value="Toaletare plante"> Toaletare</label>
+  </div>
+  <select id="v-tratament" style="margin-top:12px;width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;outline:none">
+    <option value="">Fără tratament</option>
+    <option>fertilizare</option><option>fungicid</option><option>acaricid</option><option>insecticid</option>
+  </select>
+  <textarea id="v-obs" placeholder="Observații, recomandări…" style="margin-top:10px"></textarea>
+  <button class="btn" onclick="adaugaVizita()">💾 Salvează vizită</button>
+</div>
             <select id="v-tehnician">
               <option value="">Tehnician…</option>
               <option>Ana Florentina Grecu</option><option>Paul Fedot</option><option>Radu Greavu</option><option>Diana Marinas</option><option>Lucian Marinas</option>
