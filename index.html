@@ -45,6 +45,19 @@
     .badge { background: var(--pink-light); color: var(--pink); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 10px; }
     .badge-inactive { background: #f5f5f5; color: #aaa; }
 
+    /* Bulinute notificari (#8) */
+    .notif-wrap { display: inline-flex; gap: 3px; margin-left: 5px; vertical-align: middle; }
+    .notif-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.8);
+    }
+    .notif-dot.necesar  { background: #f59e0b; }
+    .notif-dot.tratament { background: #3b82f6; }
+    .notif-dot.extra    { background: #bb3b80; }
+
     .tabs { display: flex; background: var(--white); border-bottom: 1px solid var(--border); overflow-x: auto; padding: 0 16px; position: sticky; top: 57px; z-index: 90; }
     .tab-btn { padding: 12px; font-size: 12px; font-weight: 500; color: var(--gray); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
     .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
@@ -800,6 +813,9 @@
     JSON.parse(localStorage.getItem('wf_prog_done') || '[]')
   );
 
+  // Notificari per locatie (#8) - { "NumeLocatie": Set(["necesar","tratament","extra"]) }
+  let notificariLocatii = {};
+
   // ── HELPERS ───────────────────────────────────────────────────
 
   function parseCSV(text) {
@@ -876,8 +892,6 @@
   }
 
   function saveToSheets(apiUrl, sheetName, row, onSuccess) {
-    if (saveToSheets._saving) return;
-    saveToSheets._saving = true;
     fetch(apiUrl, {
       method: "POST",
       mode: "no-cors",
@@ -885,12 +899,10 @@
       body: JSON.stringify({ sheet: sheetName, row: row })
     })
     .then(() => {
-      saveToSheets._saving = false;
       if (onSuccess) onSuccess();
       showToast("✅ Salvat!", "success");
     })
     .catch(() => {
-      saveToSheets._saving = false;
       showToast("❌ Eroare la salvare", "error");
     });
   }
@@ -935,6 +947,7 @@
     if (isAdmin) document.getElementById("admin-add-loc").style.display = "block";
 
     loadAllData();
+    if (isAdmin) loadNotificari();
     showView("dashboard");
   }
 
@@ -1080,12 +1093,26 @@
       return;
     }
     el.innerHTML = list.map(loc => {
-      const inactiv = loc["Status"] === "inactiv";
+      const inactiv  = loc["Status"] === "inactiv";
+      const numeLoc  = loc["Nume client final"] || "";
+      const notifSet = notificariLocatii[numeLoc];
+
+      // Bulinute colorate: galben=necesar, albastru=tratament, roz=extra
+      let dotsHtml = "";
+      if (notifSet && notifSet.size > 0 && !inactiv) {
+        const labels = { necesar: "Necesar nou", tratament: "Tratament nou", extra: "Vizita extra noua" };
+        dotsHtml = `<span class="notif-wrap">
+          ${[...notifSet].map(t =>
+            `<span class="notif-dot ${t}" title="${labels[t] || t}"></span>`
+          ).join("")}
+        </span>`;
+      }
+
       return `
-        <div class="loc-item" onclick="openLocatie('${(loc["Nume client final"]||"").replace(/'/g, "\\'")}')">
+        <div class="loc-item" onclick="openLocatie('${numeLoc.replace(/'/g, "\\'")}')">
           <div>
             <div class="loc-name" style="${inactiv ? 'color:#aaa; text-decoration:line-through' : ''}">
-              ${loc["Nume client final"] || "—"}
+              ${numeLoc || "—"} ${dotsHtml}
             </div>
             <div class="loc-sub">${loc["Firma Facility Management"] || ""}</div>
           </div>
@@ -1110,6 +1137,83 @@
       (l["Firma Facility Management"] || "").toLowerCase().includes(q) ||
       (l["ID_Tehnician"] || "").toLowerCase().includes(q)
     ));
+  }
+
+  // ── NOTIFICARI (#8) ───────────────────────────────────────────
+
+  function loadNotificari() {
+    const acum = Date.now();
+    const sapteZileMs = 7 * 24 * 60 * 60 * 1000;
+
+    // Converteste orice format de data in milisecunde
+    function dataLaMs(val) {
+      if (!val) return 0;
+      const nr = parseFloat(val);
+      if (!isNaN(nr) && nr > 40000 && nr < 60000) {
+        return new Date(Date.UTC(1899, 11, 30) + nr * 86400000).getTime();
+      }
+      // Format DD.MM.YYYY (roman)
+      const match = String(val).match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+      if (match) return new Date(match[3], match[2]-1, match[1]).getTime();
+      const d = new Date(val);
+      return isNaN(d) ? 0 : d.getTime();
+    }
+
+    notificariLocatii = {};
+
+    const adaugaNotif = (loc, tip) => {
+      if (!loc) return;
+      if (!notificariLocatii[loc]) notificariLocatii[loc] = new Set();
+      notificariLocatii[loc].add(tip);
+    };
+
+    Promise.all([
+
+      // Tratamente noi in ultimele 7 zile
+      fetch(URLS.tratamente).then(r => r.text()).then(text => {
+        parseCSV(text).forEach(t => {
+          const ms = dataLaMs(t["Data_tratament"]);
+          if (ms && acum - ms <= sapteZileMs) {
+            adaugaNotif(t["ID_Locatie"], "tratament");
+          }
+        });
+      }).catch(() => {}),
+
+      // Necesar nerezolvat (Status = "Necesar" sau gol)
+      fetch(URLS.necesar).then(r => r.text()).then(text => {
+        parseCSV(text).forEach(n => {
+          const status = (n["Status"] || "").toLowerCase();
+          if (n["Tip produs"] && (status === "necesar" || status === "")) {
+            adaugaNotif(n["ID_Locatie"], "necesar");
+          }
+        });
+      }).catch(() => {}),
+
+      // Vizite extra noi in ultimele 7 zile (din raport vizita — locatii care nu sunt in lista)
+      // si vizite recente ale locatiilor curente
+      fetch(URLS.vizite).then(r => r.text()).then(text => {
+        parseCSV(text).forEach(v => {
+          const ms = dataLaMs(v["Data vizita"]);
+          if (ms && acum - ms <= sapteZileMs) {
+            // Marcam ca "extra" daca locatia nu e in allLocatii (vizita la client nou)
+            const esteLocatieCunoscuta = allLocatii.some(l =>
+              l["Nume client final"]?.toLowerCase() === v["Locatie"]?.toLowerCase()
+            );
+            if (!esteLocatieCunoscuta && v["Locatie"]) {
+              adaugaNotif(v["Locatie"], "extra");
+            }
+          }
+        });
+      }).catch(() => {})
+
+    ]).then(() => {
+      // Re-render lista locatii cu bulinute actualizate
+      let visible = allLocatii;
+      if (currentUser?.role === "tehnician") {
+        visible = allLocatii.filter(l => l["ID_Tehnician"] === currentUser.name);
+      }
+      renderLocatii(visible);
+    });
   }
 
   function adaugaLocatie() {
