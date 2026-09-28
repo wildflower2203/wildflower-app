@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -620,8 +619,9 @@
   <div id="view-extra">
     <div class="container">
       <div class="card">
-        <div class="card-title">⭐ Lucrare extra</div>
-        <div class="add-form" style="margin:0; background:none; padding:0">
+        <div class="card-title">⭐ Lucrari extra</div>
+        <div class="toggle-add" onclick="toggleForm('form-add-extra')">+ Adauga lucrare extra</div>
+        <div class="add-form" id="form-add-extra" style="display:none">
           <input type="text" id="e-locatie" placeholder="Nume locatie / client *">
           <input type="text" id="e-adresa" placeholder="Adresa locatiei">
           <select id="e-tehnician">
@@ -653,6 +653,13 @@
           <input type="tel" id="e-contact-tel" placeholder="Telefon">
           <input type="email" id="e-contact-email" placeholder="Email">
           <button class="btn" style="margin-top:4px" onclick="salveazaExtra()">💾 Salveaza lucrare extra</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Lucrari extra inregistrate</div>
+        <div id="lista-extra">
+          <div class="loading">Se incarca...</div>
         </div>
       </div>
     </div>
@@ -1021,6 +1028,7 @@
       document.getElementById("nav-extra").classList.add("active");
       document.getElementById("e-data").value = new Date().toISOString().split("T")[0];
       if (currentUser) document.getElementById("e-tehnician").value = currentUser.name;
+      loadLucrariExtra();
 
     } else if (view === "programari") {
       document.getElementById("view-programari").style.display = "block";
@@ -1822,8 +1830,17 @@
     const activitati = Array.from(document.querySelectorAll("#extra-activitati input:checked"))
       .map(cb => cb.value).join(", ");
     const contact = [cNume, cTel, cEmail].filter(Boolean).join(" | ");
-    const row = [generateId(), locatie, teh, "Alt tip", data, "Finalizata",
-                 obs, activitati, oraSos, oraPl, adresa, contact];
+    // Sheet-ul "activitati suplimentare" are doar 9 coloane fixe (ID_Activitate,
+    // ID_Locatie, ID_Tehnician, Tip_Activitate, Data_Activitate, Status, Detalii,
+    // Cost total, Foto factura) - comprimam tot ce nu are coloana dedicata in "Detalii".
+    const detaliiParts = [];
+    if (obs) detaliiParts.push(obs);
+    if (activitati) detaliiParts.push("Activitati: " + activitati);
+    if (oraSos || oraPl) detaliiParts.push("Interval: " + (oraSos || "—") + "–" + (oraPl || "—"));
+    if (adresa) detaliiParts.push("Adresa: " + adresa);
+    if (contact) detaliiParts.push("Contact: " + contact);
+    const detalii = detaliiParts.join(" | ");
+    const row = [generateId(), locatie, teh, "Alt tip", data, "Finalizata", detalii, "", ""];
     saveToSheets(API_GREENLOG, "activitati suplimentare", row, () => {
       document.getElementById("e-locatie").value = "";
       document.getElementById("e-adresa").value = "";
@@ -1832,7 +1849,66 @@
       document.getElementById("e-contact-tel").value = "";
       document.getElementById("e-contact-email").value = "";
       document.querySelectorAll("#extra-activitati input").forEach(cb => cb.checked = false);
+      document.getElementById("form-add-extra").style.display = "none";
+      loadLucrariExtra();
     });
+  }
+
+  let allLucrariExtra = [];
+
+  function loadLucrariExtra() {
+    const el = document.getElementById("lista-extra");
+    el.innerHTML = '<div class="loading">Se incarca...</div>';
+    fetch(API_GREENLOG + "?action=getActivitati")
+      .then(r => r.json())
+      .then(res => {
+        if (!res.success) {
+          el.innerHTML = '<div class="empty">Eroare la incarcare: ' + (res.error || "") + '</div>';
+          return;
+        }
+        allLucrariExtra = res.rows.filter(r => r["ID_Locatie"]).reverse();
+        renderLucrariExtra();
+      })
+      .catch(err => {
+        console.error("Eroare incarcare lucrari extra:", err);
+        el.innerHTML = '<div class="empty">Nu s-a putut incarca lista</div>';
+      });
+  }
+
+  function renderLucrariExtra() {
+    const el = document.getElementById("lista-extra");
+    if (!allLucrariExtra.length) {
+      el.innerHTML = '<div class="empty">Nicio lucrare extra inregistrata</div>';
+      return;
+    }
+    el.innerHTML = allLucrariExtra.map((r, i) => `
+      <div class="vizita-item" onclick="toggleExtraItem(${i})">
+        <div class="vizita-header">
+          <span class="vizita-data">⭐ ${r["ID_Locatie"] || "—"}</span>
+          <span class="vizita-tehnician">${r["ID_Tehnician"] || "—"}</span>
+        </div>
+        <div class="vizita-body" id="ve-${i}">
+          <div class="detail-row">
+            <div class="detail-label">Data</div>
+            <div class="detail-value">${r["Data_Activitate"] || "—"}</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Status</div>
+            <div class="detail-value">${r["Status"] || "—"}</div>
+          </div>
+          ${r["Detalii"] ? `<div class="vizita-obs">💬 ${r["Detalii"]}</div>` : ""}
+          ${r["Cost total"] ? `
+            <div class="detail-row">
+              <div class="detail-label">Cost</div>
+              <div class="detail-value">${r["Cost total"]}</div>
+            </div>` : ""}
+        </div>
+      </div>`).join("");
+  }
+
+  function toggleExtraItem(i) {
+    const b = document.getElementById("ve-" + i);
+    if (b) b.style.display = b.style.display === "block" ? "none" : "block";
   }
 
   // ── CALENDAR SI PROGRAMARI (#7) ───────────────────────────────
