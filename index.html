@@ -438,13 +438,13 @@
                 <input type="checkbox" value="Toaletare plante"> Toaletare
               </label>
             </div>
-            <select id="v-tratament">
-              <option value="">Fara tratament</option>
-              <option>fertilizare</option>
-              <option>fungicid</option>
-              <option>acaricid</option>
-              <option>insecticid</option>
-            </select>
+            <div class="raport-section-title" style="margin-top:4px">💊 Tratament (optional)</div>
+            <div class="checkbox-grid" id="v-tratament">
+              <label class="checkbox-item"><input type="checkbox" value="fertilizare"> Fertilizare</label>
+              <label class="checkbox-item"><input type="checkbox" value="fungicid"> Fungicid</label>
+              <label class="checkbox-item"><input type="checkbox" value="acaricid"> Acaricid</label>
+              <label class="checkbox-item"><input type="checkbox" value="insecticid"> Insecticid</label>
+            </div>
             <textarea id="v-obs" placeholder="Observatii, recomandari..."></textarea>
             <button class="btn" onclick="adaugaVizita()">💾 Salveaza vizita</button>
           </div>
@@ -461,13 +461,12 @@
           <div class="card-title">Tratamente aplicate</div>
           <div class="toggle-add" onclick="toggleForm('form-tratament')">+ Adauga tratament</div>
           <div class="add-form" id="form-tratament" style="display:none">
-            <select id="new-tip-tratament">
-              <option value="">Tip tratament...</option>
-              <option>fertilizare</option>
-              <option>fungicid</option>
-              <option>acaricid</option>
-              <option>insecticid</option>
-            </select>
+            <div class="checkbox-grid" id="new-tip-tratament">
+              <label class="checkbox-item"><input type="checkbox" value="fertilizare"> Fertilizare</label>
+              <label class="checkbox-item"><input type="checkbox" value="fungicid"> Fungicid</label>
+              <label class="checkbox-item"><input type="checkbox" value="acaricid"> Acaricid</label>
+              <label class="checkbox-item"><input type="checkbox" value="insecticid"> Insecticid</label>
+            </div>
             <input type="text" id="new-obs-tratament" placeholder="Observatii">
             <button class="btn" onclick="adaugaTratament()">💾 Salveaza</button>
           </div>
@@ -579,15 +578,13 @@
               <input type="checkbox" value="Toaletare plante"> Toaletare
             </label>
           </div>
-          <select id="r-tratament" style="margin-top:12px; width:100%; padding:10px 14px;
-                  border:1.5px solid var(--border); border-radius:10px; font-size:14px;
-                  font-family:'DM Sans',sans-serif; background:white; outline:none">
-            <option value="">Fara tratament</option>
-            <option>fertilizare</option>
-            <option>fungicid</option>
-            <option>acaricid</option>
-            <option>insecticid</option>
-          </select>
+          <div class="raport-section-title" style="margin-top:12px">💊 Tratament (optional)</div>
+          <div class="checkbox-grid" id="r-tratament">
+            <label class="checkbox-item"><input type="checkbox" value="fertilizare"> Fertilizare</label>
+            <label class="checkbox-item"><input type="checkbox" value="fungicid"> Fungicid</label>
+            <label class="checkbox-item"><input type="checkbox" value="acaricid"> Acaricid</label>
+            <label class="checkbox-item"><input type="checkbox" value="insecticid"> Insecticid</label>
+          </div>
           <div style="display:flex; gap:10px; margin-top:12px">
             <button class="btn btn-gray" style="flex:1" onclick="raportStep(1)">← Inapoi</button>
             <button class="btn" style="flex:2" onclick="raportStep(3)">Continua →</button>
@@ -599,7 +596,6 @@
           <div class="raport-section-title">💬 Observatii</div>
           <div class="add-form" style="margin:0; background:none; padding:0">
             <textarea id="r-observatii" placeholder="Observatii, recomandari..."></textarea>
-            <input type="text" id="r-foto" placeholder="Link foto Google Drive (optional)">
           </div>
           <div style="display:flex; gap:10px; margin-top:4px">
             <button class="btn btn-gray" style="flex:1" onclick="raportStep(2)">← Inapoi</button>
@@ -898,7 +894,14 @@
       body: JSON.stringify({ sheet: sheetName, row: row })
     })
     .then(r => r.text())
-    .then(() => {
+    .then(text => {
+      let res = null;
+      try { res = JSON.parse(text); } catch (e) { /* raspuns necunoscut, tratat ca succes mai jos */ }
+      if (res && res.success === false) {
+        console.error("Eroare backend la salvare:", res.error);
+        showToast("❌ Eroare: " + (res.error || "salvarea a esuat"), "error");
+        return;
+      }
       if (onSuccess) onSuccess();
       showToast("✅ Salvat!", "success");
     })
@@ -1588,12 +1591,14 @@
 
     const activitati = Array.from(document.querySelectorAll("#v-act-grid input:checked"))
       .map(cb => cb.value).join(", ");
+    const tratament = Array.from(document.querySelectorAll("#v-tratament input:checked"))
+      .map(cb => cb.value).join(", ");
     const row = [new Date().toLocaleString("ro-RO"), teh, data,
-                 currentLoc["Nume client final"], oraSosire, oraPlecare, activitati, obs, ""];
+                 currentLoc["Nume client final"], oraSosire, oraPlecare, activitati, obs, "", tratament];
     saveToSheets(API_GREENLOG, "Raport vizita", row, () => {
       document.getElementById("form-vizita-add").style.display = "none";
       document.querySelectorAll("#v-act-grid input[type=checkbox]").forEach(cb => cb.checked = false);
-      document.getElementById("v-tratament").value = "";
+      document.querySelectorAll("#v-tratament input").forEach(cb => cb.checked = false);
       document.getElementById("v-obs").value = "";
       loadViziteLocatie(currentLoc["Nume client final"]);
     });
@@ -1661,9 +1666,10 @@
   }
 
   function adaugaTratament() {
-    const tip = document.getElementById("new-tip-tratament").value;
+    const tip = Array.from(document.querySelectorAll("#new-tip-tratament input:checked"))
+      .map(cb => cb.value).join(", ");
     const obs = document.getElementById("new-obs-tratament").value.trim();
-    if (!tip) { showToast("Selecteaza tipul!", "error"); return; }
+    if (!tip) { showToast("Selecteaza cel putin un tip!", "error"); return; }
 
     const row = [currentLoc["Nume client final"], new Date().toLocaleDateString("ro-RO"),
                  "Finalizat", tip, "Bun", obs];
@@ -1675,7 +1681,7 @@
         "Observatii": obs
       });
       renderTratamente();
-      document.getElementById("new-tip-tratament").value = "";
+      document.querySelectorAll("#new-tip-tratament input").forEach(cb => cb.checked = false);
       document.getElementById("new-obs-tratament").value = "";
       document.getElementById("form-tratament").style.display = "none";
     });
@@ -1774,20 +1780,22 @@
     const oraSosire  = document.getElementById("r-ora-sosire").value;
     const oraPlecare = document.getElementById("r-ora-plecare").value;
     const observatii = document.getElementById("r-observatii").value.trim();
-    const foto       = document.getElementById("r-foto").value.trim();
     if (!locatie || !tehnician || !data) {
       showToast("Completeaza locatia, tehnicianul si data!", "error");
       return;
     }
     const activitati = Array.from(document.querySelectorAll("#act-grid input:checked"))
       .map(cb => cb.value).join(", ");
+    const tratament = Array.from(document.querySelectorAll("#r-tratament input:checked"))
+      .map(cb => cb.value).join(", ");
+    // "Foto plante" (coloana I) nu se mai completeaza din aplicatie - ramane goala
     const row = [new Date().toLocaleString("ro-RO"), tehnician, data, locatie,
-                 oraSosire, oraPlecare, activitati, observatii, foto];
+                 oraSosire, oraPlecare, activitati, observatii, "", tratament];
     saveToSheets(API_GREENLOG, "Raport vizita", row, () => {
       document.getElementById("r-locatie").value = "";
       document.getElementById("r-observatii").value = "";
-      document.getElementById("r-foto").value = "";
       document.querySelectorAll("#act-grid input[type=checkbox]").forEach(cb => cb.checked = false);
+      document.querySelectorAll("#r-tratament input").forEach(cb => cb.checked = false);
       raportStep(1);
       loadViziteRecente();
     });
